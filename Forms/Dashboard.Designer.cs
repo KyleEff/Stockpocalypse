@@ -36,7 +36,7 @@
             this.DepositCashButton = new System.Windows.Forms.Button();
             this.CashTextBox = new System.Windows.Forms.TextBox();
             this.CashLabel = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this._menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +45,23 @@
             this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.IndicesGroupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.NDQGroupBox = new System.Windows.Forms.GroupBox();
+            this.DJIGroupBox = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._lowLabel = new System.Windows.Forms.Label();
+            this._djiLowTextBox = new System.Windows.Forms.TextBox();
+            this._djiHighLabel = new System.Windows.Forms.Label();
+            this._djiHighTextBox = new System.Windows.Forms.TextBox();
+            this._djiDayChange = new System.Windows.Forms.Label();
+            this._djiLabel = new System.Windows.Forms.Label();
+            this._djiChangeTextBox = new System.Windows.Forms.TextBox();
+            this._djiTextBox = new System.Windows.Forms.TextBox();
+            this._menuStrip.SuspendLayout();
+            this.IndicesGroupBox.SuspendLayout();
+            this.DJIGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTitle
@@ -70,9 +86,9 @@
             // 
             // GetQuoteButton
             // 
-            this.GetQuoteButton.Location = new System.Drawing.Point(416, 128);
+            this.GetQuoteButton.Location = new System.Drawing.Point(416, 192);
             this.GetQuoteButton.Name = "GetQuoteButton";
-            this.GetQuoteButton.Size = new System.Drawing.Size(372, 115);
+            this.GetQuoteButton.Size = new System.Drawing.Size(168, 42);
             this.GetQuoteButton.TabIndex = 2;
             this.GetQuoteButton.Text = "GET QUOTE";
             this.GetQuoteButton.UseVisualStyleBackColor = true;
@@ -80,9 +96,9 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(416, 269);
+            this.SearchButton.Location = new System.Drawing.Point(416, 144);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(372, 117);
+            this.SearchButton.Size = new System.Drawing.Size(168, 42);
             this.SearchButton.TabIndex = 5;
             this.SearchButton.Text = "SEARCH STOCKS";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -129,16 +145,16 @@
             this.CashLabel.TabIndex = 9;
             this.CashLabel.Text = "Cash Available For Trading";
             // 
-            // menuStrip1
+            // _menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.tradeToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 10;
-            this.menuStrip1.Text = "menuStrip1";
+            this._menuStrip.Location = new System.Drawing.Point(0, 0);
+            this._menuStrip.Name = "_menuStrip";
+            this._menuStrip.Size = new System.Drawing.Size(800, 24);
+            this._menuStrip.TabIndex = 10;
+            this._menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -152,13 +168,13 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // tradeToolStripMenuItem
@@ -196,12 +212,153 @@
             this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.portfolioToolStripMenuItem.Text = "Portfolio";
             // 
+            // IndicesGroupBox
+            // 
+            this.IndicesGroupBox.Controls.Add(this.groupBox1);
+            this.IndicesGroupBox.Controls.Add(this.NDQGroupBox);
+            this.IndicesGroupBox.Controls.Add(this.DJIGroupBox);
+            this.IndicesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IndicesGroupBox.Location = new System.Drawing.Point(12, 205);
+            this.IndicesGroupBox.Name = "IndicesGroupBox";
+            this.IndicesGroupBox.Size = new System.Drawing.Size(398, 360);
+            this.IndicesGroupBox.TabIndex = 11;
+            this.IndicesGroupBox.TabStop = false;
+            this.IndicesGroupBox.Text = "Market Indices";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(7, 245);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(385, 107);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Standard && Poors 500";
+            // 
+            // NDQGroupBox
+            // 
+            this.NDQGroupBox.Location = new System.Drawing.Point(7, 134);
+            this.NDQGroupBox.Name = "NDQGroupBox";
+            this.NDQGroupBox.Size = new System.Drawing.Size(385, 105);
+            this.NDQGroupBox.TabIndex = 1;
+            this.NDQGroupBox.TabStop = false;
+            this.NDQGroupBox.Text = "Nasdaq-100";
+            // 
+            // DJIGroupBox
+            // 
+            this.DJIGroupBox.Controls.Add(this.label1);
+            this.DJIGroupBox.Controls.Add(this.textBox1);
+            this.DJIGroupBox.Controls.Add(this._lowLabel);
+            this.DJIGroupBox.Controls.Add(this._djiLowTextBox);
+            this.DJIGroupBox.Controls.Add(this._djiHighLabel);
+            this.DJIGroupBox.Controls.Add(this._djiHighTextBox);
+            this.DJIGroupBox.Controls.Add(this._djiDayChange);
+            this.DJIGroupBox.Controls.Add(this._djiLabel);
+            this.DJIGroupBox.Controls.Add(this._djiChangeTextBox);
+            this.DJIGroupBox.Controls.Add(this._djiTextBox);
+            this.DJIGroupBox.Location = new System.Drawing.Point(7, 22);
+            this.DJIGroupBox.Name = "DJIGroupBox";
+            this.DJIGroupBox.Size = new System.Drawing.Size(385, 106);
+            this.DJIGroupBox.TabIndex = 0;
+            this.DJIGroupBox.TabStop = false;
+            this.DJIGroupBox.Text = "Dow Jones Industrial Average 30";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(265, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Previous Day";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(254, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(125, 22);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // _lowLabel
+            // 
+            this._lowLabel.AutoSize = true;
+            this._lowLabel.Location = new System.Drawing.Point(6, 80);
+            this._lowLabel.Name = "_lowLabel";
+            this._lowLabel.Size = new System.Drawing.Size(38, 16);
+            this._lowLabel.TabIndex = 7;
+            this._lowLabel.Text = "Low:";
+            // 
+            // _djiLowTextBox
+            // 
+            this._djiLowTextBox.Location = new System.Drawing.Point(72, 77);
+            this._djiLowTextBox.Name = "_djiLowTextBox";
+            this._djiLowTextBox.ReadOnly = true;
+            this._djiLowTextBox.Size = new System.Drawing.Size(125, 22);
+            this._djiLowTextBox.TabIndex = 6;
+            this._djiLowTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // _djiHighLabel
+            // 
+            this._djiHighLabel.AutoSize = true;
+            this._djiHighLabel.Location = new System.Drawing.Point(6, 52);
+            this._djiHighLabel.Name = "_djiHighLabel";
+            this._djiHighLabel.Size = new System.Drawing.Size(43, 16);
+            this._djiHighLabel.TabIndex = 5;
+            this._djiHighLabel.Text = "High:";
+            // 
+            // _djiHighTextBox
+            // 
+            this._djiHighTextBox.Location = new System.Drawing.Point(72, 49);
+            this._djiHighTextBox.Name = "_djiHighTextBox";
+            this._djiHighTextBox.ReadOnly = true;
+            this._djiHighTextBox.Size = new System.Drawing.Size(125, 22);
+            this._djiHighTextBox.TabIndex = 4;
+            this._djiHighTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // _djiDayChange
+            // 
+            this._djiDayChange.AutoSize = true;
+            this._djiDayChange.Location = new System.Drawing.Point(238, 80);
+            this._djiDayChange.Name = "_djiDayChange";
+            this._djiDayChange.Size = new System.Drawing.Size(64, 16);
+            this._djiDayChange.TabIndex = 3;
+            this._djiDayChange.Text = "Change:";
+            // 
+            // _djiLabel
+            // 
+            this._djiLabel.AutoSize = true;
+            this._djiLabel.Location = new System.Drawing.Point(6, 24);
+            this._djiLabel.Name = "_djiLabel";
+            this._djiLabel.Size = new System.Drawing.Size(60, 16);
+            this._djiLabel.TabIndex = 2;
+            this._djiLabel.Text = "Current:";
+            // 
+            // _djiChangeTextBox
+            // 
+            this._djiChangeTextBox.Location = new System.Drawing.Point(304, 77);
+            this._djiChangeTextBox.Name = "_djiChangeTextBox";
+            this._djiChangeTextBox.ReadOnly = true;
+            this._djiChangeTextBox.Size = new System.Drawing.Size(75, 22);
+            this._djiChangeTextBox.TabIndex = 1;
+            this._djiChangeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // _djiTextBox
+            // 
+            this._djiTextBox.Location = new System.Drawing.Point(72, 21);
+            this._djiTextBox.Name = "_djiTextBox";
+            this._djiTextBox.ReadOnly = true;
+            this._djiTextBox.Size = new System.Drawing.Size(125, 22);
+            this._djiTextBox.TabIndex = 0;
+            this._djiTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 616);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.IndicesGroupBox);
+            this.Controls.Add(this._menuStrip);
             this.Controls.Add(this.CashLabel);
             this.Controls.Add(this.CashTextBox);
             this.Controls.Add(this.DepositCashButton);
@@ -212,8 +369,11 @@
             this.Controls.Add(this.MainTitle);
             this.Name = "Dashboard";
             this.Text = "Stockpocalypse";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this._menuStrip.ResumeLayout(false);
+            this._menuStrip.PerformLayout();
+            this.IndicesGroupBox.ResumeLayout(false);
+            this.DJIGroupBox.ResumeLayout(false);
+            this.DJIGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +389,7 @@
         private System.Windows.Forms.Button DepositCashButton;
         private System.Windows.Forms.Label CashLabel;
         private System.Windows.Forms.TextBox CashTextBox;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip _menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -238,6 +398,20 @@
         private System.Windows.Forms.ToolStripMenuItem buyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sellToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
+        private System.Windows.Forms.GroupBox IndicesGroupBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox NDQGroupBox;
+        private System.Windows.Forms.GroupBox DJIGroupBox;
+        private System.Windows.Forms.TextBox _djiTextBox;
+        private System.Windows.Forms.Label _djiLabel;
+        private System.Windows.Forms.TextBox _djiChangeTextBox;
+        private System.Windows.Forms.Label _djiDayChange;
+        private System.Windows.Forms.Label _lowLabel;
+        private System.Windows.Forms.TextBox _djiLowTextBox;
+        private System.Windows.Forms.Label _djiHighLabel;
+        private System.Windows.Forms.TextBox _djiHighTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

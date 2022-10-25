@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Stock_Program;
 using StockForms.DBWires;
 using StockForms.Forms;
 using System;
@@ -19,6 +18,7 @@ using System.Windows.Forms;
 using TwelveDataSharp;
 using StockForms.Interfaces;
 using System.Runtime.CompilerServices;
+using TwelveDataSharp.Library.ResponseModels;
 
 namespace StockForms
 {
@@ -42,6 +42,7 @@ namespace StockForms
         {
             InitializeComponent();
             SetCash();
+            SetIndices();
         }
 
         // Interface Functions
@@ -90,6 +91,26 @@ namespace StockForms
                 _depositWin = new DepositBox(this);
                 _depositWin.Show();
             }
+        }
+
+        private async void SetIndices() {
+
+            Client = new HttpClient();
+            Api = new TwelveDataClient(ApiKey, Client);
+
+            var dji = await Api.GetQuoteAsync("DJI", "1day");
+            //var ndq = await Api.GetQuoteAsync("NDQ", "1d");
+            //var sp = await Api.GetQuoteAsync("SPX", "1d");
+
+            var price = await Api.GetRealTimePriceAsync("DJI");
+
+            _djiTextBox.Text = price.Price.ToString();
+            _djiHighTextBox.Text = dji.High.ToString("0.00");
+            _djiLowTextBox.Text = dji.Low.ToString("0.00");
+            _djiChangeTextBox.Text = dji.PercentChange.ToString() + '%';
+
+
+
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
