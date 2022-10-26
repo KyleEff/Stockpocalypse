@@ -17,7 +17,8 @@ namespace StockForms.Forms
     {
         private double _price { get; set; }
         private double _total { get; set; }
-        private Dashboard _mainForm = null;
+        private Dashboard
+            _mainForm = null;
 
         public BuyStockForm()
         {
@@ -81,6 +82,11 @@ namespace StockForms.Forms
 
             CashTextBox.Text = _mainForm.CashBox;
             OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
+        }
+
+        private void DepositCashButton_Click(object sender, EventArgs e)
+        {
+            if (_mainForm != null) { _mainForm.DepositCash(); }
         }
 
         private void QuantityTextBox_TextChanged(object sender, EventArgs e)

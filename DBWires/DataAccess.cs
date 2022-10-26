@@ -91,6 +91,8 @@ namespace StockForms.DBWires
                     comm.Parameters.AddWithValue("@Quantity", Quantity);
                 }
 
+
+
                 //MessageBox.Show(output.ToString());
             }
         }

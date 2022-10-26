@@ -8,7 +8,7 @@ namespace StockForms.DBWires
 {
     public class Customer_Portfolio
     {
-        public int Portfolio_Id { get; set; }
+        public int Id { get; set; }
         public string Stock_Ticker { get; set; }
         public string Stock_Name { get; set; }
         public int Quantity_Owned { get; set; }

@@ -103,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBWires\Customer.cs" />
-    <Compile Include="DBWires\CustomerPortfolio.cs" />
+    <Compile Include="DBWires\Portfolio.cs" />
     <Compile Include="DBWires\DataAccess.cs" />
     <Compile Include="DBWires\Helper.cs" />
     <Compile Include="DBWires\LimitOrder.cs" />
@@ -128,17 +128,23 @@
     <Compile Include="Forms\DepositBox.Designer.cs">
       <DependentUpon>DepositBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PortfolioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PortfolioForm.Designer.cs">
+      <DependentUpon>PortfolioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\QuoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\QuoteForm.Designer.cs">
       <DependentUpon>QuoteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Test.cs">
+    <Compile Include="Forms\SellStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
+    <Compile Include="Forms\SellStockForm.Designer.cs">
+      <DependentUpon>SellStockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ICashManagement.cs" />
     <Compile Include="Program.cs" />
@@ -165,9 +171,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

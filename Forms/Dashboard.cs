@@ -34,9 +34,13 @@ namespace StockForms
             set { CashTextBox.Text = value; }
         }
 
-        public SearchForm SearchWin { get; set; }
-        private QuoteForm _quoteWin { get; set; }
         private DepositBox _depositWin { get; set; }
+        public SearchForm SearchWin { get; set; }
+        public QuoteForm QuoteWin { get; set; }
+        public BuyStockForm BuyStockWin { get; set; }
+        public SellStockForm SellStockWin { get; set; }
+        public PortfolioForm PorfolioWin { get; set; }
+
 
         public Dashboard()
         {
@@ -98,19 +102,50 @@ namespace StockForms
             Client = new HttpClient();
             Api = new TwelveDataClient(ApiKey, Client);
 
+            // index initialization
             var dji = await Api.GetQuoteAsync("DJI", "1day");
-            //var ndq = await Api.GetQuoteAsync("NDQ", "1d");
-            //var sp = await Api.GetQuoteAsync("SPX", "1d");
+            var sp = await Api.GetQuoteAsync("SPX", "1day");
 
-            var price = await Api.GetRealTimePriceAsync("DJI");
-
-            _djiTextBox.Text = price.Price.ToString();
+            // Set up the DOW Jones Index 30
+            _djiTextBox.Text = dji.Close.ToString("0.00");
             _djiHighTextBox.Text = dji.High.ToString("0.00");
             _djiLowTextBox.Text = dji.Low.ToString("0.00");
-            _djiChangeTextBox.Text = dji.PercentChange.ToString() + '%';
+            _djiPrevTextBox.Text = dji.PreviousClose.ToString("0.00");
+            _djiChangeTextBox.Text = dji.PercentChange.ToString("0.00");
+            
+            // Set up the S&P500 index
+            _spTextBox.Text = sp.Close.ToString("0.00");
+            _spHighTextBox.Text = sp.High.ToString("0.00");
+            _spLowTextBox.Text = sp.Low.ToString("0.00");
+            _spPrevTextBox.Text = sp.PreviousClose.ToString("0.00");
+            _spChangeTextBox.Text = sp.PercentChange.ToString("0.00");
 
+            _spChangeTextBox.ForeColor = Color.Lime;
 
+            // Set Daily Market Outlook
+            var MarketDaily = new StringBuilder(_marketTodayLabel.Text.ToString());
 
+            if (
+                (double.Parse(_djiChangeTextBox.Text) > 0.9)
+                ||
+                (double.Parse(_spChangeTextBox.Text) > 0.9)
+            ) { MarketDaily.Append("UP"); }
+
+            else if (
+                (double.Parse(_djiChangeTextBox.Text) < -0.9)
+                ||
+                (double.Parse(_spChangeTextBox.Text) < -0.9)
+            ) { MarketDaily.Append("DOWN"); }
+
+            else { MarketDaily.Append("SIDEWAYS"); }
+            
+            _marketTodayLabel.Text = MarketDaily.ToString();
+            
+        }
+
+        private void DepositCashButton_Click(object sender, EventArgs e)
+        {
+            DepositCash();
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -125,31 +160,26 @@ namespace StockForms
 
         private void GetQuoteButton_Clicked(object sender, EventArgs e)
         {
-            if (_quoteWin == null) {
+            if (QuoteWin == null) {
 
-                _quoteWin = new QuoteForm(this);
-                _quoteWin.Show();
+                QuoteWin = new QuoteForm(this);
+                QuoteWin.Show();
             }
         }
 
-        private void DepositCashButton_Click(object sender, EventArgs e)
+        private void BuyButtonClick(object sender, EventArgs e)
         {
-            DepositCash();
+            //if ()
         }
 
-        private async void TimeSeriesTestButton_Click(object sender, EventArgs e)
+        private void SellButton_Click(object sender, EventArgs e)
         {
-            Client = new HttpClient();
-            Api = new TwelveDataClient(ApiKey, Client);
 
-            var TimeSeries = await Api.GetTimeSeriesAsync("SPY", "1week");
+        }
 
-            MessageBox.Show(
-
-                TimeSeries.Interval + '\n' +
-                TimeSeries.Exchange + '\n' +
-                TimeSeries.Values[0].Close
-            );
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

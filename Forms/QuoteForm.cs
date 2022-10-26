@@ -40,8 +40,8 @@ namespace StockForms.Forms
 
             if (_stocks != null)
             {
-                StockListBox.DataSource = _stocks.Data;
-                StockListBox.DisplayMember = "FullInfo";
+                _stockListBox.DataSource = _stocks.Data;
+                _stockListBox.DisplayMember = "FullInfo";
             }
             else MessageBox.Show("OOOOOOOOOOOOOOOOOOOOOOOOOOPS");
         }
@@ -51,12 +51,14 @@ namespace StockForms.Forms
             Dashboard.Client = new HttpClient();
             Dashboard.Api = new TwelveDataClient(Dashboard.ApiKey, Dashboard.Client);
 
-            var Quote = await Dashboard.Api.GetQuoteAsync(Symbol);
+            var Quote = await Dashboard.Api.GetQuoteAsync(Symbol, "1day");
 
-            DateTimeBox.Text = Quote.Datetime.ToString();
-            PriceBox.Text = Quote.Close.ToString("C2");
-            DailyHigh.Text = Quote.FiftyTwoWeekHigh.ToString("C2");
-            DailyLow.Text = Quote.FiftyTwoWeekLow.ToString("C2");
+            _dateTimeBox.Text = Quote.Datetime.ToString();
+            _priceBox.Text = Quote.Close.ToString("C2");
+            _volumeTextBox.Text = Quote.Volume.ToString();
+            _dailyHigh.Text = Quote.High.ToString("C2");
+            _dailyLowTextBox.Text = Quote.Low.ToString("C2");
+            _dailyChangeTextBox.Text = Quote.PercentChange.ToString("0.00") + '%';
         }
 
         private void NyseRadioButton_MouseClick(object sender, MouseEventArgs e)
@@ -73,7 +75,7 @@ namespace StockForms.Forms
 
         private void StockListBox_MouseClick(object sender, MouseEventArgs e)
         {
-            Symbol = _stocks.Data[StockListBox.SelectedIndex].Symbol;
+            Symbol = _stocks.Data[_stockListBox.SelectedIndex].Symbol;
             //MessageBox.Show(Symbol);
         }
 
@@ -89,6 +91,7 @@ namespace StockForms.Forms
             BuyForm.PriceTextBox.Text = Quote.Close.ToString("C2");
 
             BuyForm.Show();
+
         }
     }
 }
