@@ -25,8 +25,9 @@ namespace StockForms.ResultModels
         public string FullInfo { get {
 
                 return
-                    $"Ticker: ${ Symbol }\n" +
-                    $"\t\tName: { Name }\n\n";
+                    $"Ticker: ${ Symbol }" + Environment.NewLine + 
+                    $"\t\tName: { Name }" + Environment.NewLine +
+                    $"\t\t\t\tExchange: { Exchange }" + Environment.NewLine;
             }
         }
     }

@@ -34,7 +34,7 @@ namespace StockForms.Forms
         private async void FillStockList() {
 
             if (_stocks == null)
-                _stocks = await StockForms.Extra_API.ApiProcessor.LoadStockList("NYSE");
+                _stocks = await StockForms.Extra_API.ApiProcessor.LoadStockList();
             else
                 _stocks = await StockForms.Extra_API.ApiProcessor.LoadStockList(Exchange);
 

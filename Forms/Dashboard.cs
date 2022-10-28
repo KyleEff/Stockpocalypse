@@ -2,23 +2,13 @@
 using StockForms.DBWires;
 using StockForms.Forms;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TwelveDataSharp;
 using StockForms.Interfaces;
-using System.Runtime.CompilerServices;
-using TwelveDataSharp.Library.ResponseModels;
 
 namespace StockForms
 {
@@ -169,12 +159,20 @@ namespace StockForms
 
         private void BuyButtonClick(object sender, EventArgs e)
         {
-            //if ()
+            if (BuyStockWin == null) {
+
+                BuyStockWin = new BuyStockForm(this);
+                BuyStockWin.Show();
+            }
         }
 
         private void SellButton_Click(object sender, EventArgs e)
         {
+            if (SellStockWin == null) {
 
+                SellStockWin = new SellStockForm(this);
+                SellStockWin.Show();
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

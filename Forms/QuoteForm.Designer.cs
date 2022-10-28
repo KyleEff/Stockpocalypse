@@ -39,18 +39,18 @@
             System.Windows.Forms.Button _exitButton;
             System.Windows.Forms.Label _volumeLabel;
             System.Windows.Forms.Label _dailyPercentChange;
-            this.GetQuoteButton = new System.Windows.Forms.Button();
-            this.NasdaqRadioButton = new System.Windows.Forms.RadioButton();
+            System.Windows.Forms.TableLayoutPanel _buttonPanel;
             this.NyseRadioButton = new System.Windows.Forms.RadioButton();
+            this.NasdaqRadioButton = new System.Windows.Forms.RadioButton();
             this._stockListBox = new System.Windows.Forms.ListBox();
+            this.GetQuoteButton = new System.Windows.Forms.Button();
             this._dateTimeBox = new System.Windows.Forms.TextBox();
             this._priceBox = new System.Windows.Forms.TextBox();
             this._dailyHigh = new System.Windows.Forms.TextBox();
             this._dailyLowTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this._volumeTextBox = new System.Windows.Forms.TextBox();
             this._dailyChangeTextBox = new System.Windows.Forms.TextBox();
+            this._volumeTextBox = new System.Windows.Forms.TextBox();
             _exchangeRadioButtonGroup = new System.Windows.Forms.GroupBox();
             _stocksListGroup = new System.Windows.Forms.GroupBox();
             _dateTimeLabel = new System.Windows.Forms.Label();
@@ -62,33 +62,24 @@
             _exitButton = new System.Windows.Forms.Button();
             _volumeLabel = new System.Windows.Forms.Label();
             _dailyPercentChange = new System.Windows.Forms.Label();
+            _buttonPanel = new System.Windows.Forms.TableLayoutPanel();
             _exchangeRadioButtonGroup.SuspendLayout();
             _stocksListGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            _buttonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // GetQuoteButton
+            // _exchangeRadioButtonGroup
             // 
-            this.GetQuoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GetQuoteButton.Location = new System.Drawing.Point(12, 130);
-            this.GetQuoteButton.Name = "GetQuoteButton";
-            this.GetQuoteButton.Size = new System.Drawing.Size(103, 53);
-            this.GetQuoteButton.TabIndex = 3;
-            this.GetQuoteButton.Text = "GET QUOTE";
-            this.GetQuoteButton.UseVisualStyleBackColor = true;
-            this.GetQuoteButton.Click += new System.EventHandler(this.GetQuoteButton_Click);
-            // 
-            // NasdaqRadioButton
-            // 
-            this.NasdaqRadioButton.AutoSize = true;
-            this.NasdaqRadioButton.Location = new System.Drawing.Point(6, 42);
-            this.NasdaqRadioButton.Name = "NasdaqRadioButton";
-            this.NasdaqRadioButton.Size = new System.Drawing.Size(88, 20);
-            this.NasdaqRadioButton.TabIndex = 4;
-            this.NasdaqRadioButton.Text = "NASDAQ";
-            this.NasdaqRadioButton.UseVisualStyleBackColor = true;
-            this.NasdaqRadioButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NasdaqRadioButton_MouseClick);
+            _exchangeRadioButtonGroup.Controls.Add(this.NyseRadioButton);
+            _exchangeRadioButtonGroup.Controls.Add(this.NasdaqRadioButton);
+            _exchangeRadioButtonGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _exchangeRadioButtonGroup.Location = new System.Drawing.Point(12, 12);
+            _exchangeRadioButtonGroup.Name = "_exchangeRadioButtonGroup";
+            _exchangeRadioButtonGroup.Size = new System.Drawing.Size(103, 70);
+            _exchangeRadioButtonGroup.TabIndex = 6;
+            _exchangeRadioButtonGroup.TabStop = false;
+            _exchangeRadioButtonGroup.Text = "Exchange";
             // 
             // NyseRadioButton
             // 
@@ -103,17 +94,27 @@
             this.NyseRadioButton.UseVisualStyleBackColor = true;
             this.NyseRadioButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NyseRadioButton_MouseClick);
             // 
-            // _exchangeRadioButtonGroup
+            // NasdaqRadioButton
             // 
-            _exchangeRadioButtonGroup.Controls.Add(this.NyseRadioButton);
-            _exchangeRadioButtonGroup.Controls.Add(this.NasdaqRadioButton);
-            _exchangeRadioButtonGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _exchangeRadioButtonGroup.Location = new System.Drawing.Point(12, 12);
-            _exchangeRadioButtonGroup.Name = "_exchangeRadioButtonGroup";
-            _exchangeRadioButtonGroup.Size = new System.Drawing.Size(103, 70);
-            _exchangeRadioButtonGroup.TabIndex = 6;
-            _exchangeRadioButtonGroup.TabStop = false;
-            _exchangeRadioButtonGroup.Text = "Exchange";
+            this.NasdaqRadioButton.AutoSize = true;
+            this.NasdaqRadioButton.Location = new System.Drawing.Point(6, 42);
+            this.NasdaqRadioButton.Name = "NasdaqRadioButton";
+            this.NasdaqRadioButton.Size = new System.Drawing.Size(88, 20);
+            this.NasdaqRadioButton.TabIndex = 4;
+            this.NasdaqRadioButton.Text = "NASDAQ";
+            this.NasdaqRadioButton.UseVisualStyleBackColor = true;
+            this.NasdaqRadioButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NasdaqRadioButton_MouseClick);
+            // 
+            // _stocksListGroup
+            // 
+            _stocksListGroup.Controls.Add(this._stockListBox);
+            _stocksListGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _stocksListGroup.Location = new System.Drawing.Point(121, 12);
+            _stocksListGroup.Name = "_stocksListGroup";
+            _stocksListGroup.Size = new System.Drawing.Size(754, 259);
+            _stocksListGroup.TabIndex = 8;
+            _stocksListGroup.TabStop = false;
+            _stocksListGroup.Text = "Stock List";
             // 
             // _stockListBox
             // 
@@ -122,28 +123,9 @@
             this._stockListBox.ItemHeight = 15;
             this._stockListBox.Location = new System.Drawing.Point(6, 19);
             this._stockListBox.Name = "_stockListBox";
-            this._stockListBox.Size = new System.Drawing.Size(439, 229);
+            this._stockListBox.Size = new System.Drawing.Size(742, 229);
             this._stockListBox.TabIndex = 7;
             this._stockListBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.StockListBox_MouseClick);
-            // 
-            // _stocksListGroup
-            // 
-            _stocksListGroup.Controls.Add(this._stockListBox);
-            _stocksListGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _stocksListGroup.Location = new System.Drawing.Point(121, 12);
-            _stocksListGroup.Name = "_stocksListGroup";
-            _stocksListGroup.Size = new System.Drawing.Size(451, 259);
-            _stocksListGroup.TabIndex = 8;
-            _stocksListGroup.TabStop = false;
-            _stocksListGroup.Text = "Stock List";
-            // 
-            // _dateTimeBox
-            // 
-            this._dateTimeBox.Location = new System.Drawing.Point(101, 19);
-            this._dateTimeBox.Name = "_dateTimeBox";
-            this._dateTimeBox.ReadOnly = true;
-            this._dateTimeBox.Size = new System.Drawing.Size(179, 22);
-            this._dateTimeBox.TabIndex = 9;
             // 
             // _dateTimeLabel
             // 
@@ -163,14 +145,6 @@
             _priceLabel.TabIndex = 12;
             _priceLabel.Text = "Price:";
             // 
-            // _priceBox
-            // 
-            this._priceBox.Location = new System.Drawing.Point(101, 47);
-            this._priceBox.Name = "_priceBox";
-            this._priceBox.ReadOnly = true;
-            this._priceBox.Size = new System.Drawing.Size(124, 22);
-            this._priceBox.TabIndex = 11;
-            // 
             // _dailyHighLabel
             // 
             _dailyHighLabel.AutoSize = true;
@@ -180,14 +154,6 @@
             _dailyHighLabel.TabIndex = 14;
             _dailyHighLabel.Text = "Daily High:";
             // 
-            // _dailyHigh
-            // 
-            this._dailyHigh.Location = new System.Drawing.Point(430, 19);
-            this._dailyHigh.Name = "_dailyHigh";
-            this._dailyHigh.ReadOnly = true;
-            this._dailyHigh.Size = new System.Drawing.Size(124, 22);
-            this._dailyHigh.TabIndex = 13;
-            // 
             // _dailyLowLabel
             // 
             _dailyLowLabel.AutoSize = true;
@@ -196,6 +162,90 @@
             _dailyLowLabel.Size = new System.Drawing.Size(78, 16);
             _dailyLowLabel.TabIndex = 16;
             _dailyLowLabel.Text = "Daily Low:";
+            // 
+            // _buyButton
+            // 
+            _buyButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            _buyButton.Location = new System.Drawing.Point(3, 3);
+            _buyButton.Name = "_buyButton";
+            _buyButton.Size = new System.Drawing.Size(281, 46);
+            _buyButton.TabIndex = 0;
+            _buyButton.Text = "BUY STOCK";
+            _buyButton.UseVisualStyleBackColor = true;
+            _buyButton.Click += new System.EventHandler(this.BuyStockButton_Click);
+            // 
+            // _sellButton
+            // 
+            _sellButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            _sellButton.Location = new System.Drawing.Point(290, 3);
+            _sellButton.Name = "_sellButton";
+            _sellButton.Size = new System.Drawing.Size(281, 46);
+            _sellButton.TabIndex = 1;
+            _sellButton.Text = "SELL STOCK";
+            _sellButton.UseVisualStyleBackColor = true;
+            // 
+            // _exitButton
+            // 
+            _exitButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            _exitButton.Location = new System.Drawing.Point(577, 3);
+            _exitButton.Name = "_exitButton";
+            _exitButton.Size = new System.Drawing.Size(282, 46);
+            _exitButton.TabIndex = 2;
+            _exitButton.Text = "EXIT";
+            _exitButton.UseVisualStyleBackColor = true;
+            // 
+            // _volumeLabel
+            // 
+            _volumeLabel.AutoSize = true;
+            _volumeLabel.Location = new System.Drawing.Point(31, 78);
+            _volumeLabel.Name = "_volumeLabel";
+            _volumeLabel.Size = new System.Drawing.Size(63, 16);
+            _volumeLabel.TabIndex = 18;
+            _volumeLabel.Text = "Volume:";
+            // 
+            // _dailyPercentChange
+            // 
+            _dailyPercentChange.AutoSize = true;
+            _dailyPercentChange.Location = new System.Drawing.Point(320, 78);
+            _dailyPercentChange.Name = "_dailyPercentChange";
+            _dailyPercentChange.Size = new System.Drawing.Size(104, 16);
+            _dailyPercentChange.TabIndex = 20;
+            _dailyPercentChange.Text = "Daily Change:";
+            // 
+            // GetQuoteButton
+            // 
+            this.GetQuoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GetQuoteButton.Location = new System.Drawing.Point(12, 130);
+            this.GetQuoteButton.Name = "GetQuoteButton";
+            this.GetQuoteButton.Size = new System.Drawing.Size(103, 53);
+            this.GetQuoteButton.TabIndex = 3;
+            this.GetQuoteButton.Text = "GET QUOTE";
+            this.GetQuoteButton.UseVisualStyleBackColor = true;
+            this.GetQuoteButton.Click += new System.EventHandler(this.GetQuoteButton_Click);
+            // 
+            // _dateTimeBox
+            // 
+            this._dateTimeBox.Location = new System.Drawing.Point(101, 19);
+            this._dateTimeBox.Name = "_dateTimeBox";
+            this._dateTimeBox.ReadOnly = true;
+            this._dateTimeBox.Size = new System.Drawing.Size(179, 22);
+            this._dateTimeBox.TabIndex = 9;
+            // 
+            // _priceBox
+            // 
+            this._priceBox.Location = new System.Drawing.Point(101, 47);
+            this._priceBox.Name = "_priceBox";
+            this._priceBox.ReadOnly = true;
+            this._priceBox.Size = new System.Drawing.Size(124, 22);
+            this._priceBox.TabIndex = 11;
+            // 
+            // _dailyHigh
+            // 
+            this._dailyHigh.Location = new System.Drawing.Point(430, 19);
+            this._dailyHigh.Name = "_dailyHigh";
+            this._dailyHigh.ReadOnly = true;
+            this._dailyHigh.Size = new System.Drawing.Size(124, 22);
+            this._dailyHigh.TabIndex = 13;
             // 
             // _dailyLowTextBox
             // 
@@ -227,50 +277,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quote Results";
             // 
-            // tableLayoutPanel1
+            // _dailyChangeTextBox
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(_exitButton, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(_sellButton, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(_buyButton, 0, 0);
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 397);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(559, 52);
-            this.tableLayoutPanel1.TabIndex = 19;
-            // 
-            // _buyButton
-            // 
-            _buyButton.Location = new System.Drawing.Point(3, 3);
-            _buyButton.Name = "_buyButton";
-            _buyButton.Size = new System.Drawing.Size(180, 46);
-            _buyButton.TabIndex = 0;
-            _buyButton.Text = "BUY STOCK";
-            _buyButton.UseVisualStyleBackColor = true;
-            _buyButton.Click += new System.EventHandler(this.BuyStockButton_Click);
-            // 
-            // _sellButton
-            // 
-            _sellButton.Location = new System.Drawing.Point(189, 3);
-            _sellButton.Name = "_sellButton";
-            _sellButton.Size = new System.Drawing.Size(180, 46);
-            _sellButton.TabIndex = 1;
-            _sellButton.Text = "SELL STOCK";
-            _sellButton.UseVisualStyleBackColor = true;
-            // 
-            // _exitButton
-            // 
-            _exitButton.Location = new System.Drawing.Point(375, 3);
-            _exitButton.Name = "_exitButton";
-            _exitButton.Size = new System.Drawing.Size(180, 46);
-            _exitButton.TabIndex = 2;
-            _exitButton.Text = "EXIT";
-            _exitButton.UseVisualStyleBackColor = true;
+            this._dailyChangeTextBox.Location = new System.Drawing.Point(430, 75);
+            this._dailyChangeTextBox.Name = "_dailyChangeTextBox";
+            this._dailyChangeTextBox.ReadOnly = true;
+            this._dailyChangeTextBox.Size = new System.Drawing.Size(124, 22);
+            this._dailyChangeTextBox.TabIndex = 19;
             // 
             // _volumeTextBox
             // 
@@ -280,38 +293,29 @@
             this._volumeTextBox.Size = new System.Drawing.Size(124, 22);
             this._volumeTextBox.TabIndex = 17;
             // 
-            // _volumeLabel
+            // _buttonPanel
             // 
-            _volumeLabel.AutoSize = true;
-            _volumeLabel.Location = new System.Drawing.Point(31, 78);
-            _volumeLabel.Name = "_volumeLabel";
-            _volumeLabel.Size = new System.Drawing.Size(63, 16);
-            _volumeLabel.TabIndex = 18;
-            _volumeLabel.Text = "Volume:";
-            // 
-            // _dailyPercentChange
-            // 
-            _dailyPercentChange.AutoSize = true;
-            _dailyPercentChange.Location = new System.Drawing.Point(320, 78);
-            _dailyPercentChange.Name = "_dailyPercentChange";
-            _dailyPercentChange.Size = new System.Drawing.Size(104, 16);
-            _dailyPercentChange.TabIndex = 20;
-            _dailyPercentChange.Text = "Daily Change:";
-            // 
-            // _dailyChangeTextBox
-            // 
-            this._dailyChangeTextBox.Location = new System.Drawing.Point(430, 75);
-            this._dailyChangeTextBox.Name = "_dailyChangeTextBox";
-            this._dailyChangeTextBox.ReadOnly = true;
-            this._dailyChangeTextBox.Size = new System.Drawing.Size(124, 22);
-            this._dailyChangeTextBox.TabIndex = 19;
+            _buttonPanel.ColumnCount = 3;
+            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonPanel.Controls.Add(_sellButton, 1, 0);
+            _buttonPanel.Controls.Add(_buyButton, 0, 0);
+            _buttonPanel.Controls.Add(_exitButton, 2, 0);
+            _buttonPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _buttonPanel.Location = new System.Drawing.Point(13, 397);
+            _buttonPanel.Name = "_buttonPanel";
+            _buttonPanel.RowCount = 1;
+            _buttonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            _buttonPanel.Size = new System.Drawing.Size(862, 52);
+            _buttonPanel.TabIndex = 19;
             // 
             // QuoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 461);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(887, 461);
+            this.Controls.Add(_buttonPanel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(_stocksListGroup);
             this.Controls.Add(_exchangeRadioButtonGroup);
@@ -323,7 +327,7 @@
             _stocksListGroup.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            _buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -339,7 +343,6 @@
         private System.Windows.Forms.TextBox _dailyHigh;
         private System.Windows.Forms.TextBox _dailyLowTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox _dailyChangeTextBox;
         private System.Windows.Forms.TextBox _volumeTextBox;
     }

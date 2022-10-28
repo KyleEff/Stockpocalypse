@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TwelveDataSharp.Library.ResponseModels;
+using StockForms.DBWires;
 
 namespace StockForms.Forms
 {
@@ -17,8 +8,7 @@ namespace StockForms.Forms
     {
         private double _price { get; set; }
         private double _total { get; set; }
-        private Dashboard
-            _mainForm = null;
+        private Dashboard _mainForm = null;
 
         public BuyStockForm()
         {
@@ -32,7 +22,6 @@ namespace StockForms.Forms
 
             CashTextBox.Text = _mainForm.CashBox;
         }
-
 
         private void SetTotal() {
 

@@ -1,16 +1,6 @@
 ﻿using StockForms.DBWires;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Security.Policy;
 
 namespace StockForms.Forms
 {
@@ -31,13 +21,13 @@ namespace StockForms.Forms
 
         public void DepositCash(double cash)
         {
-            StreamWriter fileWriter;
-
             try {
 
-                fileWriter = new StreamWriter("Cash.txt", true);
-                fileWriter.Write(cash);
-                fileWriter.Close();
+                if (Dashboard.Cash > 0) {
+
+                    Dashboard.Cash += cash;
+                    _mainForm.WriteCash();
+                }
                 _mainForm.SetCash();
 
             } catch (Exception Ex) { MessageBox.Show(Ex.Message); }
