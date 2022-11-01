@@ -39,13 +39,13 @@
             System.Windows.Forms.GroupBox _orderResultGroupBox;
             this._depositCashButton = new System.Windows.Forms.Button();
             this.CashTextBox = new System.Windows.Forms.TextBox();
-            this.BuyButton = new System.Windows.Forms.Button();
             this.TotalTextBox = new System.Windows.Forms.TextBox();
             this.QuantityTextBox = new System.Windows.Forms.TextBox();
             this.PriceTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SymbolTextBox = new System.Windows.Forms.TextBox();
             this.OrderResultsTextBox = new System.Windows.Forms.TextBox();
+            this.BuyButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,8 +66,8 @@
             _orderResultGroupBox = new System.Windows.Forms.GroupBox();
             groupBox2.SuspendLayout();
             OrderInfoGroupBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             _orderResultGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -102,16 +102,6 @@
             this.CashTextBox.Size = new System.Drawing.Size(188, 26);
             this.CashTextBox.TabIndex = 10;
             this.CashTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // BuyButton
-            // 
-            this.BuyButton.Location = new System.Drawing.Point(12, 419);
-            this.BuyButton.Name = "BuyButton";
-            this.BuyButton.Size = new System.Drawing.Size(142, 54);
-            this.BuyButton.TabIndex = 2;
-            this.BuyButton.Text = "BUY";
-            this.BuyButton.UseVisualStyleBackColor = true;
-            this.BuyButton.Click += new System.EventHandler(this.BuyButton_Click);
             // 
             // OrderInfoGroupBox
             // 
@@ -230,6 +220,16 @@
             SymbolLabel.TabIndex = 0;
             SymbolLabel.Text = "Symbol:";
             // 
+            // _orderResultGroupBox
+            // 
+            _orderResultGroupBox.Controls.Add(this.OrderResultsTextBox);
+            _orderResultGroupBox.Location = new System.Drawing.Point(12, 179);
+            _orderResultGroupBox.Name = "_orderResultGroupBox";
+            _orderResultGroupBox.Size = new System.Drawing.Size(323, 234);
+            _orderResultGroupBox.TabIndex = 15;
+            _orderResultGroupBox.TabStop = false;
+            _orderResultGroupBox.Text = "Order Results";
+            // 
             // OrderResultsTextBox
             // 
             this.OrderResultsTextBox.Location = new System.Drawing.Point(6, 19);
@@ -237,6 +237,16 @@
             this.OrderResultsTextBox.Name = "OrderResultsTextBox";
             this.OrderResultsTextBox.Size = new System.Drawing.Size(310, 209);
             this.OrderResultsTextBox.TabIndex = 6;
+            // 
+            // BuyButton
+            // 
+            this.BuyButton.Location = new System.Drawing.Point(12, 419);
+            this.BuyButton.Name = "BuyButton";
+            this.BuyButton.Size = new System.Drawing.Size(142, 54);
+            this.BuyButton.TabIndex = 2;
+            this.BuyButton.Text = "BUY";
+            this.BuyButton.UseVisualStyleBackColor = true;
+            this.BuyButton.Click += new System.EventHandler(this.BuyButton_Click);
             // 
             // menuStrip1
             // 
@@ -305,16 +315,6 @@
             this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.portfolioToolStripMenuItem.Text = "Portfolio";
             // 
-            // _orderResultGroupBox
-            // 
-            _orderResultGroupBox.Controls.Add(this.OrderResultsTextBox);
-            _orderResultGroupBox.Location = new System.Drawing.Point(12, 179);
-            _orderResultGroupBox.Name = "_orderResultGroupBox";
-            _orderResultGroupBox.Size = new System.Drawing.Size(323, 234);
-            _orderResultGroupBox.TabIndex = 15;
-            _orderResultGroupBox.TabStop = false;
-            _orderResultGroupBox.Text = "Order Results";
-            // 
             // BuyStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,14 +327,15 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "BuyStockForm";
             this.Text = "Purchase Stock";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuyForm_Closing);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             OrderInfoGroupBox.ResumeLayout(false);
             OrderInfoGroupBox.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             _orderResultGroupBox.ResumeLayout(false);
             _orderResultGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

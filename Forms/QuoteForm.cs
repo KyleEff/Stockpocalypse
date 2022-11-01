@@ -24,6 +24,7 @@ namespace StockForms.Forms
         public QuoteForm(Form mainForm) {
 
             _mainForm = mainForm as Dashboard;
+            _mainForm.Hide();
 
             InitializeComponent();
             FillStockList();
@@ -91,7 +92,19 @@ namespace StockForms.Forms
             BuyForm.PriceTextBox.Text = Quote.Close.ToString("C2");
 
             BuyForm.Show();
+            Close();
 
+        }
+
+        private void QuoteForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            _mainForm.QuoteWin = null;
+            _mainForm.Show();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

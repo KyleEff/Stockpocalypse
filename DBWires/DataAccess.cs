@@ -11,10 +11,7 @@ using StockForms.Forms;
 
 namespace StockForms.DBWires
 {
-    public class DataAccess
-    {
-        private string SqlStatement { get; set; }
-        private string Stored_Procedure { get; set; }
+    public class DataAccess {
 
         public List<Customer> GetCustomers(string name)
         {
@@ -121,6 +118,16 @@ namespace StockForms.DBWires
 
                 return output;
             }
+        }
+
+        public List<Customer_Portfolio> ViewPortfolio() {
+
+            using (IDbConnection conn = new SqlConnection(Helper.CnnVal("portfolios"))) {
+
+                var rows = conn.Query<Customer_Portfolio>("SELECT * FROM portfolio;").ToList();
+                return rows;
+            }
+            
         }
     }
 }

@@ -1,0 +1,95 @@
+﻿
+Work on Sell Feature
+    • Expected to almost be an opposite of the buy feature
+Work on Limit Orders
+    • This could involve a lot more work with the API
+        ◦ Not really a problem, but more of an issue of time and accuracy
+Work on Viewing Portfolio
+
+
+10/21/22
+It is a little late to be starting this, but the project has gotten too complicated for me to remember everything that I have worked on everytime I sit down to work on it.
+
+I need to work putting the finishing touches on the buy feature.
+
+10/23/22
+What are the problems with the buy button?
+    • When the orders go into the database, they need to be INSERTed (SQL statement vs Stored Procedure) into the customer’s portfolio
+    • The customer’s portfolio data table needs to either be
+        ◦ USED or
+        ◦ REVISED
+    • The ability of the customer to view their portfolio is imperative
+        ◦ The customer need to know their
+            ▪ Trades
+            ▪ Cash
+            ▪ Pending orders
+                • Limit orders (?)
+    • CUSTOMER PORTFOLIO - Stocks owned	
+        ◦ NO DATE
+        ◦ Quantity of stock
+        ◦ Dollar cost average ( quantity * cost )
+        ◦ 
+
+10/24/22
+Starting screen:
+    • S&P500
+    • NASDAQ
+    • DOW
+        ◦ current day ranges, stats
+
+10/25/22
+Need to set up SQL statements that will insert and remove stocks from the customer portfolio. This will be done through a stored procedure that is accessed through the DataAccess class SendOrder function.
+    • How will I use SQL statements to add or remove stocks from a row?
+
+
+
+
+NOTE FOR NEXT PICKUP:
+    • Work on portfolio SQL statements !!!(IMPORTANT)!!!
+    • Work on Search Form
+    • Work on Sell Form (copy buy form and reverse it)
+    • Work on Portfolio Form
+    • Find a way to change the color of the daily change percentages on the quote and main form
+    • Think about LIMIT ORDERS (Try not to cut, wouldn’t be hard to implement; Just need time)
+
+10/27/22
+Worked heavily on the SearchForm. The name search seems to work but none of the textbox values are being moved over from the searchform to the apiprocessor function. maybe move the function in-object?
+
+Also tweaked the depositform to work correctly.
+
+Next Pickup: !!! WORK ON SELL FORM !!!
+
+10/31/22
+SELL FORM
+Copied, no events added yet
+Added a “portfolio” listbox to the form so the user could select a stock to sell from their own portfolio
+    • Need to work on stored procedures for adding and subtracting from the portfolio
+Added a Transactions Interface for the buy and sell forms
+    • SetTotal() - Pretty much the event handler for a quantity change
+    • Transact() - Sends the order to the database;
+
+IDEA for adding/subtracting stock to/from portfolio
+Create two result models: One for the order going into the portfolio and one List for the current portfolio. 
+    • Move the relevant information from the order into the Entry object
+    • Use the Entry object and the relevant row from the portfolio to do calculations
+        ◦ Quantity
+        ◦ DCA = (Total / Quantity)
+        ◦ Total
+
+Say I wanted to buy ***MORE*** of a stock, I would need to
+    • Transfer the order into an Entry object
+    • Compare to the relevant Order object
+    • Add the quantities to each other
+    • Find the average of the two purchase prices
+        ◦ Both prices divided by two
+        ◦ OR
+        ◦ Total / Quantity
+    • ALTER the row that contains the previous securities 
+    • OR
+    • DELETE the old row and put a new row
+
+
+
+INTO 11/1/22
+IDEA for main dashboard
+    • Somewhere next to the CashBox available to trade, put the value of the customer’s portfolio

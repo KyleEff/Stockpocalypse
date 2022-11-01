@@ -48,19 +48,6 @@
             System.Windows.Forms.Label _djiLabel;
             System.Windows.Forms.GroupBox groupBox2;
             System.Windows.Forms.GroupBox groupBox3;
-            this.GetQuoteButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
-            this._depositCashButton = new System.Windows.Forms.Button();
-            this.CashTextBox = new System.Windows.Forms.TextBox();
-            this._menuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._marketTodayLabel = new System.Windows.Forms.Label();
             this._spPrevTextBox = new System.Windows.Forms.TextBox();
             this._spLowTextBox = new System.Windows.Forms.TextBox();
@@ -72,10 +59,23 @@
             this._djiHighTextBox = new System.Windows.Forms.TextBox();
             this._djiChangeTextBox = new System.Windows.Forms.TextBox();
             this._djiTextBox = new System.Windows.Forms.TextBox();
-            this._buyButton = new System.Windows.Forms.Button();
+            this.CashTextBox = new System.Windows.Forms.TextBox();
+            this._depositCashButton = new System.Windows.Forms.Button();
             this._exitButton = new System.Windows.Forms.Button();
             this._viewPortfolioButton = new System.Windows.Forms.Button();
             this._sellButton = new System.Windows.Forms.Button();
+            this.GetQuoteButton = new System.Windows.Forms.Button();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this._buyButton = new System.Windows.Forms.Button();
+            this._menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             MainTitle = new System.Windows.Forms.Label();
             Subtitle = new System.Windows.Forms.Label();
             IndicesGroupBox = new System.Windows.Forms.GroupBox();
@@ -96,20 +96,20 @@
             _djiLabel = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
             groupBox3 = new System.Windows.Forms.GroupBox();
-            this._menuStrip.SuspendLayout();
             IndicesGroupBox.SuspendLayout();
             groupBox1.SuspendLayout();
             _spGroupBox.SuspendLayout();
             _djiGroupBox.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            this._menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTitle
             // 
             MainTitle.AutoSize = true;
             MainTitle.Font = new System.Drawing.Font("Arial Black", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            MainTitle.Location = new System.Drawing.Point(236, 24);
+            MainTitle.Location = new System.Drawing.Point(126, 27);
             MainTitle.Name = "MainTitle";
             MainTitle.Size = new System.Drawing.Size(348, 52);
             MainTitle.TabIndex = 0;
@@ -119,119 +119,11 @@
             // 
             Subtitle.AutoSize = true;
             Subtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Subtitle.Location = new System.Drawing.Point(149, 91);
+            Subtitle.Location = new System.Drawing.Point(53, 79);
             Subtitle.Name = "Subtitle";
             Subtitle.Size = new System.Drawing.Size(508, 25);
             Subtitle.TabIndex = 1;
             Subtitle.Text = "The Last Stock Trading Program You Will Ever Use!";
-            // 
-            // GetQuoteButton
-            // 
-            this.GetQuoteButton.Location = new System.Drawing.Point(6, 75);
-            this.GetQuoteButton.Name = "GetQuoteButton";
-            this.GetQuoteButton.Size = new System.Drawing.Size(168, 42);
-            this.GetQuoteButton.TabIndex = 2;
-            this.GetQuoteButton.Text = "GET QUOTE";
-            this.GetQuoteButton.UseVisualStyleBackColor = true;
-            this.GetQuoteButton.Click += new System.EventHandler(this.GetQuoteButton_Clicked);
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.Location = new System.Drawing.Point(6, 27);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(168, 42);
-            this.SearchButton.TabIndex = 5;
-            this.SearchButton.Text = "SEARCH";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
-            // _depositCashButton
-            // 
-            this._depositCashButton.Location = new System.Drawing.Point(22, 49);
-            this._depositCashButton.Name = "_depositCashButton";
-            this._depositCashButton.Size = new System.Drawing.Size(155, 23);
-            this._depositCashButton.TabIndex = 7;
-            this._depositCashButton.Text = "Deposit Cash";
-            this._depositCashButton.UseVisualStyleBackColor = true;
-            this._depositCashButton.Click += new System.EventHandler(this.DepositCashButton_Click);
-            // 
-            // CashTextBox
-            // 
-            this.CashTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.CashTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CashTextBox.Location = new System.Drawing.Point(6, 19);
-            this.CashTextBox.Name = "CashTextBox";
-            this.CashTextBox.ReadOnly = true;
-            this.CashTextBox.Size = new System.Drawing.Size(188, 26);
-            this.CashTextBox.TabIndex = 8;
-            this.CashTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // _menuStrip
-            // 
-            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.tradeToolStripMenuItem});
-            this._menuStrip.Location = new System.Drawing.Point(0, 0);
-            this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(800, 24);
-            this._menuStrip.TabIndex = 10;
-            this._menuStrip.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // tradeToolStripMenuItem
-            // 
-            this.tradeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.quoteToolStripMenuItem,
-            this.buyToolStripMenuItem,
-            this.sellToolStripMenuItem,
-            this.portfolioToolStripMenuItem});
-            this.tradeToolStripMenuItem.Name = "tradeToolStripMenuItem";
-            this.tradeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.tradeToolStripMenuItem.Text = "Trade";
-            // 
-            // quoteToolStripMenuItem
-            // 
-            this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
-            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.quoteToolStripMenuItem.Text = "Quote";
-            // 
-            // buyToolStripMenuItem
-            // 
-            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.buyToolStripMenuItem.Text = "Buy";
-            // 
-            // sellToolStripMenuItem
-            // 
-            this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
-            this.sellToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.sellToolStripMenuItem.Text = "Sell";
-            // 
-            // portfolioToolStripMenuItem
-            // 
-            this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
-            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.portfolioToolStripMenuItem.Text = "Portfolio";
             // 
             // IndicesGroupBox
             // 
@@ -239,7 +131,7 @@
             IndicesGroupBox.Controls.Add(_spGroupBox);
             IndicesGroupBox.Controls.Add(_djiGroupBox);
             IndicesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            IndicesGroupBox.Location = new System.Drawing.Point(12, 244);
+            IndicesGroupBox.Location = new System.Drawing.Point(11, 200);
             IndicesGroupBox.Name = "IndicesGroupBox";
             IndicesGroupBox.Size = new System.Drawing.Size(398, 360);
             IndicesGroupBox.TabIndex = 11;
@@ -505,27 +397,38 @@
             this._djiTextBox.TabIndex = 0;
             this._djiTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // _buyButton
-            // 
-            this._buyButton.Location = new System.Drawing.Point(6, 123);
-            this._buyButton.Name = "_buyButton";
-            this._buyButton.Size = new System.Drawing.Size(168, 42);
-            this._buyButton.TabIndex = 12;
-            this._buyButton.Text = "BUY";
-            this._buyButton.UseVisualStyleBackColor = true;
-            this._buyButton.Click += new System.EventHandler(this.BuyButtonClick);
-            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(this.CashTextBox);
             groupBox2.Controls.Add(this._depositCashButton);
             groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            groupBox2.Location = new System.Drawing.Point(308, 152);
+            groupBox2.Location = new System.Drawing.Point(209, 117);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(200, 77);
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             groupBox2.Text = "Cash Available For Trade";
+            // 
+            // CashTextBox
+            // 
+            this.CashTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.CashTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CashTextBox.Location = new System.Drawing.Point(6, 19);
+            this.CashTextBox.Name = "CashTextBox";
+            this.CashTextBox.ReadOnly = true;
+            this.CashTextBox.Size = new System.Drawing.Size(188, 26);
+            this.CashTextBox.TabIndex = 8;
+            this.CashTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // _depositCashButton
+            // 
+            this._depositCashButton.Location = new System.Drawing.Point(22, 49);
+            this._depositCashButton.Name = "_depositCashButton";
+            this._depositCashButton.Size = new System.Drawing.Size(155, 23);
+            this._depositCashButton.TabIndex = 7;
+            this._depositCashButton.Text = "Deposit Cash";
+            this._depositCashButton.UseVisualStyleBackColor = true;
+            this._depositCashButton.Click += new System.EventHandler(this.DepositCashButton_Click);
             // 
             // groupBox3
             // 
@@ -536,7 +439,7 @@
             groupBox3.Controls.Add(this.SearchButton);
             groupBox3.Controls.Add(this._buyButton);
             groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            groupBox3.Location = new System.Drawing.Point(521, 266);
+            groupBox3.Location = new System.Drawing.Point(415, 222);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new System.Drawing.Size(181, 317);
             groupBox3.TabIndex = 14;
@@ -572,11 +475,108 @@
             this._sellButton.UseVisualStyleBackColor = true;
             this._sellButton.Click += new System.EventHandler(this.SellButton_Click);
             // 
+            // GetQuoteButton
+            // 
+            this.GetQuoteButton.Location = new System.Drawing.Point(6, 75);
+            this.GetQuoteButton.Name = "GetQuoteButton";
+            this.GetQuoteButton.Size = new System.Drawing.Size(168, 42);
+            this.GetQuoteButton.TabIndex = 2;
+            this.GetQuoteButton.Text = "GET QUOTE";
+            this.GetQuoteButton.UseVisualStyleBackColor = true;
+            this.GetQuoteButton.Click += new System.EventHandler(this.GetQuoteButton_Clicked);
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Location = new System.Drawing.Point(6, 27);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(168, 42);
+            this.SearchButton.TabIndex = 5;
+            this.SearchButton.Text = "SEARCH";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // _buyButton
+            // 
+            this._buyButton.Location = new System.Drawing.Point(6, 123);
+            this._buyButton.Name = "_buyButton";
+            this._buyButton.Size = new System.Drawing.Size(168, 42);
+            this._buyButton.TabIndex = 12;
+            this._buyButton.Text = "BUY";
+            this._buyButton.UseVisualStyleBackColor = true;
+            this._buyButton.Click += new System.EventHandler(this.BuyButtonClick);
+            // 
+            // _menuStrip
+            // 
+            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.tradeToolStripMenuItem});
+            this._menuStrip.Location = new System.Drawing.Point(0, 0);
+            this._menuStrip.Name = "_menuStrip";
+            this._menuStrip.Size = new System.Drawing.Size(600, 24);
+            this._menuStrip.TabIndex = 10;
+            this._menuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // tradeToolStripMenuItem
+            // 
+            this.tradeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quoteToolStripMenuItem,
+            this.buyToolStripMenuItem,
+            this.sellToolStripMenuItem,
+            this.portfolioToolStripMenuItem});
+            this.tradeToolStripMenuItem.Name = "tradeToolStripMenuItem";
+            this.tradeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.tradeToolStripMenuItem.Text = "Trade";
+            // 
+            // quoteToolStripMenuItem
+            // 
+            this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
+            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.quoteToolStripMenuItem.Text = "Quote";
+            // 
+            // buyToolStripMenuItem
+            // 
+            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.buyToolStripMenuItem.Text = "Buy";
+            // 
+            // sellToolStripMenuItem
+            // 
+            this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
+            this.sellToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.sellToolStripMenuItem.Text = "Sell";
+            // 
+            // portfolioToolStripMenuItem
+            // 
+            this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
+            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.portfolioToolStripMenuItem.Text = "Portfolio";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 616);
+            this.ClientSize = new System.Drawing.Size(600, 559);
             this.Controls.Add(groupBox3);
             this.Controls.Add(groupBox2);
             this.Controls.Add(IndicesGroupBox);
@@ -585,8 +585,6 @@
             this.Controls.Add(MainTitle);
             this.Name = "Dashboard";
             this.Text = "Stockpocalypse";
-            this._menuStrip.ResumeLayout(false);
-            this._menuStrip.PerformLayout();
             IndicesGroupBox.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -597,6 +595,8 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
+            this._menuStrip.ResumeLayout(false);
+            this._menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

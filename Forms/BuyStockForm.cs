@@ -23,7 +23,7 @@ namespace StockForms.Forms
             CashTextBox.Text = _mainForm.CashBox;
         }
 
-        private void SetTotal() {
+        public void SetTotal() {
 
             string PriceString = "";
 
@@ -50,9 +50,10 @@ namespace StockForms.Forms
             else TotalTextBox.Text = "$0.00";
         }   
 
-        private void BuyButton_Click(object sender, EventArgs e)
+        public void Transact()
         {
-            DBWires.DataAccess Database = new DBWires.DataAccess();
+            // BUY BUY BUY
+            DataAccess Database = new DataAccess();
 
             if (_total <= Dashboard.Cash)
             {
@@ -73,6 +74,8 @@ namespace StockForms.Forms
             OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
         }
 
+        private void BuyButton_Click(object sender, EventArgs e) { Transact(); }
+
         private void DepositCashButton_Click(object sender, EventArgs e)
         {
             if (_mainForm != null) { _mainForm.DepositCash(); }
@@ -81,6 +84,12 @@ namespace StockForms.Forms
         private void QuantityTextBox_TextChanged(object sender, EventArgs e)
         {
             SetTotal();
+        }
+
+        private void BuyForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (_mainForm.BuyStockWin == null)
+                _mainForm.Show();
         }
     }
 }

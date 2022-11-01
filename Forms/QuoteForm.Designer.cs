@@ -65,8 +65,8 @@
             _buttonPanel = new System.Windows.Forms.TableLayoutPanel();
             _exchangeRadioButtonGroup.SuspendLayout();
             _stocksListGroup.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             _buttonPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _exchangeRadioButtonGroup
@@ -193,6 +193,7 @@
             _exitButton.TabIndex = 2;
             _exitButton.Text = "EXIT";
             _exitButton.UseVisualStyleBackColor = true;
+            _exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // _volumeLabel
             // 
@@ -211,6 +212,23 @@
             _dailyPercentChange.Size = new System.Drawing.Size(104, 16);
             _dailyPercentChange.TabIndex = 20;
             _dailyPercentChange.Text = "Daily Change:";
+            // 
+            // _buttonPanel
+            // 
+            _buttonPanel.ColumnCount = 3;
+            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonPanel.Controls.Add(_sellButton, 1, 0);
+            _buttonPanel.Controls.Add(_buyButton, 0, 0);
+            _buttonPanel.Controls.Add(_exitButton, 2, 0);
+            _buttonPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _buttonPanel.Location = new System.Drawing.Point(13, 397);
+            _buttonPanel.Name = "_buttonPanel";
+            _buttonPanel.RowCount = 1;
+            _buttonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            _buttonPanel.Size = new System.Drawing.Size(862, 52);
+            _buttonPanel.TabIndex = 19;
             // 
             // GetQuoteButton
             // 
@@ -293,23 +311,6 @@
             this._volumeTextBox.Size = new System.Drawing.Size(124, 22);
             this._volumeTextBox.TabIndex = 17;
             // 
-            // _buttonPanel
-            // 
-            _buttonPanel.ColumnCount = 3;
-            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            _buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            _buttonPanel.Controls.Add(_sellButton, 1, 0);
-            _buttonPanel.Controls.Add(_buyButton, 0, 0);
-            _buttonPanel.Controls.Add(_exitButton, 2, 0);
-            _buttonPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _buttonPanel.Location = new System.Drawing.Point(13, 397);
-            _buttonPanel.Name = "_buttonPanel";
-            _buttonPanel.RowCount = 1;
-            _buttonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            _buttonPanel.Size = new System.Drawing.Size(862, 52);
-            _buttonPanel.TabIndex = 19;
-            // 
             // QuoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,12 +323,13 @@
             this.Controls.Add(this.GetQuoteButton);
             this.Name = "QuoteForm";
             this.Text = "Find Quote";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QuoteForm_Closing);
             _exchangeRadioButtonGroup.ResumeLayout(false);
             _exchangeRadioButtonGroup.PerformLayout();
             _stocksListGroup.ResumeLayout(false);
+            _buttonPanel.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            _buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

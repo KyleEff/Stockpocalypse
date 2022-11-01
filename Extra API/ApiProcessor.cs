@@ -43,22 +43,22 @@ namespace StockForms.Extra_API
 
             var URL = $"https://api.twelvedata.com/stocks?";
 
-            if (Ticker != default) {
+            if (Ticker != null) {
 
                 MessageBox.Show("TICKKEEERRRRR");
                 URL += ($"symbol={Ticker}&");
             }
 
-            if (Exchange != default)
+            if (Exchange != null)
                 URL += $"exchange={Exchange}&";
 
-            if (Mic != default)
+            if (Mic != null)
                 URL += $"mic_code={Mic}&";
 
-            if (Type != default)
+            if (Type != null)
                 URL += $"type={Type}";
 
-            var request = new HttpRequestMessage(HttpMethod.Get, URL);
+           var request = new HttpRequestMessage(HttpMethod.Get, URL);
 
             ApiHelper.initClient();
 
@@ -76,5 +76,7 @@ namespace StockForms.Extra_API
             }
 
         }
+        
+
     }
 }
