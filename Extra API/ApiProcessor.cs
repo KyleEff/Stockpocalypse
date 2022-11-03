@@ -43,19 +43,19 @@ namespace StockForms.Extra_API
 
             var URL = $"https://api.twelvedata.com/stocks?";
 
-            if (Ticker != null) {
+            if (Ticker != "") {
 
                 MessageBox.Show("TICKKEEERRRRR");
                 URL += ($"symbol={Ticker}&");
             }
 
-            if (Exchange != null)
+            if (Exchange != "")
                 URL += $"exchange={Exchange}&";
 
-            if (Mic != null)
+            if (Mic != "")
                 URL += $"mic_code={Mic}&";
 
-            if (Type != null)
+            if (Type != "")
                 URL += $"type={Type}";
 
            var request = new HttpRequestMessage(HttpMethod.Get, URL);

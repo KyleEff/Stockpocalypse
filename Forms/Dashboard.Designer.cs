@@ -76,6 +76,7 @@
             this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             MainTitle = new System.Windows.Forms.Label();
             Subtitle = new System.Windows.Forms.Label();
             IndicesGroupBox = new System.Windows.Forms.GroupBox();
@@ -464,6 +465,7 @@
             this._viewPortfolioButton.TabIndex = 14;
             this._viewPortfolioButton.Text = "VIEW PORTFOLIO";
             this._viewPortfolioButton.UseVisualStyleBackColor = true;
+            this._viewPortfolioButton.Click += new System.EventHandler(this.ViewPortfolioButton_Click);
             // 
             // _sellButton
             // 
@@ -528,18 +530,21 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // tradeToolStripMenuItem
             // 
             this.tradeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem,
             this.quoteToolStripMenuItem,
             this.buyToolStripMenuItem,
             this.sellToolStripMenuItem,
@@ -551,26 +556,37 @@
             // quoteToolStripMenuItem
             // 
             this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
-            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.quoteToolStripMenuItem.Text = "Quote";
+            this.quoteToolStripMenuItem.Click += new System.EventHandler(this.QuoteToolStripMenuItem_Click);
             // 
             // buyToolStripMenuItem
             // 
             this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buyToolStripMenuItem.Text = "Buy";
+            this.buyToolStripMenuItem.Click += new System.EventHandler(this.BuyToolStripMenuItem_Click);
             // 
             // sellToolStripMenuItem
             // 
             this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
-            this.sellToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.sellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sellToolStripMenuItem.Text = "Sell";
+            this.sellToolStripMenuItem.Click += new System.EventHandler(this.SellToolStripMenuItem_Click);
             // 
             // portfolioToolStripMenuItem
             // 
             this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
-            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.portfolioToolStripMenuItem.Text = "Portfolio";
+            this.portfolioToolStripMenuItem.Click += new System.EventHandler(this.PortfolioToolStripMenuItem_Click);
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // Dashboard
             // 
@@ -631,6 +647,7 @@
         private System.Windows.Forms.Button _viewPortfolioButton;
         private System.Windows.Forms.Button _sellButton;
         private System.Windows.Forms.Button _exitButton;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
     }
 }
 

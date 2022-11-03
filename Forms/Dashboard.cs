@@ -87,6 +87,54 @@ namespace StockForms
             }
         }
 
+        // Open Window Functions
+        public void OpenSearchWindow() {
+
+            if (SearchWin == null)
+            {
+                SearchWin = new SearchForm(this);
+                SearchWin.Show();
+                Hide();
+            }
+        }
+
+        public void OpenQuoteWindow()
+        {
+            if (QuoteWin == null)
+            {
+                QuoteWin = new QuoteForm(this);
+                QuoteWin.Show();
+            }
+        }
+
+        public void OpenBuyWindow() {
+
+            if (BuyStockWin == null)
+            {
+                BuyStockWin = new BuyStockForm(this);
+                BuyStockWin.Show();
+            }
+        }
+
+        public void OpenSellWindow() {
+
+            if (SellStockWin == null)
+            {
+                SellStockWin = new SellStockForm(this);
+                SellStockWin.Show();
+            }
+        }
+
+        public void OpenPortfolioWindow() { 
+        
+            if (PorfolioWin == null) {
+
+                PorfolioWin = new PortfolioForm(this);
+                PorfolioWin.Show();
+            }
+        }
+
+        // Set Indices for the front Dashboard Market Display
         private async void SetIndices() {
 
             Client = new HttpClient();
@@ -133,6 +181,7 @@ namespace StockForms
             
         }
 
+        // EVENTS
         private void DepositCashButton_Click(object sender, EventArgs e)
         {
             DepositCash();
@@ -140,44 +189,73 @@ namespace StockForms
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            if (SearchWin == null) {
-
-                SearchWin = new SearchForm(this);
-                SearchWin.Show();
-                Hide();
-            }
+            OpenSearchWindow();
         }
 
         private void GetQuoteButton_Clicked(object sender, EventArgs e)
         {
-            if (QuoteWin == null) {
-
-                QuoteWin = new QuoteForm(this);
-                QuoteWin.Show();
-            }
+            OpenQuoteWindow();
         }
 
         private void BuyButtonClick(object sender, EventArgs e)
         {
-            if (BuyStockWin == null) {
-
-                BuyStockWin = new BuyStockForm(this);
-                BuyStockWin.Show();
-            }
+            OpenBuyWindow();
         }
 
         private void SellButton_Click(object sender, EventArgs e)
         {
-            if (SellStockWin == null) {
+            OpenSellWindow();
+        }
 
-                SellStockWin = new SellStockForm(this);
-                SellStockWin.Show();
-            }
+        private void ViewPortfolioButton_Click(object sender, EventArgs e)
+        {
+            OpenPortfolioWindow();
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "This software is being developed by:\n" +
+                "KFree, LLC\n" +
+                "2022"
+            );
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenSearchWindow();
+        }
+
+        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenQuoteWindow();
+        }
+
+        private void BuyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenBuyWindow();
+        }
+
+        private void SellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenSellWindow();
+        }
+
+        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenPortfolioWindow();
+        }
+
+
     }
 }

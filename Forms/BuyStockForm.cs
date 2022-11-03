@@ -21,6 +21,7 @@ namespace StockForms.Forms
             InitializeComponent();
 
             CashTextBox.Text = _mainForm.CashBox;
+            _mainForm.Hide();
         }
 
         public void SetTotal() {
@@ -86,10 +87,50 @@ namespace StockForms.Forms
             SetTotal();
         }
 
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "This software is being developed by:\n" +
+                "KFree, LLC\n" +
+                "2022"
+            );
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenSearchWindow();
+        }
+
+        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenQuoteWindow();
+        }
+
+        private void BuyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenBuyWindow();
+        }
+
+        private void SellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenSellWindow();
+        }
+
+        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenPortfolioWindow();
+        }
+
         private void BuyForm_Closing(object sender, FormClosingEventArgs e)
         {
-            if (_mainForm.BuyStockWin == null)
-                _mainForm.Show();
+            _mainForm.BuyStockWin = null;
+            _mainForm.Show();
         }
     }
 }

@@ -92,7 +92,7 @@ namespace StockForms
 
                 _results = await ApiProcessor.LoadStockList(true, Ticker, Exchange, Mic, Type);
 
-                _resultsListBox.DataSource = _results;
+                _resultsListBox.DataSource = _results.Data;
                 _resultsListBox.DisplayMember = "FullInfo";
             }
 
@@ -121,15 +121,55 @@ namespace StockForms
             */
         }
 
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "This software is being developed by:\n" +
+                "KFree, LLC\n" +
+                "2022"
+            );
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenSearchWindow();
+        }
+
+        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenQuoteWindow();
+        }
+
+        private void BuyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenBuyWindow();
+        }
+
+        private void SellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenSellWindow();
+        }
+
+        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenPortfolioWindow();
+        }
+
         private void SearchForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _mainForm.SearchWin = null;
             _mainForm.Show();
-        }
-
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

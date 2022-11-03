@@ -38,10 +38,10 @@
             System.Windows.Forms.Label NameLabel;
             System.Windows.Forms.Label SymbolLabel;
             System.Windows.Forms.GroupBox _porfolioResultGroupBox;
-            System.Windows.Forms.Label _portfolioNameLabel;
-            System.Windows.Forms.Label _quantityOwnedLabel;
-            System.Windows.Forms.Label _dcaLabel;
             System.Windows.Forms.Label _totalValueLabel;
+            System.Windows.Forms.Label _dcaLabel;
+            System.Windows.Forms.Label _quantityOwnedLabel;
+            System.Windows.Forms.Label _portfolioNameLabel;
             this.OrderResultsTextBox = new System.Windows.Forms.TextBox();
             this._depositCashButton = new System.Windows.Forms.Button();
             this.CashTextBox = new System.Windows.Forms.TextBox();
@@ -52,16 +52,17 @@
             this.SymbolTextBox = new System.Windows.Forms.TextBox();
             this._portfolioResultListBox = new System.Windows.Forms.ListBox();
             this.SellButton = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this._priceButton = new System.Windows.Forms.Button();
+            this._menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._priceButton = new System.Windows.Forms.Button();
             _orderResultGroupBox = new System.Windows.Forms.GroupBox();
             groupBox2 = new System.Windows.Forms.GroupBox();
             OrderInfoGroupBox = new System.Windows.Forms.GroupBox();
@@ -72,15 +73,15 @@
             NameLabel = new System.Windows.Forms.Label();
             SymbolLabel = new System.Windows.Forms.Label();
             _porfolioResultGroupBox = new System.Windows.Forms.GroupBox();
-            _portfolioNameLabel = new System.Windows.Forms.Label();
-            _quantityOwnedLabel = new System.Windows.Forms.Label();
-            _dcaLabel = new System.Windows.Forms.Label();
             _totalValueLabel = new System.Windows.Forms.Label();
+            _dcaLabel = new System.Windows.Forms.Label();
+            _quantityOwnedLabel = new System.Windows.Forms.Label();
+            _portfolioNameLabel = new System.Windows.Forms.Label();
             _orderResultGroupBox.SuspendLayout();
             groupBox2.SuspendLayout();
             OrderInfoGroupBox.SuspendLayout();
             _porfolioResultGroupBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this._menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _orderResultGroupBox
@@ -264,6 +265,46 @@
             _porfolioResultGroupBox.TabStop = false;
             _porfolioResultGroupBox.Text = "Portfolio Results";
             // 
+            // _totalValueLabel
+            // 
+            _totalValueLabel.AutoSize = true;
+            _totalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _totalValueLabel.Location = new System.Drawing.Point(554, 16);
+            _totalValueLabel.Name = "_totalValueLabel";
+            _totalValueLabel.Size = new System.Drawing.Size(72, 13);
+            _totalValueLabel.TabIndex = 4;
+            _totalValueLabel.Text = "Total Value";
+            // 
+            // _dcaLabel
+            // 
+            _dcaLabel.AutoSize = true;
+            _dcaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _dcaLabel.Location = new System.Drawing.Point(368, 16);
+            _dcaLabel.Name = "_dcaLabel";
+            _dcaLabel.Size = new System.Drawing.Size(120, 13);
+            _dcaLabel.TabIndex = 3;
+            _dcaLabel.Text = "Dollar Cost Average";
+            // 
+            // _quantityOwnedLabel
+            // 
+            _quantityOwnedLabel.AutoSize = true;
+            _quantityOwnedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _quantityOwnedLabel.Location = new System.Drawing.Point(207, 16);
+            _quantityOwnedLabel.Name = "_quantityOwnedLabel";
+            _quantityOwnedLabel.Size = new System.Drawing.Size(97, 13);
+            _quantityOwnedLabel.TabIndex = 2;
+            _quantityOwnedLabel.Text = "Quantity Owned";
+            // 
+            // _portfolioNameLabel
+            // 
+            _portfolioNameLabel.AutoSize = true;
+            _portfolioNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _portfolioNameLabel.Location = new System.Drawing.Point(6, 16);
+            _portfolioNameLabel.Name = "_portfolioNameLabel";
+            _portfolioNameLabel.Size = new System.Drawing.Size(39, 13);
+            _portfolioNameLabel.TabIndex = 1;
+            _portfolioNameLabel.Text = "Name";
+            // 
             // _portfolioResultListBox
             // 
             this._portfolioResultListBox.FormattingEnabled = true;
@@ -283,16 +324,26 @@
             this.SellButton.UseVisualStyleBackColor = true;
             this.SellButton.Click += new System.EventHandler(this.SellButton_Click);
             // 
-            // menuStrip1
+            // _priceButton
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._priceButton.Location = new System.Drawing.Point(12, 479);
+            this._priceButton.Name = "_priceButton";
+            this._priceButton.Size = new System.Drawing.Size(142, 54);
+            this._priceButton.TabIndex = 22;
+            this._priceButton.Text = "GET PRICE";
+            this._priceButton.UseVisualStyleBackColor = true;
+            this._priceButton.Click += new System.EventHandler(this.PriceButton_Click);
+            // 
+            // _menuStrip
+            // 
+            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.tradeToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(844, 24);
-            this.menuStrip1.TabIndex = 18;
-            this.menuStrip1.Text = "menuStrip1";
+            this._menuStrip.Location = new System.Drawing.Point(0, 0);
+            this._menuStrip.Name = "_menuStrip";
+            this._menuStrip.Size = new System.Drawing.Size(844, 24);
+            this._menuStrip.TabIndex = 23;
+            this._menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -306,18 +357,21 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // tradeToolStripMenuItem
             // 
             this.tradeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem,
             this.quoteToolStripMenuItem,
             this.buyToolStripMenuItem,
             this.sellToolStripMenuItem,
@@ -326,94 +380,56 @@
             this.tradeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.tradeToolStripMenuItem.Text = "Trade";
             // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
+            // 
             // quoteToolStripMenuItem
             // 
             this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
-            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.quoteToolStripMenuItem.Text = "Quote";
+            this.quoteToolStripMenuItem.Click += new System.EventHandler(this.QuoteToolStripMenuItem_Click);
             // 
             // buyToolStripMenuItem
             // 
             this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buyToolStripMenuItem.Text = "Buy";
+            this.buyToolStripMenuItem.Click += new System.EventHandler(this.BuyToolStripMenuItem_Click);
             // 
             // sellToolStripMenuItem
             // 
             this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
-            this.sellToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.sellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sellToolStripMenuItem.Text = "Sell";
+            this.sellToolStripMenuItem.Click += new System.EventHandler(this.SellToolStripMenuItem_Click);
             // 
             // portfolioToolStripMenuItem
             // 
             this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
-            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.portfolioToolStripMenuItem.Text = "Portfolio";
-            // 
-            // _priceButton
-            // 
-            this._priceButton.Location = new System.Drawing.Point(12, 479);
-            this._priceButton.Name = "_priceButton";
-            this._priceButton.Size = new System.Drawing.Size(142, 54);
-            this._priceButton.TabIndex = 22;
-            this._priceButton.Text = "GET PRICE";
-            this._priceButton.UseVisualStyleBackColor = true;
-            this._priceButton.Click += new System.EventHandler(this.PriceButton_Click);
-            // 
-            // _portfolioNameLabel
-            // 
-            _portfolioNameLabel.AutoSize = true;
-            _portfolioNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _portfolioNameLabel.Location = new System.Drawing.Point(6, 16);
-            _portfolioNameLabel.Name = "_portfolioNameLabel";
-            _portfolioNameLabel.Size = new System.Drawing.Size(39, 13);
-            _portfolioNameLabel.TabIndex = 1;
-            _portfolioNameLabel.Text = "Name";
-            // 
-            // _quantityOwnedLabel
-            // 
-            _quantityOwnedLabel.AutoSize = true;
-            _quantityOwnedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _quantityOwnedLabel.Location = new System.Drawing.Point(207, 16);
-            _quantityOwnedLabel.Name = "_quantityOwnedLabel";
-            _quantityOwnedLabel.Size = new System.Drawing.Size(97, 13);
-            _quantityOwnedLabel.TabIndex = 2;
-            _quantityOwnedLabel.Text = "Quantity Owned";
-            // 
-            // _dcaLabel
-            // 
-            _dcaLabel.AutoSize = true;
-            _dcaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _dcaLabel.Location = new System.Drawing.Point(368, 16);
-            _dcaLabel.Name = "_dcaLabel";
-            _dcaLabel.Size = new System.Drawing.Size(120, 13);
-            _dcaLabel.TabIndex = 3;
-            _dcaLabel.Text = "Dollar Cost Average";
-            // 
-            // _totalValueLabel
-            // 
-            _totalValueLabel.AutoSize = true;
-            _totalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _totalValueLabel.Location = new System.Drawing.Point(554, 16);
-            _totalValueLabel.Name = "_totalValueLabel";
-            _totalValueLabel.Size = new System.Drawing.Size(72, 13);
-            _totalValueLabel.TabIndex = 4;
-            _totalValueLabel.Text = "Total Value";
+            this.portfolioToolStripMenuItem.Click += new System.EventHandler(this.PortfolioToolStripMenuItem_Click);
             // 
             // SellStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 542);
+            this.Controls.Add(this._menuStrip);
             this.Controls.Add(this._priceButton);
             this.Controls.Add(groupBox2);
             this.Controls.Add(_porfolioResultGroupBox);
             this.Controls.Add(_orderResultGroupBox);
             this.Controls.Add(OrderInfoGroupBox);
             this.Controls.Add(this.SellButton);
-            this.Controls.Add(this.menuStrip1);
             this.Name = "SellStockForm";
             this.Text = "Sell Stock";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SellStockForm_FormClosing);
             _orderResultGroupBox.ResumeLayout(false);
             _orderResultGroupBox.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -422,8 +438,8 @@
             OrderInfoGroupBox.PerformLayout();
             _porfolioResultGroupBox.ResumeLayout(false);
             _porfolioResultGroupBox.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this._menuStrip.ResumeLayout(false);
+            this._menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,16 +456,17 @@
         public System.Windows.Forms.TextBox NameTextBox;
         public System.Windows.Forms.TextBox SymbolTextBox;
         private System.Windows.Forms.Button SellButton;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button _priceButton;
+        private System.Windows.Forms.ListBox _portfolioResultListBox;
+        private System.Windows.Forms.MenuStrip _menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tradeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sellToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
-        private System.Windows.Forms.Button _priceButton;
-        private System.Windows.Forms.ListBox _portfolioResultListBox;
     }
 }

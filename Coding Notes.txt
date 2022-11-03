@@ -80,7 +80,7 @@ Say I wanted to buy ***MORE*** of a stock, I would need to
     • Transfer the order into an Entry object
     • Compare to the relevant Order object
     • Add the quantities to each other
-    • Find the average of the two purchase prices
+    • Find the average of the two purchase prices (DCA)
         ◦ Both prices divided by two
         ◦ OR
         ◦ Total / Quantity
@@ -93,3 +93,16 @@ Say I wanted to buy ***MORE*** of a stock, I would need to
 INTO 11/1/22
 IDEA for main dashboard
     • Somewhere next to the CashBox available to trade, put the value of the customer’s portfolio
+
+
+11/3/22
+To uninstall the program, visit the path C:\Users\kfree\AppData\Local\Apps\2.0 and delete the folder that is NOT “Data”
+
+Worked on a decent publish package. It works but it is a bitch to uninstall. I need to look into writing an uninstall tool.
+
+WORK ON THE TOP MENU
+
+Fixed all windows from the Dashboard to hide the _mainForm upon construction and to show it upon destruction
+
+back to the top menu
+Top menu complete. Need to test and implement across all windows

@@ -43,16 +43,18 @@
             this._nameTextBox = new System.Windows.Forms.TextBox();
             this._tickerTextBox = new System.Windows.Forms.TextBox();
             this._resultsListBox = new System.Windows.Forms.ListBox();
+            this._micToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._exitButton = new System.Windows.Forms.Button();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._micToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this._exitButton = new System.Windows.Forms.Button();
+            this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             _stockInformationGroupBox = new System.Windows.Forms.GroupBox();
             _typeLabel = new System.Windows.Forms.Label();
             _micLabel = new System.Windows.Forms.Label();
@@ -211,66 +213,6 @@
             this._resultsListBox.Size = new System.Drawing.Size(864, 404);
             this._resultsListBox.TabIndex = 0;
             // 
-            // _menuStrip
-            // 
-            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.tradeToolStripMenuItem});
-            this._menuStrip.Location = new System.Drawing.Point(0, 0);
-            this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(1198, 24);
-            this._menuStrip.TabIndex = 11;
-            this._menuStrip.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // tradeToolStripMenuItem
-            // 
-            this.tradeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.quoteToolStripMenuItem,
-            this.buyToolStripMenuItem,
-            this.sellToolStripMenuItem});
-            this.tradeToolStripMenuItem.Name = "tradeToolStripMenuItem";
-            this.tradeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.tradeToolStripMenuItem.Text = "Trade";
-            // 
-            // quoteToolStripMenuItem
-            // 
-            this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
-            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.quoteToolStripMenuItem.Text = "Quote";
-            // 
-            // buyToolStripMenuItem
-            // 
-            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.buyToolStripMenuItem.Text = "Buy";
-            // 
-            // sellToolStripMenuItem
-            // 
-            this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
-            this.sellToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.sellToolStripMenuItem.Text = "Sell";
-            // 
             // _micToolTip
             // 
             this._micToolTip.Tag = "MICCode";
@@ -287,14 +229,95 @@
             this._exitButton.UseVisualStyleBackColor = true;
             this._exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // _menuStrip
+            // 
+            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.tradeToolStripMenuItem});
+            this._menuStrip.Location = new System.Drawing.Point(0, 0);
+            this._menuStrip.Name = "_menuStrip";
+            this._menuStrip.Size = new System.Drawing.Size(1198, 24);
+            this._menuStrip.TabIndex = 13;
+            this._menuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            // 
+            // tradeToolStripMenuItem
+            // 
+            this.tradeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem,
+            this.quoteToolStripMenuItem,
+            this.buyToolStripMenuItem,
+            this.sellToolStripMenuItem,
+            this.portfolioToolStripMenuItem});
+            this.tradeToolStripMenuItem.Name = "tradeToolStripMenuItem";
+            this.tradeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.tradeToolStripMenuItem.Text = "Trade";
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
+            // 
+            // quoteToolStripMenuItem
+            // 
+            this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
+            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quoteToolStripMenuItem.Text = "Quote";
+            this.quoteToolStripMenuItem.Click += new System.EventHandler(this.QuoteToolStripMenuItem_Click);
+            // 
+            // buyToolStripMenuItem
+            // 
+            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buyToolStripMenuItem.Text = "Buy";
+            this.buyToolStripMenuItem.Click += new System.EventHandler(this.BuyToolStripMenuItem_Click);
+            // 
+            // sellToolStripMenuItem
+            // 
+            this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
+            this.sellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sellToolStripMenuItem.Text = "Sell";
+            this.sellToolStripMenuItem.Click += new System.EventHandler(this.SellToolStripMenuItem_Click);
+            // 
+            // portfolioToolStripMenuItem
+            // 
+            this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
+            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.portfolioToolStripMenuItem.Text = "Portfolio";
+            this.portfolioToolStripMenuItem.Click += new System.EventHandler(this.PortfolioToolStripMenuItem_Click);
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1198, 466);
+            this.Controls.Add(this._menuStrip);
             this.Controls.Add(this._exitButton);
             this.Controls.Add(_resultGroupBox);
-            this.Controls.Add(this._menuStrip);
             this.Controls.Add(_stockInformationGroupBox);
             this.Name = "SearchForm";
             this.Text = "SearchForm";
@@ -313,14 +336,6 @@
 
         private System.Windows.Forms.TextBox _nameTextBox;
         private System.Windows.Forms.TextBox _tickerTextBox;
-        private System.Windows.Forms.MenuStrip _menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tradeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quoteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem buyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sellToolStripMenuItem;
         private System.Windows.Forms.ListBox _resultsListBox;
         private System.Windows.Forms.TextBox _micTextBox;
         private System.Windows.Forms.ToolTip _micToolTip;
@@ -328,5 +343,15 @@
         private System.Windows.Forms.Button _searchButton;
         private System.Windows.Forms.ComboBox _typeComboBox;
         public System.Windows.Forms.ComboBox _exchangeComboBox;
+        private System.Windows.Forms.MenuStrip _menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tradeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sellToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
     }
 }
