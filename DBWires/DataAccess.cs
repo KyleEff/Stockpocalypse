@@ -96,7 +96,6 @@ namespace StockForms.DBWires
 
         public List<Order> ViewOrders()
         {
-
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios")))
             {
                 var output = connection.Query<Order>("SELECT * FROM orders;").ToList();

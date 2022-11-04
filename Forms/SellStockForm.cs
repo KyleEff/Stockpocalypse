@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace StockForms.Forms
             _mainForm = mainForm as Dashboard;
 
             InitializeComponent();
-            FillPortfolioList();
+            //FillPortfolioList();
             _mainForm.Hide();
         }
 
@@ -95,8 +96,7 @@ namespace StockForms.Forms
 
             _portfolio = database.ViewPortfolio();
 
-            _portfolioResultListBox.DataSource = _portfolio;
-            _portfolioResultListBox.DisplayMember = "FullInfo";
+            _portfolioDataGridView.DataSource = _portfolio;
         }
 
         private void SellButton_Click(object sender, EventArgs e) { Transact(); }
@@ -104,12 +104,6 @@ namespace StockForms.Forms
         private void QuantityTextBox_TextChanged(object sender, EventArgs e)
         {
             SetTotal();
-        }
-
-        private void PortfolioResultListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SymbolTextBox.Text = _portfolio[_portfolioResultListBox.SelectedIndex].Stock_Ticker;
-            NameTextBox.Text = _portfolio[_portfolioResultListBox.SelectedIndex].Stock_Name;
         }
 
         private async void PriceButton_Click(object sender, EventArgs e)
@@ -121,7 +115,6 @@ namespace StockForms.Forms
 
             PriceTextBox.Text = price.Price.ToString("C2");
         }
-
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -166,6 +159,29 @@ namespace StockForms.Forms
         {
             _mainForm.SellStockWin = null;
             _mainForm.Show();
+        }
+
+        private void SellStockForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
+            this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
+
+        }
+
+        private void PortfolioDataGridView_CellContentClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedRow = _portfolioDataGridView.SelectedRows[0].DataBoundItem as Customer_Portfolio;
+
+                SymbolTextBox.Text = selectedRow.Stock_Ticker;
+                NameTextBox.Text = selectedRow.Stock_Name;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

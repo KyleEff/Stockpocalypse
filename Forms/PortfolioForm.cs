@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockForms.DBWires;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,16 @@ namespace StockForms.Forms
             _mainForm = MainForm as Dashboard;
 
             InitializeComponent();
+            //FillPortfolio();
             _mainForm.Hide();
+
+        }
+
+        private void FillPortfolio() {
+
+            DataAccess database = new DataAccess();
+
+            _portfolioDataGridView.DataSource = database.ViewPortfolio();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,6 +80,13 @@ namespace StockForms.Forms
         {
             _mainForm.PorfolioWin = null;
             _mainForm.Show();
+        }
+
+        private void PortfolioForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
+            this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
+
         }
     }
 }

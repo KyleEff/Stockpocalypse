@@ -14,9 +14,12 @@ namespace StockForms
 {
     public partial class Dashboard : Form, ICashManagement
     {
+        // API Properties
         public static string ApiKey { get { return "337b8d2e149a46b48bce81b03371004e"; } }
         public static HttpClient Client { get; set; }
         public static TwelveDataClient Api { get; set; }
+
+        // Cash Properties
         public static double Cash { get; set; }
         public string CashBox { 
         
@@ -24,13 +27,13 @@ namespace StockForms
             set { CashTextBox.Text = value; }
         }
 
+        // Window Properties
         private DepositBox _depositWin { get; set; }
         public SearchForm SearchWin { get; set; }
         public QuoteForm QuoteWin { get; set; }
         public BuyStockForm BuyStockWin { get; set; }
         public SellStockForm SellStockWin { get; set; }
         public PortfolioForm PorfolioWin { get; set; }
-
 
         public Dashboard()
         {

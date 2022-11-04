@@ -96,7 +96,7 @@ IDEA for main dashboard
 
 
 11/3/22
-To uninstall the program, visit the path C:\Users\kfree\AppData\Local\Apps\2.0 and delete the folder that is NOT “Data”
+To uninstall the program, visit the path C:\Users\[USER]\AppData\Local\Apps\2.0 and delete the folder that is NOT “Data”
 
 Worked on a decent publish package. It works but it is a bitch to uninstall. I need to look into writing an uninstall tool.
 
@@ -106,3 +106,9 @@ Fixed all windows from the Dashboard to hide the _mainForm upon construction and
 
 back to the top menu
 Top menu complete. Need to test and implement across all windows
+
+Work on View Portfolio form.
+Just struck gold for data display. I was worried about how to display the data in a readable format, so I looked around the tools in the Form designer and found DataGridView. Going to do more research on this display while I construct the Portfolio window
+
+Need to work on displaying the data from the selected row in the DataGridView
+Worked on the portfolio form and got super side-tracked trying to learn the DataGridView

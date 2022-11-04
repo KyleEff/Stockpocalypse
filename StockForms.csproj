@@ -183,6 +183,11 @@
     </Compile>
     <Compile Include="Interfaces\ICashManagement.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
+    <Compile Include="portfoliosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>portfoliosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\SearchForm.cs">
@@ -193,6 +198,11 @@
     </Compile>
     <Compile Include="ResultModels\IndicesResultModel.cs" />
     <Compile Include="ResultModels\StockListModel.cs" />
+    <Compile Include="ViewPortfolio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewPortfolio.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\BuyStockForm.resx">
       <DependentUpon>BuyStockForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +237,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="portfoliosDataSet.xsc">
+      <DependentUpon>portfoliosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="portfoliosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>portfoliosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="portfoliosDataSet.xss">
+      <DependentUpon>portfoliosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\StockForms.DBWires.Customer_Portfolio.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -237,6 +259,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="StockForms_TemporaryKey.pfx" />
+    <None Include="ViewPortfolio.xsc">
+      <DependentUpon>ViewPortfolio.xsd</DependentUpon>
+    </None>
+    <None Include="ViewPortfolio.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ViewPortfolio.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ViewPortfolio.xss">
+      <DependentUpon>ViewPortfolio.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
