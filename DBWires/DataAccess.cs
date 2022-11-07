@@ -89,6 +89,62 @@ namespace StockForms.DBWires
                 }
 
 
+                //MessageBox.Show(output.ToString());
+            }
+        }
+
+
+        public void SendOrder(bool Buy, Order order)
+        {
+
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios")))
+            {
+                /*
+                Order Dummy = new Order
+                {
+                    StockTicker = "'" + StockTicker + "'",
+                    StockName = "'" + StockName + "'",
+                    Price = Price,
+                    Quantity = Quantity
+                };
+
+                List<Order> Dummys = new List<Order>();
+
+                Dummys.Add(new Order
+                {
+                    StockTicker = StockTicker,
+                    StockName = StockName,
+                    Price = Price,
+                    Quantity = Quantity
+                });
+
+                foreach (var order in Dummys) MessageBox.Show(order.StockName);
+                */
+                //connection.Execute($"IF NOT EXISTS (SELECT 1 FROM stocks WHERE stock_ticker = '{StockTicker}') INSERT INTO stocks VALUES ('{StockTicker}', '{StockName}');");
+
+                using (var comm = new SqlCommand("dbo.Stocks_Add", (SqlConnection)connection) { CommandType = CommandType.StoredProcedure })
+                {
+                    connection.Open();
+
+                    comm.Parameters.AddWithValue("@StockTicker", order.Stock_Ticker);
+                    comm.Parameters.AddWithValue("@StockName", order.Stock_Name);
+                }
+
+                //var output = connection.Execute(
+                //"INSERT INTO orders VALUES (DEFAULT, '$AMD', 'Advanced Micro Devices', 65.15, 100");
+                //"dbo.Orders_Place @StockTicker, @StockName, @Price, @Quantity", Dummys);
+
+                using (var comm = new SqlCommand("dbo.Orders_Place", (SqlConnection)connection) { CommandType = CommandType.StoredProcedure })
+                {
+                    //connection.Open();
+
+                    comm.Parameters.AddWithValue("@Buy", Buy);
+                    comm.Parameters.AddWithValue("@StockTicker", order.Stock_Ticker);
+                    comm.Parameters.AddWithValue("@StockName", order.Stock_Name);
+                    comm.Parameters.AddWithValue("@Price", order.Price);
+                    comm.Parameters.AddWithValue("@Quantity", order.Quantity);
+                }
+
 
                 //MessageBox.Show(output.ToString());
             }
@@ -121,12 +177,57 @@ namespace StockForms.DBWires
 
         public List<Customer_Portfolio> ViewPortfolio() {
 
-            using (IDbConnection conn = new SqlConnection(Helper.CnnVal("portfolios"))) {
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios"))) {
 
-                var rows = conn.Query<Customer_Portfolio>("SELECT * FROM portfolio;").ToList();
+                var rows = connection.Query<Customer_Portfolio>("SELECT * FROM portfolio;").ToList();
                 return rows;
             }
-            
+        }
+
+        public void AlterPortfolio(bool buy, Order order) {
+            // THIS FUNCTION DOES NOT UTILIZE THE ALTER STATEMENT
+            // NO TABLES ARE BEING ALTERED
+
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios"))) {
+
+                if (buy) {
+
+                    var rows = connection.Query<Customer_Portfolio>(
+                        $"SELECT * FROM portfolio WHERE stock_ticker = '{ order.Stock_Ticker }';"
+                    ).ToList();
+
+                    if (rows.Count > 0) {
+
+                        int totalQuantity = rows[0].Quantity_Owned + order.Quantity;
+                        double totalTotal = rows[0].Total + order.Total;
+                        double newDca = totalTotal / totalQuantity;
+
+                        connection.Query(
+                            $"UPDATE portfolio " +
+                            $"SET " +
+                                $"quantity_owned =  { totalQuantity }, " +
+                                $"dollar_cost_average = {newDca}, " +
+                                $"total = { totalTotal } " +
+                            $"WHERE stock_ticker = { order.Stock_Ticker }" +
+                            ";"
+                        );
+                    }
+
+                    else {
+                        MessageBox.Show($"{ Convert.ToInt32(order.Buy) }");
+                        /*
+                        connection.Query(
+                            $"INSERT INTO portfolio VALUES(" +
+                                $"{ Convert.ToInt32(order.Buy) }, DEFAULT, " +
+                                $"'{ order.Stock_Ticker }', " +
+                                $"'{ order.Stock_Name }', " +
+                                $"{ order.Price }, " +
+                                $"{ order.Quantity } " +
+                            ");"
+                        );*/
+                    }
+                }
+            }
         }
     }
 }

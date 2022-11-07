@@ -59,9 +59,6 @@ namespace StockForms.Forms
                     PriceString += TotalTextBox.Text[letter];
 
                 _total = Convert.ToDouble(PriceString);
-
-                if (Convert.ToDouble(PriceString) > Dashboard.Cash)
-                    MessageBox.Show("There is not enough cash in your account to accommodate this order!!");
             }
             else TotalTextBox.Text = "$0.00";
         }
@@ -81,7 +78,7 @@ namespace StockForms.Forms
                     Convert.ToInt32(QuantityTextBox.Text)
                );
 
-                Dashboard.Cash -= _total;
+                Dashboard.Cash += _total;
                 _mainForm.WriteCash();
             }
             else MessageBox.Show("There are not enough funds in your account to execute this order!!");
@@ -179,7 +176,6 @@ namespace StockForms.Forms
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }

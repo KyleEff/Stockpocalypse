@@ -112,3 +112,13 @@ Just struck gold for data display. I was worried about how to display the data i
 
 Need to work on displaying the data from the selected row in the DataGridView
 Worked on the portfolio form and got super side-tracked trying to learn the DataGridView
+
+11/5/22
+Worked on SQL statements to insert an order into the portfolio. The function was debugged all the way down to the final statement, where I ran out of time. The exception that was thrown was the following:
+System.Data.SqlClient.SqlException: 'An explicit value for the identity column in table 'portfolio' can only be specified when a column list is used and IDENTITY_INSERT is ON.'
+
+The database thinks that I am trying to enter a primary key when that is not the case. The boolean needs to be converted to a BIT type in order to fit into the table.
+
+11/6/22
+Trying to find a way to make the published program write and use a file to store and display the cash that is in the user’s account.
+

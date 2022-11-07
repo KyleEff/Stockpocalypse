@@ -45,7 +45,7 @@ namespace StockForms.Forms
 
                 _total = Convert.ToDouble(PriceString);
 
-                if (Convert.ToDouble(PriceString) > Dashboard.Cash)
+                if (_total > Dashboard.Cash)
                     MessageBox.Show("There is not enough cash in your account to accommodate this order!!");
             }
             else TotalTextBox.Text = "$0.00";
@@ -55,16 +55,23 @@ namespace StockForms.Forms
         {
             // BUY BUY BUY
             DataAccess Database = new DataAccess();
+            Order order = new Order() {
+
+                Buy = true,
+                Stock_Ticker = SymbolTextBox.Text,
+                Stock_Name = NameTextBox.Text,
+                Price = _price,
+                Quantity = Convert.ToInt32(QuantityTextBox.Text)
+            };
 
             if (_total <= Dashboard.Cash)
             {
                 Database.SendOrder(
                     true,
-                    SymbolTextBox.Text,
-                    NameTextBox.Text,
-                    _price,
-                    Convert.ToInt32(QuantityTextBox.Text)
-               );
+                    order
+                );
+
+                Database.AlterPortfolio(order.Buy, order);
 
                 Dashboard.Cash -= _total;
                 _mainForm.WriteCash();
@@ -86,7 +93,6 @@ namespace StockForms.Forms
         {
             SetTotal();
         }
-
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
