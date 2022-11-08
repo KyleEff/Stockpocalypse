@@ -56,6 +56,8 @@
             this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this._exitButton = new System.Windows.Forms.Button();
             groupBox2 = new System.Windows.Forms.GroupBox();
             OrderInfoGroupBox = new System.Windows.Forms.GroupBox();
             label2 = new System.Windows.Forms.Label();
@@ -69,6 +71,7 @@
             OrderInfoGroupBox.SuspendLayout();
             _orderResultGroupBox.SuspendLayout();
             this._menuStrip.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -241,9 +244,9 @@
             // 
             // BuyButton
             // 
-            this.BuyButton.Location = new System.Drawing.Point(12, 419);
+            this.BuyButton.Location = new System.Drawing.Point(3, 3);
             this.BuyButton.Name = "BuyButton";
-            this.BuyButton.Size = new System.Drawing.Size(142, 54);
+            this.BuyButton.Size = new System.Drawing.Size(175, 53);
             this.BuyButton.TabIndex = 2;
             this.BuyButton.Text = "BUY";
             this.BuyButton.UseVisualStyleBackColor = true;
@@ -272,14 +275,14 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -298,48 +301,73 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // quoteToolStripMenuItem
             // 
             this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
-            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.quoteToolStripMenuItem.Text = "Quote";
             this.quoteToolStripMenuItem.Click += new System.EventHandler(this.QuoteToolStripMenuItem_Click);
             // 
             // buyToolStripMenuItem
             // 
             this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.buyToolStripMenuItem.Text = "Buy";
             this.buyToolStripMenuItem.Click += new System.EventHandler(this.BuyToolStripMenuItem_Click);
             // 
             // sellToolStripMenuItem
             // 
             this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
-            this.sellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sellToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.sellToolStripMenuItem.Text = "Sell";
             this.sellToolStripMenuItem.Click += new System.EventHandler(this.SellToolStripMenuItem_Click);
             // 
             // portfolioToolStripMenuItem
             // 
             this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
-            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.portfolioToolStripMenuItem.Text = "Portfolio";
             this.portfolioToolStripMenuItem.Click += new System.EventHandler(this.PortfolioToolStripMenuItem_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this._exitButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BuyButton, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 414);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 59);
+            this.tableLayoutPanel1.TabIndex = 17;
+            // 
+            // _exitButton
+            // 
+            this._exitButton.Location = new System.Drawing.Point(365, 3);
+            this._exitButton.Name = "_exitButton";
+            this._exitButton.Size = new System.Drawing.Size(175, 53);
+            this._exitButton.TabIndex = 4;
+            this._exitButton.Text = "EXIT";
+            this._exitButton.UseVisualStyleBackColor = true;
+            this._exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // BuyStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 485);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this._menuStrip);
             this.Controls.Add(_orderResultGroupBox);
             this.Controls.Add(groupBox2);
             this.Controls.Add(OrderInfoGroupBox);
-            this.Controls.Add(this.BuyButton);
             this.Name = "BuyStockForm";
             this.Text = "Purchase Stock";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuyForm_Closing);
@@ -351,6 +379,7 @@
             _orderResultGroupBox.PerformLayout();
             this._menuStrip.ResumeLayout(false);
             this._menuStrip.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,5 +405,7 @@
         private System.Windows.Forms.ToolStripMenuItem buyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sellToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button _exitButton;
     }
 }

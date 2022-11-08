@@ -72,11 +72,11 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             MainTitle = new System.Windows.Forms.Label();
             Subtitle = new System.Windows.Forms.Label();
             IndicesGroupBox = new System.Windows.Forms.GroupBox();
@@ -120,7 +120,7 @@
             // 
             Subtitle.AutoSize = true;
             Subtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Subtitle.Location = new System.Drawing.Point(53, 79);
+            Subtitle.Location = new System.Drawing.Point(46, 79);
             Subtitle.Name = "Subtitle";
             Subtitle.Size = new System.Drawing.Size(508, 25);
             Subtitle.TabIndex = 1;
@@ -403,7 +403,7 @@
             groupBox2.Controls.Add(this.CashTextBox);
             groupBox2.Controls.Add(this._depositCashButton);
             groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            groupBox2.Location = new System.Drawing.Point(209, 117);
+            groupBox2.Location = new System.Drawing.Point(200, 117);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(200, 77);
             groupBox2.TabIndex = 13;
@@ -530,14 +530,14 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -553,40 +553,40 @@
             this.tradeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.tradeToolStripMenuItem.Text = "Trade";
             // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
+            // 
             // quoteToolStripMenuItem
             // 
             this.quoteToolStripMenuItem.Name = "quoteToolStripMenuItem";
-            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quoteToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.quoteToolStripMenuItem.Text = "Quote";
             this.quoteToolStripMenuItem.Click += new System.EventHandler(this.QuoteToolStripMenuItem_Click);
             // 
             // buyToolStripMenuItem
             // 
             this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.buyToolStripMenuItem.Text = "Buy";
             this.buyToolStripMenuItem.Click += new System.EventHandler(this.BuyToolStripMenuItem_Click);
             // 
             // sellToolStripMenuItem
             // 
             this.sellToolStripMenuItem.Name = "sellToolStripMenuItem";
-            this.sellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sellToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.sellToolStripMenuItem.Text = "Sell";
             this.sellToolStripMenuItem.Click += new System.EventHandler(this.SellToolStripMenuItem_Click);
             // 
             // portfolioToolStripMenuItem
             // 
             this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
-            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.portfolioToolStripMenuItem.Text = "Portfolio";
             this.portfolioToolStripMenuItem.Click += new System.EventHandler(this.PortfolioToolStripMenuItem_Click);
-            // 
-            // searchToolStripMenuItem
-            // 
-            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.searchToolStripMenuItem.Text = "Search";
-            this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // Dashboard
             // 

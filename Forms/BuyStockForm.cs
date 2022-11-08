@@ -28,9 +28,13 @@ namespace StockForms.Forms
 
             string PriceString = "";
 
-            if (PriceTextBox.Text != null)
-                for (var letter = 1; letter < PriceTextBox.Text.Length; letter++)
+            if (PriceTextBox.Text != null) {
+
+                if (PriceTextBox.Text[0] == '$')
+                    for (var letter = 1; letter < PriceTextBox.Text.Length; letter++)
                     PriceString += PriceTextBox.Text[letter];
+                else PriceString = PriceTextBox.Text;
+            }
 
             _price = Convert.ToDouble(PriceString);
             //MessageBox.Show(PriceString);
@@ -68,15 +72,16 @@ namespace StockForms.Forms
 
             if (_total <= Dashboard.Cash)
             {
-                //Database.SendOrder(true, order);
+                Database.SendOrder(true, order);
+                /*
                 Database.SendOrder(true,
                     "'" + SymbolTextBox.Text + "'",
                     "'" + NameTextBox.Text + "'",
                     _price,
                     Convert.ToInt32(QuantityTextBox.Text)
-                );
+                );*/
 
-                Database.AlterPortfolio(order.Buy, order);
+                Database.AlterPortfolio(order);
 
                 Dashboard.Cash -= _total;
                 _mainForm.WriteCash();
@@ -142,6 +147,11 @@ namespace StockForms.Forms
         {
             _mainForm.BuyStockWin = null;
             _mainForm.Show();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

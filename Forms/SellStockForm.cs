@@ -35,6 +35,7 @@ namespace StockForms.Forms
 
             InitializeComponent();
             //FillPortfolioList();
+            CashTextBox.Text = _mainForm.CashBox;
             _mainForm.Hide();
         }
 
@@ -68,17 +69,29 @@ namespace StockForms.Forms
 
             DataAccess Database = new DataAccess();
 
+            Order order = new Order() {
+
+                Buy = false,
+                Stock_Ticker = SymbolTextBox.Text,
+                Stock_Name = NameTextBox.Text,
+                Price = Convert.ToDouble(PriceTextBox.Text),
+                Quantity = Convert.ToInt16(QuantityTextBox.Text)
+            };
+
             if (_total <= Dashboard.Cash)
             {
+                /*
                 Database.SendOrder(
                     false, // The buy boolean is false because this is a sell order
                     SymbolTextBox.Text,
                     NameTextBox.Text,
                     _price,
                     Convert.ToInt32(QuantityTextBox.Text)
-                );
-                
-                // Add portfolio alter here
+                );*/
+
+                Database.SendOrder(false, order);
+
+                Database.AlterPortfolio(order);
 
                 Dashboard.Cash += _total;
                 _mainForm.WriteCash();
@@ -98,6 +111,16 @@ namespace StockForms.Forms
             _portfolioDataGridView.DataSource = _portfolio;
         }
 
+        private async void GetPrice() {
+
+            Dashboard.Client = new HttpClient();
+            Dashboard.Api = new TwelveDataClient(Dashboard.ApiKey, Dashboard.Client);
+
+            var price = await Dashboard.Api.GetRealTimePriceAsync(SymbolTextBox.Text);
+
+            PriceTextBox.Text = price.Price.ToString("C2");
+        }
+
         private void SellButton_Click(object sender, EventArgs e) { Transact(); }
 
         private void QuantityTextBox_TextChanged(object sender, EventArgs e)
@@ -105,14 +128,9 @@ namespace StockForms.Forms
             SetTotal();
         }
 
-        private async void PriceButton_Click(object sender, EventArgs e)
+        private void PriceButton_Click(object sender, EventArgs e)
         {
-            Dashboard.Client = new HttpClient();
-            Dashboard.Api = new TwelveDataClient(Dashboard.ApiKey, Dashboard.Client);
-
-            var price = await Dashboard.Api.GetRealTimePriceAsync(SymbolTextBox.Text);
-
-            PriceTextBox.Text = price.Price.ToString("C2");
+            GetPrice();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,14 +185,23 @@ namespace StockForms.Forms
 
         }
 
-        private void PortfolioDataGridView_CellContentClick(object sender, EventArgs e)
+        private void PortfolioDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
+                /*
                 var selectedRow = _portfolioDataGridView.SelectedRows[0].DataBoundItem as Customer_Portfolio;
 
                 SymbolTextBox.Text = selectedRow.Stock_Ticker;
                 NameTextBox.Text = selectedRow.Stock_Name;
+                */
+
+                var row = this._portfolioDataGridView.Rows[e.RowIndex].Cells;
+
+                SymbolTextBox.Text = row[1].Value.ToString();
+                NameTextBox.Text = row[2].Value.ToString();
+
+                GetPrice();
             }
             catch (Exception ex)
             {

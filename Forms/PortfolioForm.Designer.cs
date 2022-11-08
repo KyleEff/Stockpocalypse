@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TableLayoutPanel _buttonTableLayoutPanel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            this._exitButton = new System.Windows.Forms.Button();
+            this._sellButton = new System.Windows.Forms.Button();
+            this._buyButton = new System.Windows.Forms.Button();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,32 +46,82 @@
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._portfolioDataGridView = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.portfoliosDataSet = new StockForms.portfoliosDataSet();
-            this.portfoliosDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewPortfolio = new StockForms.ViewPortfolio();
-            this.viewPortfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.portfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.portfolioTableAdapter = new StockForms.ViewPortfolioTableAdapters.portfolioTableAdapter();
-            this.customerPortfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerPortfolioBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stocktickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stocknameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityownedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dollarcostaverageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.portfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewPortfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewPortfolio = new StockForms.ViewPortfolio();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.portfoliosDataSet = new StockForms.portfoliosDataSet();
+            this.portfoliosDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.portfolioTableAdapter = new StockForms.ViewPortfolioTableAdapters.portfolioTableAdapter();
+            this.customerPortfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerPortfolioBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            _buttonTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            _buttonTableLayoutPanel.SuspendLayout();
             this._menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._portfolioDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.portfolioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portfoliosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portfoliosDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolioBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.portfolioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerPortfolioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerPortfolioBindingSource1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // _buttonTableLayoutPanel
+            // 
+            _buttonTableLayoutPanel.ColumnCount = 3;
+            _buttonTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            _buttonTableLayoutPanel.Controls.Add(this._exitButton, 2, 0);
+            _buttonTableLayoutPanel.Controls.Add(this._sellButton, 1, 0);
+            _buttonTableLayoutPanel.Controls.Add(this._buyButton, 0, 0);
+            _buttonTableLayoutPanel.Location = new System.Drawing.Point(13, 390);
+            _buttonTableLayoutPanel.Name = "_buttonTableLayoutPanel";
+            _buttonTableLayoutPanel.RowCount = 1;
+            _buttonTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            _buttonTableLayoutPanel.Size = new System.Drawing.Size(775, 48);
+            _buttonTableLayoutPanel.TabIndex = 13;
+            // 
+            // _exitButton
+            // 
+            this._exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._exitButton.Location = new System.Drawing.Point(519, 3);
+            this._exitButton.Name = "_exitButton";
+            this._exitButton.Size = new System.Drawing.Size(252, 42);
+            this._exitButton.TabIndex = 2;
+            this._exitButton.Text = "EXIT";
+            this._exitButton.UseVisualStyleBackColor = true;
+            this._exitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // _sellButton
+            // 
+            this._sellButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._sellButton.Location = new System.Drawing.Point(261, 3);
+            this._sellButton.Name = "_sellButton";
+            this._sellButton.Size = new System.Drawing.Size(252, 42);
+            this._sellButton.TabIndex = 1;
+            this._sellButton.Text = "SELL";
+            this._sellButton.UseVisualStyleBackColor = true;
+            this._sellButton.Click += new System.EventHandler(this.SellButton_Click);
+            // 
+            // _buyButton
+            // 
+            this._buyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._buyButton.Location = new System.Drawing.Point(3, 3);
+            this._buyButton.Name = "_buyButton";
+            this._buyButton.Size = new System.Drawing.Size(252, 42);
+            this._buyButton.TabIndex = 0;
+            this._buyButton.Text = "BUY";
+            this._buyButton.UseVisualStyleBackColor = true;
+            this._buyButton.Click += new System.EventHandler(this.BuyButton_Click);
             // 
             // _menuStrip
             // 
@@ -155,14 +209,14 @@
             this._portfolioDataGridView.AllowUserToAddRows = false;
             this._portfolioDataGridView.AllowUserToDeleteRows = false;
             this._portfolioDataGridView.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this._portfolioDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this._portfolioDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this._portfolioDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._portfolioDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -172,82 +226,19 @@
             this.dollarcostaverageDataGridViewTextBoxColumn,
             this.totalDataGridViewTextBoxColumn});
             this._portfolioDataGridView.DataSource = this.portfolioBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this._portfolioDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this._portfolioDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this._portfolioDataGridView.Location = new System.Drawing.Point(145, 27);
             this._portfolioDataGridView.Name = "_portfolioDataGridView";
             this._portfolioDataGridView.ReadOnly = true;
             this._portfolioDataGridView.Size = new System.Drawing.Size(643, 357);
             this._portfolioDataGridView.TabIndex = 12;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 390);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 48);
-            this.tableLayoutPanel1.TabIndex = 13;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 28);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(126, 356);
-            this.tableLayoutPanel2.TabIndex = 14;
-            // 
-            // portfoliosDataSet
-            // 
-            this.portfoliosDataSet.DataSetName = "portfoliosDataSet";
-            this.portfoliosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // portfoliosDataSetBindingSource
-            // 
-            this.portfoliosDataSetBindingSource.DataSource = this.portfoliosDataSet;
-            this.portfoliosDataSetBindingSource.Position = 0;
-            // 
-            // viewPortfolio
-            // 
-            this.viewPortfolio.DataSetName = "ViewPortfolio";
-            this.viewPortfolio.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewPortfolioBindingSource
-            // 
-            this.viewPortfolioBindingSource.DataSource = this.viewPortfolio;
-            this.viewPortfolioBindingSource.Position = 0;
-            // 
-            // portfolioBindingSource
-            // 
-            this.portfolioBindingSource.DataMember = "portfolio";
-            this.portfolioBindingSource.DataSource = this.viewPortfolioBindingSource;
-            // 
-            // portfolioTableAdapter
-            // 
-            this.portfolioTableAdapter.ClearBeforeFill = true;
-            // 
-            // customerPortfolioBindingSource
-            // 
-            this.customerPortfolioBindingSource.DataSource = typeof(StockForms.DBWires.Customer_Portfolio);
-            // 
-            // customerPortfolioBindingSource1
-            // 
-            this.customerPortfolioBindingSource1.DataSource = typeof(StockForms.DBWires.Customer_Portfolio);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -303,27 +294,78 @@
             this.totalDataGridViewTextBoxColumn.ToolTipText = "The total value of all the shares owned.";
             this.totalDataGridViewTextBoxColumn.Width = 75;
             // 
+            // portfolioBindingSource
+            // 
+            this.portfolioBindingSource.DataMember = "portfolio";
+            this.portfolioBindingSource.DataSource = this.viewPortfolioBindingSource;
+            // 
+            // viewPortfolioBindingSource
+            // 
+            this.viewPortfolioBindingSource.DataSource = this.viewPortfolio;
+            this.viewPortfolioBindingSource.Position = 0;
+            // 
+            // viewPortfolio
+            // 
+            this.viewPortfolio.DataSetName = "ViewPortfolio";
+            this.viewPortfolio.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 28);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(126, 356);
+            this.tableLayoutPanel2.TabIndex = 14;
+            // 
+            // portfoliosDataSet
+            // 
+            this.portfoliosDataSet.DataSetName = "portfoliosDataSet";
+            this.portfoliosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // portfoliosDataSetBindingSource
+            // 
+            this.portfoliosDataSetBindingSource.DataSource = this.portfoliosDataSet;
+            this.portfoliosDataSetBindingSource.Position = 0;
+            // 
+            // portfolioTableAdapter
+            // 
+            this.portfolioTableAdapter.ClearBeforeFill = true;
+            // 
+            // customerPortfolioBindingSource
+            // 
+            this.customerPortfolioBindingSource.DataSource = typeof(StockForms.DBWires.Customer_Portfolio);
+            // 
+            // customerPortfolioBindingSource1
+            // 
+            this.customerPortfolioBindingSource1.DataSource = typeof(StockForms.DBWires.Customer_Portfolio);
+            // 
             // PortfolioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(_buttonTableLayoutPanel);
             this.Controls.Add(this._portfolioDataGridView);
             this.Controls.Add(this._menuStrip);
             this.Name = "PortfolioForm";
             this.Text = "View Portfolio";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PortfolioForm_FormClosing);
             this.Load += new System.EventHandler(this.PortfolioForm_Load);
+            _buttonTableLayoutPanel.ResumeLayout(false);
             this._menuStrip.ResumeLayout(false);
             this._menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._portfolioDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.portfolioBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolioBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portfoliosDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portfoliosDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolioBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.portfolioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerPortfolioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerPortfolioBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -346,7 +388,6 @@
         private System.Windows.Forms.DataGridView _portfolioDataGridView;
         private System.Windows.Forms.BindingSource customerPortfolioBindingSource;
         private System.Windows.Forms.BindingSource customerPortfolioBindingSource1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private portfoliosDataSet portfoliosDataSet;
         private System.Windows.Forms.BindingSource portfoliosDataSetBindingSource;
@@ -360,5 +401,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityownedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dollarcostaverageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button _exitButton;
+        private System.Windows.Forms.Button _sellButton;
+        private System.Windows.Forms.Button _buyButton;
     }
 }

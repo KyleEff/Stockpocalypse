@@ -88,5 +88,22 @@ namespace StockForms.Forms
             this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
 
         }
+
+        private void BuyButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenBuyWindow();
+        }
+
+        private void SellButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenSellWindow();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
     }
 }

@@ -121,7 +121,7 @@ namespace StockForms.DBWires
                 foreach (var order in Dummys) MessageBox.Show(order.StockName);
                 */
                 //connection.Execute($"IF NOT EXISTS (SELECT 1 FROM stocks WHERE stock_ticker = '{StockTicker}') INSERT INTO stocks VALUES ('{StockTicker}', '{StockName}');");
-
+                /*
                 using (var comm = new SqlCommand("dbo.Stocks_Add", (SqlConnection)connection) { CommandType = CommandType.StoredProcedure })
                 {
                     connection.Open();
@@ -144,9 +144,22 @@ namespace StockForms.DBWires
                     comm.Parameters.AddWithValue("@Price", order.Price);
                     comm.Parameters.AddWithValue("@Quantity", order.Quantity);
                 }
-
-
+                */
                 //MessageBox.Show(output.ToString());
+                try {
+                    connection.Query(
+                        $"INSERT INTO stocks VALUES ({ order.Stock_Ticker }, { order.Stock_Name })"
+                    );
+                } catch { }
+
+                connection.Query($"INSERT INTO orders " +
+                    $"VALUES (" +
+                        $"{ (order.Buy ? "1" : "0") }, " +
+                        $"DEFAULT, " +
+                        $"{ order.Stock_Ticker }, " +
+                        $"{ order.Stock_Name }, " +
+                        $"{ order.Price }, " +
+                        $"{ order.Quantity });");
             }
         }
 
@@ -184,13 +197,13 @@ namespace StockForms.DBWires
             }
         }
 
-        public void AlterPortfolio(bool buy, Order order) {
+        public void AlterPortfolio(Order order) {
             // THIS FUNCTION DOES NOT UTILIZE THE ALTER STATEMENT
             // NO TABLES ARE BEING ALTERED
 
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios"))) {
 
-                if (buy) {
+                if (order.Buy) {
 
                     var rows = connection.Query<Customer_Portfolio>(
                         $"SELECT * FROM portfolio WHERE stock_ticker = { order.Stock_Ticker };"
@@ -214,17 +227,28 @@ namespace StockForms.DBWires
                     }
 
                     else {
-                        MessageBox.Show("ELSE");
-                        /*
+                        //MessageBox.Show("ELSE");
+                        
                         connection.Query(
                             $"INSERT INTO portfolio VALUES(" +
-                                $"{ Convert.ToInt32(order.Buy) }, DEFAULT, " +
-                                $"'{ order.Stock_Ticker }', " +
-                                $"'{ order.Stock_Name }', " +
+                                $"{ order.Stock_Ticker }, " +
+                                $"{ order.Stock_Name }, " +
+                                $"{ order.Quantity }, " +
                                 $"{ order.Price }, " +
-                                $"{ order.Quantity } " +
+                                $"{ order.Price * order.Quantity }" + 
                             ");"
-                        );*/
+                        );
+                    }
+                }
+                else {
+
+                    var row = connection.Query(
+                        $"SELECT * FROM portfolio WHERE stock_ticker = { order.Stock_Ticker };"
+                    ) as Customer_Portfolio;
+
+                    if (row.Quantity_Owned >= order.Quantity) { 
+                    
+                        
                     }
                 }
             }
