@@ -93,7 +93,6 @@ namespace StockForms.Forms
 
             BuyForm.Show();
             Close();
-
         }
 
         private void QuoteForm_Closing(object sender, FormClosingEventArgs e)

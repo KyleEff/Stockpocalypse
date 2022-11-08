@@ -122,3 +122,11 @@ The database thinks that I am trying to enter a primary key when that is not the
 11/6/22
 Trying to find a way to make the published program write and use a file to store and display the cash that is in the user’s account.
 
+The StreamWriter class and the File.WriteAllText function do not create a new file if it does not exist even though the documentation clearly says that they would. A file path is specified, yet a new file is not created. If the user manually creates the .txt, the program will pick it up. This is not optimal and seems utterly ridiculous.
+
+
+
+
+MOVE AWAY FROM STORED PROCEDURES
+The SQL Stored Procedures can be used some other time. Use Raw SQL statements in the program where they are needed.
+    • The SendOrder function in the DataAccess class needs to be rewritten away from the stored procedure. Time is running out.

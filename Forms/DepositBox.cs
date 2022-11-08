@@ -23,7 +23,7 @@ namespace StockForms.Forms
         {
             try {
 
-                if (Dashboard.Cash > 0) {
+                if (Dashboard.Cash >= 0) {
 
                     Dashboard.Cash += cash;
                     _mainForm.WriteCash();

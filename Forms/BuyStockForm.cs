@@ -58,17 +58,22 @@ namespace StockForms.Forms
             Order order = new Order() {
 
                 Buy = true,
-                Stock_Ticker = SymbolTextBox.Text,
-                Stock_Name = NameTextBox.Text,
+                Stock_Ticker = "'" + SymbolTextBox.Text + "'",
+                Stock_Name = "'" + NameTextBox.Text + "'",
                 Price = _price,
                 Quantity = Convert.ToInt32(QuantityTextBox.Text)
             };
 
+            //MessageBox.Show(order.FullInfo);
+
             if (_total <= Dashboard.Cash)
             {
-                Database.SendOrder(
-                    true,
-                    order
+                //Database.SendOrder(true, order);
+                Database.SendOrder(true,
+                    "'" + SymbolTextBox.Text + "'",
+                    "'" + NameTextBox.Text + "'",
+                    _price,
+                    Convert.ToInt32(QuantityTextBox.Text)
                 );
 
                 Database.AlterPortfolio(order.Buy, order);

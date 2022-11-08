@@ -76,7 +76,9 @@ namespace StockForms.Forms
                     NameTextBox.Text,
                     _price,
                     Convert.ToInt32(QuantityTextBox.Text)
-               );
+                );
+                
+                // Add portfolio alter here
 
                 Dashboard.Cash += _total;
                 _mainForm.WriteCash();

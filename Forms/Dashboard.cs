@@ -45,7 +45,7 @@ namespace StockForms
         // Interface Functions
         public void SetCash()
         {
-            MessageBox.Show("SETCASH");
+            //MessageBox.Show("SETCASH");
             try
             {
                 StreamReader FileReader = new StreamReader("C:\\Users\\Public\\Documents\\Cash.txt");
@@ -64,21 +64,19 @@ namespace StockForms
 
         public void WriteCash()
         {
-            MessageBox.Show("WRITECASH");
-
+            //MessageBox.Show("WRITECASH");
             //StreamWriter fileWriter;
 
             try
             {
                 /*
-                fileWriter = new StreamWriter("Cash.txt", true);
-                fileWriter.WriteAll(Cash);
+                fileWriter = new StreamWriter("C:\\Users\\Public\\Documents\\Cash.txt", true);
+                fileWriter.Write(Cash);
                 fileWriter.Close();
                 */
-
                 File.WriteAllText("C:\\Users\\Public\\Documents\\Cash.txt", Cash.ToString());
-
                 //MessageBox.Show(Cash.ToString("C2"));
+
                 SetCash();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -261,7 +259,5 @@ namespace StockForms
         {
             OpenPortfolioWindow();
         }
-
-
     }
 }

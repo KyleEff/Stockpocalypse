@@ -193,7 +193,7 @@ namespace StockForms.DBWires
                 if (buy) {
 
                     var rows = connection.Query<Customer_Portfolio>(
-                        $"SELECT * FROM portfolio WHERE stock_ticker = '{ order.Stock_Ticker }';"
+                        $"SELECT * FROM portfolio WHERE stock_ticker = { order.Stock_Ticker };"
                     ).ToList();
 
                     if (rows.Count > 0) {
@@ -214,7 +214,7 @@ namespace StockForms.DBWires
                     }
 
                     else {
-                        MessageBox.Show($"{ Convert.ToInt32(order.Buy) }");
+                        MessageBox.Show("ELSE");
                         /*
                         connection.Query(
                             $"INSERT INTO portfolio VALUES(" +
