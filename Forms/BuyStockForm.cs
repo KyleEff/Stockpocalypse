@@ -73,6 +73,7 @@ namespace StockForms.Forms
             if (_total <= Dashboard.Cash)
             {
                 Database.SendOrder(true, order);
+
                 /*
                 Database.SendOrder(true,
                     "'" + SymbolTextBox.Text + "'",
@@ -93,6 +94,11 @@ namespace StockForms.Forms
         }
 
         private void BuyButton_Click(object sender, EventArgs e) { Transact(); }
+
+        private void QuoteButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.OpenQuoteWindow();
+        }
 
         private void DepositCashButton_Click(object sender, EventArgs e)
         {
@@ -152,6 +158,11 @@ namespace StockForms.Forms
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void PriceLabel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("All currency is in United States Dollars.");
         }
     }
 }

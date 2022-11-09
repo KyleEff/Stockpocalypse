@@ -57,6 +57,7 @@
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this._quoteButton = new System.Windows.Forms.Button();
             this._exitButton = new System.Windows.Forms.Button();
             groupBox2 = new System.Windows.Forms.GroupBox();
             OrderInfoGroupBox = new System.Windows.Forms.GroupBox();
@@ -191,6 +192,7 @@
             PriceLabel.Size = new System.Drawing.Size(41, 16);
             PriceLabel.TabIndex = 4;
             PriceLabel.Text = "Price:";
+            PriceLabel.Click += new System.EventHandler(this.PriceLabel_Click);
             // 
             // NameTextBox
             // 
@@ -244,6 +246,7 @@
             // 
             // BuyButton
             // 
+            this.BuyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BuyButton.Location = new System.Drawing.Point(3, 3);
             this.BuyButton.Name = "BuyButton";
             this.BuyButton.Size = new System.Drawing.Size(175, 53);
@@ -339,6 +342,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this._quoteButton, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this._exitButton, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.BuyButton, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 414);
@@ -348,8 +352,20 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 59);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
+            // _quoteButton
+            // 
+            this._quoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._quoteButton.Location = new System.Drawing.Point(184, 3);
+            this._quoteButton.Name = "_quoteButton";
+            this._quoteButton.Size = new System.Drawing.Size(175, 53);
+            this._quoteButton.TabIndex = 5;
+            this._quoteButton.Text = "GET QUOTE";
+            this._quoteButton.UseVisualStyleBackColor = true;
+            this._quoteButton.Click += new System.EventHandler(this.QuoteButton_Click);
+            // 
             // _exitButton
             // 
+            this._exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._exitButton.Location = new System.Drawing.Point(365, 3);
             this._exitButton.Name = "_exitButton";
             this._exitButton.Size = new System.Drawing.Size(175, 53);
@@ -407,5 +423,6 @@
         private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button _exitButton;
+        private System.Windows.Forms.Button _quoteButton;
     }
 }

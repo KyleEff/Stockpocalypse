@@ -86,6 +86,8 @@ namespace StockForms.Forms
         {
             // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
             this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
+            // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
+            this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
 
         }
 

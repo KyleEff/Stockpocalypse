@@ -130,3 +130,14 @@ The StreamWriter class and the File.WriteAllText function do not create a new fi
 MOVE AWAY FROM STORED PROCEDURES
 The SQL Stored Procedures can be used some other time. Use Raw SQL statements in the program where they are needed.
     • The SendOrder function in the DataAccess class needs to be rewritten away from the stored procedure. Time is running out.
+
+11/8/22
+Moved away from stored procedure. The order statements work fine as well as the statements to enter the order into the portfolio.
+
+Need to get the datagridview row selection in order.
+Fixed. Gridview works.
+
+Now to get the program to sell out of the portfolio.
+
+The newly implemented GetPrice(string Ticker) function is causing the program to hang up during the API call. Take it out.
+Done.

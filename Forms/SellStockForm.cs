@@ -17,9 +17,8 @@ namespace StockForms.Forms
 {
     public partial class SellStockForm : Form, ITransaction
     {
-        double _price { get; set; }
-        double _total { get; set; }
-
+        private double _price { get; set; }
+        private double _total { get; set; }
         Dashboard _mainForm = null;
 
         List<Customer_Portfolio> _portfolio = null;
@@ -44,8 +43,12 @@ namespace StockForms.Forms
             string PriceString = "";
 
             if (PriceTextBox.Text != null)
-                for (var letter = 1; letter < PriceTextBox.Text.Length; letter++)
-                    PriceString += PriceTextBox.Text[letter];
+            {
+                if (PriceTextBox.Text[0] == '$')
+                    for (var letter = 1; letter < PriceTextBox.Text.Length; letter++)
+                        PriceString += PriceTextBox.Text[letter];
+                else PriceString = PriceTextBox.Text;
+            }
 
             _price = Convert.ToDouble(PriceString);
             //MessageBox.Show(PriceString);
@@ -55,11 +58,14 @@ namespace StockForms.Forms
 
                 TotalTextBox.Text = (Convert.ToDouble(PriceString) * Convert.ToDouble(QuantityTextBox.Text)).ToString("C2");
 
+                // REUSED STRING
                 PriceString = "";
                 for (var letter = 1; letter < TotalTextBox.Text.Length; letter++)
                     PriceString += TotalTextBox.Text[letter];
 
                 _total = Convert.ToDouble(PriceString);
+
+
             }
             else TotalTextBox.Text = "$0.00";
         }
@@ -67,18 +73,27 @@ namespace StockForms.Forms
         public void Transact() {
             // SELL SELL SELL
 
-            DataAccess Database = new DataAccess();
+            var Database = new DataAccess();
+            string PriceString = "";
+
+            if (PriceTextBox.Text != null)
+            {
+                if (PriceTextBox.Text[0] == '$')
+                    for (var letter = 1; letter < PriceTextBox.Text.Length; letter++)
+                        PriceString += PriceTextBox.Text[letter];
+                else PriceString = PriceTextBox.Text;
+            }
 
             Order order = new Order() {
 
                 Buy = false,
                 Stock_Ticker = SymbolTextBox.Text,
                 Stock_Name = NameTextBox.Text,
-                Price = Convert.ToDouble(PriceTextBox.Text),
-                Quantity = Convert.ToInt16(QuantityTextBox.Text)
+                Price = Convert.ToDouble(PriceString),
+                Quantity = Convert.ToInt32(QuantityTextBox.Text)
             };
 
-            if (_total <= Dashboard.Cash)
+            if (order.Total <= Dashboard.Cash)
             {
                 /*
                 Database.SendOrder(
@@ -93,7 +108,7 @@ namespace StockForms.Forms
 
                 Database.AlterPortfolio(order);
 
-                Dashboard.Cash += _total;
+                Dashboard.Cash += order.Total;
                 _mainForm.WriteCash();
             }
             else MessageBox.Show("There are not enough funds in your account to execute this order!!");
@@ -102,23 +117,32 @@ namespace StockForms.Forms
             OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
         }
 
+        private async Task<string> GetPrice(string Ticker)
+        {
+
+            //MessageBox.Show("TICKER: " + Ticker);
+            if (Ticker != "")
+            {
+                Dashboard.Api = new TwelveDataClient(
+                    Dashboard.ApiKey,
+                    Dashboard.Client = new HttpClient()
+                );
+
+                // PROBLEM HERE
+                var price = await Dashboard.Api.GetRealTimePriceAsync(Ticker);
+
+                return price.Price.ToString("C2");
+            }
+            else return "0.00";
+        }
+
         private void FillPortfolioList() { 
 
-            DataAccess database = new DataAccess();
+            var database = new DataAccess();
 
             _portfolio = database.ViewPortfolio();
 
             _portfolioDataGridView.DataSource = _portfolio;
-        }
-
-        private async void GetPrice() {
-
-            Dashboard.Client = new HttpClient();
-            Dashboard.Api = new TwelveDataClient(Dashboard.ApiKey, Dashboard.Client);
-
-            var price = await Dashboard.Api.GetRealTimePriceAsync(SymbolTextBox.Text);
-
-            PriceTextBox.Text = price.Price.ToString("C2");
         }
 
         private void SellButton_Click(object sender, EventArgs e) { Transact(); }
@@ -128,9 +152,9 @@ namespace StockForms.Forms
             SetTotal();
         }
 
-        private void PriceButton_Click(object sender, EventArgs e)
+        private async void PriceButton_Click(object sender, EventArgs e)
         {
-            GetPrice();
+            PriceTextBox.Text = await GetPrice(SymbolTextBox.Text);//.Result.ToString();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,7 +206,6 @@ namespace StockForms.Forms
         {
             // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
             this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
-
         }
 
         private void PortfolioDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -200,13 +223,18 @@ namespace StockForms.Forms
 
                 SymbolTextBox.Text = row[1].Value.ToString();
                 NameTextBox.Text = row[2].Value.ToString();
-
-                GetPrice();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void PriceLabel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("All currency is in United States Dollars.");
+        }
+
+
     }
 }

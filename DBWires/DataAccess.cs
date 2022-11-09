@@ -146,6 +146,7 @@ namespace StockForms.DBWires
                 }
                 */
                 //MessageBox.Show(output.ToString());
+
                 try {
                     connection.Query(
                         $"INSERT INTO stocks VALUES ({ order.Stock_Ticker }, { order.Stock_Name })"
@@ -198,7 +199,7 @@ namespace StockForms.DBWires
         }
 
         public void AlterPortfolio(Order order) {
-            // THIS FUNCTION DOES NOT UTILIZE THE ALTER STATEMENT
+            // THIS FUNCTION DOES NOT UTILIZE THE ALTER SQL STATEMENT
             // NO TABLES ARE BEING ALTERED
 
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios"))) {
@@ -243,13 +244,33 @@ namespace StockForms.DBWires
                 else {
 
                     var row = connection.Query(
-                        $"SELECT * FROM portfolio WHERE stock_ticker = { order.Stock_Ticker };"
+                        $"SELECT * FROM portfolio WHERE stock_ticker = {order.Stock_Ticker};"
                     ) as Customer_Portfolio;
 
-                    if (row.Quantity_Owned >= order.Quantity) { 
-                    
-                        
+                    if (row.Quantity_Owned > order.Quantity)
+                    {
+                        int totalQuantity = row.Quantity_Owned - order.Quantity;
+                        double totalTotal = row.Total - order.Total;
+                        double newDca = (totalTotal / totalQuantity);
+
+                        connection.Query(
+                            $"UPDATE portfolio " +
+                            $"SET " +
+                                $"quantity_owned =  {totalQuantity}, " +
+                                $"dollar_cost_average = {newDca}, " +
+                                $"total = {totalTotal} " +
+                            $"WHERE stock_ticker = {order.Stock_Ticker}" +
+                            ";"
+                        );
+
                     }
+                    else if (row.Quantity_Owned == order.Quantity)
+                    {
+                        connection.Query(
+                            $"DELETE FROM portfolio WHERE stock_ticker = { order.Stock_Ticker };"
+                        );
+                    }
+                    else MessageBox.Show("You do not have enough shares for this trade!!");
                 }
             }
         }

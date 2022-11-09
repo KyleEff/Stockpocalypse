@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using TwelveDataSharp;
 using StockForms.Interfaces;
+using System.Threading.Tasks;
 
 namespace StockForms
 {
@@ -41,6 +42,9 @@ namespace StockForms
             SetCash();
             SetIndices();
         }
+
+
+
 
         // Interface Functions
         public void SetCash()
