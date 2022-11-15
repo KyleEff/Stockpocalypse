@@ -13,6 +13,15 @@ using System.Threading.Tasks;
 
 namespace StockForms
 {
+
+    /*
+     * This is the MAIN FORM
+     * Everything the program does extends from this panel / class
+     */
+
+
+
+
     public partial class Dashboard : Form, ICashManagement
     {
         // API Properties
@@ -42,9 +51,6 @@ namespace StockForms
             SetCash();
             SetIndices();
         }
-
-
-
 
         // Interface Functions
         public void SetCash()
@@ -78,7 +84,9 @@ namespace StockForms
                 fileWriter.Write(Cash);
                 fileWriter.Close();
                 */
+
                 File.WriteAllText("C:\\Users\\Public\\Documents\\Cash.txt", Cash.ToString());
+                 
                 //MessageBox.Show(Cash.ToString("C2"));
 
                 SetCash();

@@ -1,10 +1,9 @@
 ﻿using StockForms.ResultModels;
 using System;
-using System.Globalization;
+
 using System.Net.Http;
 using System.Windows.Forms;
 using TwelveDataSharp;
-using TwelveDataSharp.Library.ResponseModels;
 
 namespace StockForms.Forms
 {

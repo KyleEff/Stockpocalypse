@@ -17,11 +17,10 @@ namespace StockForms.Forms
 {
     public partial class SellStockForm : Form, ITransaction
     {
-        private double _price { get; set; }
-        private double _total { get; set; }
+        double _profit { get; set; }
+        double _total { get; set; }
         Dashboard _mainForm = null;
-
-        List<Customer_Portfolio> _portfolio = null;
+        DataGridViewCellCollection row = null;
 
         public SellStockForm()
         {
@@ -50,7 +49,6 @@ namespace StockForms.Forms
                 else PriceString = PriceTextBox.Text;
             }
 
-            _price = Convert.ToDouble(PriceString);
             //MessageBox.Show(PriceString);
 
             if (!QuantityTextBox.Text.Equals("0") && !QuantityTextBox.Text.Equals(""))
@@ -65,7 +63,12 @@ namespace StockForms.Forms
 
                 _total = Convert.ToDouble(PriceString);
 
+                _profit =
+                    _total
+                    -
+                    (Convert.ToDouble(row[4].Value) * Convert.ToInt32(QuantityTextBox.Text));
 
+                _profitTextBox.Text = _profit.ToString("C2");
             }
             else TotalTextBox.Text = "$0.00";
         }
@@ -135,7 +138,7 @@ namespace StockForms.Forms
             }
             else return "0.00";
         }
-
+        /*
         private void FillPortfolioList() { 
 
             var database = new DataAccess();
@@ -144,7 +147,7 @@ namespace StockForms.Forms
 
             _portfolioDataGridView.DataSource = _portfolio;
         }
-
+        */
         private void SellButton_Click(object sender, EventArgs e) { Transact(); }
 
         private void QuantityTextBox_TextChanged(object sender, EventArgs e)
@@ -154,7 +157,7 @@ namespace StockForms.Forms
 
         private async void PriceButton_Click(object sender, EventArgs e)
         {
-            PriceTextBox.Text = await GetPrice(SymbolTextBox.Text);//.Result.ToString();
+            PriceTextBox.Text = await GetPrice(SymbolTextBox.Text);
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -219,10 +222,11 @@ namespace StockForms.Forms
                 NameTextBox.Text = selectedRow.Stock_Name;
                 */
 
-                var row = this._portfolioDataGridView.Rows[e.RowIndex].Cells;
+                row = this._portfolioDataGridView.Rows[e.RowIndex].Cells;
 
                 SymbolTextBox.Text = row[1].Value.ToString();
                 NameTextBox.Text = row[2].Value.ToString();
+
             }
             catch (Exception ex)
             {

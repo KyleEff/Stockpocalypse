@@ -141,3 +141,22 @@ Now to get the program to sell out of the portfolio.
 
 The newly implemented GetPrice(string Ticker) function is causing the program to hang up during the API call. Take it out.
 Done.
+
+11/13/22
+WORK ON THE SEARCH FUNCTIONALITY
+What represents a blank textbox
+using String.Empty
+
+11/14/22
+List.Contains(object)
+Use this to search the list of all the stocks
+
+Load NYSE and Nasdaq exchanges into a List<> and use that to search for stocks.
+_results = await ApiProcessor.LoadStockList();
+_results.Append(await ApiProcessor.LoadStockList());
+
+Find a way to sort the list by Stock name and then use a binary search to find the name being searched
+Maybe
+
+IMPLEMENT THIS
+SEARCHFORM.CS line 65

@@ -24,6 +24,8 @@ namespace StockForms
 
             InitializeComponent();
             FillStockList();
+
+            MessageBox.Show("THIS WINDOW DOES NOT WORK PROPERLY AND IS UNDER A LOT OF CONSTRUCTION");
         }
 
         private async void FillStockList()
@@ -43,7 +45,7 @@ namespace StockForms
             string Type = ""
         ) {
         
-            if (!Name.Equals("")) {
+            if (!Name.Equals(String.Empty)) {
 
                 MessageBox.Show("NAME SEARCH");
 
@@ -61,6 +63,11 @@ namespace StockForms
                 }
 
                 if (_nameSearch.Count < 1) {
+
+                    // PROBLEMS
+                    // NOT COMPLETE
+                    // WORK ON IT
+                    _results = await ApiProcessor.LoadStockList(new Stock() { Name = "" });
 
                     _results = await ApiProcessor.LoadStockList(true, default, "NASDAQ", default, default);
 
@@ -99,6 +106,61 @@ namespace StockForms
 
         }
 
+        private async void FillStockList(Stock searchStock)
+        {
+            if (!searchStock.Name.Equals(String.Empty))
+            {
+                MessageBox.Show("NAME SEARCH");
+
+                _nameSearch = new List<Stock>();
+
+                //_results = await ApiProcessor.LoadStockList();
+
+                foreach (var item in _results.Data)
+                    if (item.Name == searchStock.Name) // LIST DOT CONTAINS CHANGE CHANGE CHANGE
+                        _nameSearch.Add(item);
+                   
+                if (_nameSearch.Count < 1)
+                {
+                    _results = await ApiProcessor.LoadStockList(searchStock);
+
+                    //_results = await ApiProcessor.LoadStockList(true, default, "NASDAQ", default, default);
+
+                    foreach (var item in _results.Data)
+                    {
+                        if (item.Name == searchStock.Name)
+                        {
+                            _nameSearch.Add(item);
+                        }
+                    }
+                }
+
+                _resultsListBox.DataSource = _nameSearch;
+                _resultsListBox.DisplayMember = "FullInfo";
+
+                /*
+                MessageBox.Show($"names length: { names.Count }");
+
+                TestFORM test = new TestFORM();
+
+                test.listBox1.DataSource = names;
+                test.listBox1.DisplayMember = "FullInfo";
+
+                test.Show();
+                */
+            }
+
+            else
+            {
+                _results = await ApiProcessor.LoadStockList(searchStock);
+
+                _resultsListBox.DataSource = _results.Data;
+                _resultsListBox.DisplayMember = "FullInfo";
+            }
+
+
+        }
+
         private void SearchButton_Click(object sender, EventArgs e)
         {
             /*
@@ -107,12 +169,14 @@ namespace StockForms
             else MessageBox.Show("NOT EQUAL");
             */
 
-            FillStockList(true,
-                _tickerTextBox.Text,
-                _exchangeComboBox.Text,
-                _micTextBox.Text,
-                _typeComboBox.Text
-            );
+            FillStockList(new Stock()
+            {
+                Symbol = _tickerTextBox.Text,
+                Name = _nameTextBox.Text,
+                Exchange = _exchangeComboBox.Text,
+                Mic_code = _micTextBox.Text,
+                Type = _typeComboBox.Text
+            }) ;
 
             /*
             if (_tickerTextBox.Text == null) MessageBox.Show("NULL");
