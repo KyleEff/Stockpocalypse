@@ -4,6 +4,8 @@ using StockForms.DBWires;
 
 namespace StockForms.Forms
 {
+
+
     public partial class BuyStockForm : Form
     {
         private double _price { get; set; }
@@ -72,8 +74,6 @@ namespace StockForms.Forms
 
             if (_total <= Dashboard.Cash)
             {
-                Database.SendOrder(true, order);
-
                 /*
                 Database.SendOrder(true,
                     "'" + SymbolTextBox.Text + "'",
@@ -82,15 +82,24 @@ namespace StockForms.Forms
                     Convert.ToInt32(QuantityTextBox.Text)
                 );*/
 
+                Database.SendOrder(order);
+
                 Database.AlterPortfolio(order);
 
                 Dashboard.Cash -= _total;
                 _mainForm.WriteCash();
+
+                OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
             }
-            else MessageBox.Show("There are not enough funds in your account to execute this order!!");
+            else {
+                
+                MessageBox.Show("There are not enough funds in your account to execute this order!!");
+
+                OrderResultsTextBox.Text = "ORDER FAILED";
+            }
 
             CashTextBox.Text = _mainForm.CashBox;
-            OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
+            
         }
 
         private void BuyButton_Click(object sender, EventArgs e) { Transact(); }
@@ -98,6 +107,7 @@ namespace StockForms.Forms
         private void QuoteButton_Click(object sender, EventArgs e)
         {
             _mainForm.OpenQuoteWindow();
+            Close();
         }
 
         private void DepositCashButton_Click(object sender, EventArgs e)

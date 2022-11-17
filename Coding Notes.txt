@@ -186,3 +186,40 @@ Working on adding proper commenting in the code.
 Limit orders will not be available upon proper release.
 
 Trying to set the Purchase Value of the form to the purchase value of the portfolio but I need to look around and see how the data is accessed within the DataGridViewCellCollection class.
+
+11/17/22
+Dashboard, PortfolioForm, SearchForm are all commented.
+Remaining Forms:
+    • BuyStockForm
+    • SellStockForm
+    • QuoteForm
+    • DepositBox
+
+Remaining documents to comment:
+    • DBWires
+        ◦ Customer
+        ◦ Customer_Portfolio
+        ◦ DataAccess
+        ◦ Entry (OBSOLETE)
+        ◦ Helper
+        ◦ LimitOrder
+        ◦ Order
+    • ExtraAPI
+        ◦ ApiHelper
+        ◦ ApiProcessor
+    • Interfaces
+        ◦ ICashManagement
+        ◦ ITransaction
+    • ResultModels
+        ◦ IndiciesResultModel
+        ◦ StockListModel
+
+THE SELL FORM DOES NOT WORK CORRECTLY
+THE SHARES OWNED ARE NOT BEING RECOGNIZED
+Share owned are recognized. I had the equation backwards.
+
+The Sell feature runs into a lot of problems in the SQL statements.
+
+Sell feature fully works.
+
+Need to comment comment comment

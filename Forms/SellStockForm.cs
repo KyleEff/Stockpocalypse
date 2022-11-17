@@ -12,8 +12,11 @@ namespace StockForms.Forms
     {
         double _profit { get; set; }
         double _total { get; set; }
+
         Dashboard _mainForm = null;
-        DataGridViewCellCollection row = null;
+        DataGridViewCellCollection _row;
+
+        Order _selected; // This is used to store information from the selected row as well
 
         public SellStockForm()
         {
@@ -59,7 +62,7 @@ namespace StockForms.Forms
                 _profit =
                     _total
                     -
-                    (Convert.ToDouble(row[4].Value) * Convert.ToInt32(QuantityTextBox.Text));
+                    (Convert.ToDouble(_row[4].Value) * Convert.ToInt32(QuantityTextBox.Text));
 
                 _profitTextBox.Text = _profit.ToString("C2");
             }
@@ -83,13 +86,15 @@ namespace StockForms.Forms
             Order order = new Order() {
 
                 Buy = false,
-                Stock_Ticker = SymbolTextBox.Text,
-                Stock_Name = NameTextBox.Text,
+                Stock_Ticker = "'" + SymbolTextBox.Text + "'",
+                Stock_Name = "'" + NameTextBox.Text + "'",
                 Price = Convert.ToDouble(PriceString),
                 Quantity = Convert.ToInt32(QuantityTextBox.Text)
             };
 
-            if (order.Total <= Dashboard.Cash)
+            //MessageBox.Show(order.FullInfo);
+
+            if (order.Quantity <= _selected.Quantity)
             {
                 /*
                 Database.SendOrder(
@@ -100,22 +105,28 @@ namespace StockForms.Forms
                     Convert.ToInt32(QuantityTextBox.Text)
                 );*/
 
-                Database.SendOrder(false, order);
+                Database.SendOrder(order);
 
                 Database.AlterPortfolio(order);
 
                 Dashboard.Cash += order.Total;
                 _mainForm.WriteCash();
+
+                OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
             }
-            else MessageBox.Show("There are not enough funds in your account to execute this order!!");
+            else {
+                
+                MessageBox.Show("You do not own enough securites for this transaction!!!");
+
+                OrderResultsTextBox.Text = "ORDER FAILED";
+            }
 
             CashTextBox.Text = _mainForm.CashBox;
-            OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
+
         }
 
         public static async Task<string> GetPrice(string Ticker)
         {
-
             //MessageBox.Show("TICKER: " + Ticker);
             if (!Ticker.Equals(String.Empty))
             {
@@ -124,7 +135,6 @@ namespace StockForms.Forms
                     new HttpClient()
                 );
                 
-                // PROBLEM HERE
                 var price = await Dashboard.Api.GetRealTimePriceAsync(Ticker);
                 return price.Price.ToString("C2");
             }
@@ -161,15 +171,9 @@ namespace StockForms.Forms
 
         void ExitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
         
-        void SearchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenSearchWindow();
-        }
+        void SearchToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenSearchWindow();
 
-        void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenQuoteWindow();
-        }
+        void QuoteToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenQuoteWindow();
 
         void BuyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -209,11 +213,19 @@ namespace StockForms.Forms
                 NameTextBox.Text = selectedRow.Stock_Name;
                 */
 
-                row = this._portfolioDataGridView.Rows[e.RowIndex].Cells;
+                _row = this._portfolioDataGridView.Rows[e.RowIndex].Cells;
 
-                SymbolTextBox.Text = row[1].Value.ToString();
-                NameTextBox.Text = row[2].Value.ToString();
+                SymbolTextBox.Text = _row[1].Value.ToString();
+                NameTextBox.Text = _row[2].Value.ToString();
 
+                _selected = new Order() {
+
+                    Stock_Ticker = _row[1].Value.ToString(),
+                    Stock_Name = _row[2].Value.ToString(),
+                    Quantity = Convert.ToInt32(_row[3].Value)
+                };
+
+                //MessageBox.Show(_selected.FullInfo);
             }
             catch (Exception ex)
             {

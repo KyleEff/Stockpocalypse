@@ -32,6 +32,7 @@
             System.Windows.Forms.GroupBox _orderResultGroupBox;
             System.Windows.Forms.GroupBox groupBox2;
             System.Windows.Forms.GroupBox OrderInfoGroupBox;
+            System.Windows.Forms.Label _getPriceFirstLabel;
             System.Windows.Forms.Label _profitLabel;
             System.Windows.Forms.Label _enterQuantityLabel;
             System.Windows.Forms.Label QuantityLabel;
@@ -40,7 +41,6 @@
             System.Windows.Forms.Label NameLabel;
             System.Windows.Forms.Label SymbolLabel;
             System.Windows.Forms.GroupBox _porfolioResultGroupBox;
-            System.Windows.Forms.Label _getPriceFirstLabel;
             this.OrderResultsTextBox = new System.Windows.Forms.TextBox();
             this._depositCashButton = new System.Windows.Forms.Button();
             this.CashTextBox = new System.Windows.Forms.TextBox();
@@ -51,6 +51,12 @@
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SymbolTextBox = new System.Windows.Forms.TextBox();
             this._portfolioDataGridView = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stocktickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stocknameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityownedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dollarcostaverageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.portfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewPortfolio = new StockForms.ViewPortfolio();
             this.SellButton = new System.Windows.Forms.Button();
@@ -66,15 +72,10 @@
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioTableAdapter = new StockForms.ViewPortfolioTableAdapters.portfolioTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stocktickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stocknameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityownedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dollarcostaverageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             _orderResultGroupBox = new System.Windows.Forms.GroupBox();
             groupBox2 = new System.Windows.Forms.GroupBox();
             OrderInfoGroupBox = new System.Windows.Forms.GroupBox();
+            _getPriceFirstLabel = new System.Windows.Forms.Label();
             _profitLabel = new System.Windows.Forms.Label();
             _enterQuantityLabel = new System.Windows.Forms.Label();
             QuantityLabel = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@
             NameLabel = new System.Windows.Forms.Label();
             SymbolLabel = new System.Windows.Forms.Label();
             _porfolioResultGroupBox = new System.Windows.Forms.GroupBox();
-            _getPriceFirstLabel = new System.Windows.Forms.Label();
             _orderResultGroupBox.SuspendLayout();
             groupBox2.SuspendLayout();
             OrderInfoGroupBox.SuspendLayout();
@@ -168,6 +168,17 @@
             OrderInfoGroupBox.TabStop = false;
             OrderInfoGroupBox.Text = "Order Information";
             // 
+            // _getPriceFirstLabel
+            // 
+            _getPriceFirstLabel.AutoSize = true;
+            _getPriceFirstLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _getPriceFirstLabel.ForeColor = System.Drawing.Color.Red;
+            _getPriceFirstLabel.Location = new System.Drawing.Point(176, 81);
+            _getPriceFirstLabel.Name = "_getPriceFirstLabel";
+            _getPriceFirstLabel.Size = new System.Drawing.Size(135, 16);
+            _getPriceFirstLabel.TabIndex = 13;
+            _getPriceFirstLabel.Text = "GET PRICE FIRST";
+            // 
             // _profitTextBox
             // 
             this._profitTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -182,11 +193,11 @@
             // 
             _profitLabel.AutoSize = true;
             _profitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _profitLabel.Location = new System.Drawing.Point(408, 87);
+            _profitLabel.Location = new System.Drawing.Point(385, 87);
             _profitLabel.Name = "_profitLabel";
-            _profitLabel.Size = new System.Drawing.Size(83, 16);
+            _profitLabel.Size = new System.Drawing.Size(129, 16);
             _profitLabel.TabIndex = 11;
-            _profitLabel.Text = "Total Profit";
+            _profitLabel.Text = "Total Profit / Loss";
             // 
             // _enterQuantityLabel
             // 
@@ -316,6 +327,54 @@
             this._portfolioDataGridView.TabIndex = 0;
             this._portfolioDataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.PortfolioDataGridView_CellEnter);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // stocktickerDataGridViewTextBoxColumn
+            // 
+            this.stocktickerDataGridViewTextBoxColumn.DataPropertyName = "stock_ticker";
+            this.stocktickerDataGridViewTextBoxColumn.HeaderText = "Ticker";
+            this.stocktickerDataGridViewTextBoxColumn.Name = "stocktickerDataGridViewTextBoxColumn";
+            this.stocktickerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stocktickerDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // stocknameDataGridViewTextBoxColumn
+            // 
+            this.stocknameDataGridViewTextBoxColumn.DataPropertyName = "stock_name";
+            this.stocknameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.stocknameDataGridViewTextBoxColumn.Name = "stocknameDataGridViewTextBoxColumn";
+            this.stocknameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stocknameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // quantityownedDataGridViewTextBoxColumn
+            // 
+            this.quantityownedDataGridViewTextBoxColumn.DataPropertyName = "quantity_owned";
+            this.quantityownedDataGridViewTextBoxColumn.HeaderText = "Quantity Owned";
+            this.quantityownedDataGridViewTextBoxColumn.Name = "quantityownedDataGridViewTextBoxColumn";
+            this.quantityownedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.quantityownedDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // dollarcostaverageDataGridViewTextBoxColumn
+            // 
+            this.dollarcostaverageDataGridViewTextBoxColumn.DataPropertyName = "dollar_cost_average";
+            this.dollarcostaverageDataGridViewTextBoxColumn.HeaderText = "Dollar Cost Average";
+            this.dollarcostaverageDataGridViewTextBoxColumn.Name = "dollarcostaverageDataGridViewTextBoxColumn";
+            this.dollarcostaverageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dollarcostaverageDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total Value";
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalDataGridViewTextBoxColumn.Width = 75;
+            // 
             // portfolioBindingSource
             // 
             this.portfolioBindingSource.DataMember = "portfolio";
@@ -430,65 +489,6 @@
             // portfolioTableAdapter
             // 
             this.portfolioTableAdapter.ClearBeforeFill = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // stocktickerDataGridViewTextBoxColumn
-            // 
-            this.stocktickerDataGridViewTextBoxColumn.DataPropertyName = "stock_ticker";
-            this.stocktickerDataGridViewTextBoxColumn.HeaderText = "Ticker";
-            this.stocktickerDataGridViewTextBoxColumn.Name = "stocktickerDataGridViewTextBoxColumn";
-            this.stocktickerDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stocktickerDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // stocknameDataGridViewTextBoxColumn
-            // 
-            this.stocknameDataGridViewTextBoxColumn.DataPropertyName = "stock_name";
-            this.stocknameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.stocknameDataGridViewTextBoxColumn.Name = "stocknameDataGridViewTextBoxColumn";
-            this.stocknameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stocknameDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // quantityownedDataGridViewTextBoxColumn
-            // 
-            this.quantityownedDataGridViewTextBoxColumn.DataPropertyName = "quantity_owned";
-            this.quantityownedDataGridViewTextBoxColumn.HeaderText = "Quantity Owned";
-            this.quantityownedDataGridViewTextBoxColumn.Name = "quantityownedDataGridViewTextBoxColumn";
-            this.quantityownedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.quantityownedDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // dollarcostaverageDataGridViewTextBoxColumn
-            // 
-            this.dollarcostaverageDataGridViewTextBoxColumn.DataPropertyName = "dollar_cost_average";
-            this.dollarcostaverageDataGridViewTextBoxColumn.HeaderText = "Dollar Cost Average";
-            this.dollarcostaverageDataGridViewTextBoxColumn.Name = "dollarcostaverageDataGridViewTextBoxColumn";
-            this.dollarcostaverageDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dollarcostaverageDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // totalDataGridViewTextBoxColumn
-            // 
-            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "Total Value";
-            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
-            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totalDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // _getPriceFirstLabel
-            // 
-            _getPriceFirstLabel.AutoSize = true;
-            _getPriceFirstLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            _getPriceFirstLabel.ForeColor = System.Drawing.Color.Red;
-            _getPriceFirstLabel.Location = new System.Drawing.Point(176, 81);
-            _getPriceFirstLabel.Name = "_getPriceFirstLabel";
-            _getPriceFirstLabel.Size = new System.Drawing.Size(135, 16);
-            _getPriceFirstLabel.TabIndex = 13;
-            _getPriceFirstLabel.Text = "GET PRICE FIRST";
             // 
             // SellStockForm
             // 

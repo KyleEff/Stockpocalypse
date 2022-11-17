@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dapper;
-using StockForms.Forms;
 
 namespace StockForms.DBWires
 {
@@ -94,9 +91,8 @@ namespace StockForms.DBWires
         }
 
 
-        public void SendOrder(bool Buy, Order order)
+        public void SendOrder(Order order)
         {
-
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("portfolios")))
             {
                 /*
@@ -151,16 +147,20 @@ namespace StockForms.DBWires
                     connection.Query(
                         $"INSERT INTO stocks VALUES ({ order.Stock_Ticker }, { order.Stock_Name })"
                     );
-                } catch { }
+                } catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-                connection.Query($"INSERT INTO orders " +
-                    $"VALUES (" +
-                        $"{ (order.Buy ? "1" : "0") }, " +
-                        $"DEFAULT, " +
-                        $"{ order.Stock_Ticker }, " +
-                        $"{ order.Stock_Name }, " +
-                        $"{ order.Price }, " +
-                        $"{ order.Quantity });");
+                try {
+                    connection.Query(
+                        $"INSERT INTO orders " +
+                        $"VALUES (" +
+                            $"{ (order.Buy ? "1" : "0") }, " +
+                            $"DEFAULT, " +
+                            $"{ order.Stock_Ticker }, " +
+                            $"{ order.Stock_Name }, " +
+                            $"{ order.Price }, " +
+                            $"{ order.Quantity });"
+                    );}
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
 
@@ -243,21 +243,19 @@ namespace StockForms.DBWires
                 }
                 else {
 
-                    var row = connection.Query(
-                        $"SELECT * FROM portfolio WHERE stock_ticker = {order.Stock_Ticker};"
-                    ) as Customer_Portfolio;
+                    var row = connection.Query<Customer_Portfolio>(
+                        $"SELECT * FROM portfolio WHERE stock_ticker LIKE {order.Stock_Ticker};"
+                    ).ToList()[0];
 
                     if (row.Quantity_Owned > order.Quantity)
                     {
                         int totalQuantity = row.Quantity_Owned - order.Quantity;
                         double totalTotal = row.Total - order.Total;
-                        double newDca = (totalTotal / totalQuantity);
 
                         connection.Query(
                             $"UPDATE portfolio " +
                             $"SET " +
                                 $"quantity_owned =  {totalQuantity}, " +
-                                $"dollar_cost_average = {newDca}, " +
                                 $"total = {totalTotal} " +
                             $"WHERE stock_ticker = {order.Stock_Ticker}" +
                             ";"
@@ -267,7 +265,7 @@ namespace StockForms.DBWires
                     else if (row.Quantity_Owned == order.Quantity)
                     {
                         connection.Query(
-                            $"DELETE FROM portfolio WHERE stock_ticker = { order.Stock_Ticker };"
+                            $"DELETE FROM portfolio WHERE stock_ticker LIKE '{ order.Stock_Ticker }';"
                         );
                     }
                     else MessageBox.Show("You do not have enough shares for this trade!!");

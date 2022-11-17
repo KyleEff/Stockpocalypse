@@ -1,15 +1,16 @@
-﻿using StockForms.DBWires;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace StockForms.Forms
 {
     /*
-     * This form is for the user to view their portfolio. 
+     * This form is for the user to view their portfolio.
+     * _row stores the current row selected by the user.
+     * _mainForm represents the Dashboard
      */
     public partial class PortfolioForm : Form
     {
-        DataGridViewCellCollection _row = null;
+        DataGridViewCellCollection _row;
 
         Dashboard _mainForm = null;
 
@@ -27,15 +28,20 @@ namespace StockForms.Forms
             SetPurchaseValue();
         }
 
+        /* 
+         * This function is to set the purchase value of the portfolio.
+         * This is simply the sum of all the purchase costs of all securites
+         * THIS FUNCTION DOES NOT WORK PROPERLY
+         */
         void SetPurchaseValue() {
 
             double total = 0.0;
             
             for (var each = 0; each < this._portfolioDataGridView.Rows.Count; each++) {
 
-                total += Convert.ToDouble(this._portfolioDataGridView.Rows[each].Cells[5].Value);
+                //total += Convert.ToDouble(this._portfolioDataGridView.Rows[each].Cells[5].Value);
 
-                MessageBox.Show(this._portfolioDataGridView.Rows[each].Cells[5].Value.ToString());
+                MessageBox.Show(this._portfolioDataGridView.Rows[each].Cells[4].Value.ToString());
             }
 
             //MessageBox.Show(total.ToString("C2"));
@@ -68,16 +74,10 @@ namespace StockForms.Forms
         
         void BuyToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenBuyWindow();
 
-        void SellToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenSellWindow();
-        }
+        void SellToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenSellWindow();
 
-        void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenPortfolioWindow();
-        }
-
+        void PortfolioToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenPortfolioWindow();
+        
         void PortfolioForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _mainForm.PorfolioWin = null;
@@ -108,14 +108,8 @@ namespace StockForms.Forms
             );
         }
 
-        void SellButton_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenSellWindow();
-        }
-
-        void ExitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        void SellButton_Click(object sender, EventArgs e) => _mainForm.OpenSellWindow();
+        
+        void ExitButton_Click(object sender, EventArgs e) => Close();
     }
 }
