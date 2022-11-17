@@ -32,6 +32,7 @@
             System.Windows.Forms.TableLayoutPanel _buttonTableLayoutPanel;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Label _purchaseValueLabel;
             this._exitButton = new System.Windows.Forms.Button();
             this._sellButton = new System.Windows.Forms.Button();
             this._buyButton = new System.Windows.Forms.Button();
@@ -46,22 +47,23 @@
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._portfolioDataGridView = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.viewPortfolio = new StockForms.ViewPortfolio();
             this.portfolioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewPortfolio = new StockForms.ViewPortfolio();
             this.portfolioTableAdapter = new StockForms.ViewPortfolioTableAdapters.portfolioTableAdapter();
+            this._purchaseValueTextBox = new System.Windows.Forms.TextBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stocktickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stocknameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock_ticker = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityownedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dollarcostaverageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             _buttonTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            _purchaseValueLabel = new System.Windows.Forms.Label();
             _buttonTableLayoutPanel.SuspendLayout();
             this._menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._portfolioDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portfolioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).BeginInit();
             this.SuspendLayout();
             // 
             // _buttonTableLayoutPanel
@@ -210,8 +212,8 @@
             this._portfolioDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._portfolioDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.stocktickerDataGridViewTextBoxColumn,
-            this.stocknameDataGridViewTextBoxColumn,
+            this.stock_ticker,
+            this.stock_name,
             this.quantityownedDataGridViewTextBoxColumn,
             this.dollarcostaverageDataGridViewTextBoxColumn,
             this.totalDataGridViewTextBoxColumn});
@@ -229,33 +231,40 @@
             this._portfolioDataGridView.ReadOnly = true;
             this._portfolioDataGridView.Size = new System.Drawing.Size(643, 357);
             this._portfolioDataGridView.TabIndex = 12;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 28);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(126, 356);
-            this.tableLayoutPanel2.TabIndex = 14;
-            // 
-            // viewPortfolio
-            // 
-            this.viewPortfolio.DataSetName = "ViewPortfolio";
-            this.viewPortfolio.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this._portfolioDataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.PortfolioDataGridView_CellEnter);
             // 
             // portfolioBindingSource
             // 
             this.portfolioBindingSource.DataMember = "portfolio";
             this.portfolioBindingSource.DataSource = this.viewPortfolio;
             // 
+            // viewPortfolio
+            // 
+            this.viewPortfolio.DataSetName = "ViewPortfolio";
+            this.viewPortfolio.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // portfolioTableAdapter
             // 
             this.portfolioTableAdapter.ClearBeforeFill = true;
+            // 
+            // _purchaseValueLabel
+            // 
+            _purchaseValueLabel.AutoSize = true;
+            _purchaseValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            _purchaseValueLabel.Location = new System.Drawing.Point(13, 36);
+            _purchaseValueLabel.Name = "_purchaseValueLabel";
+            _purchaseValueLabel.Size = new System.Drawing.Size(116, 16);
+            _purchaseValueLabel.TabIndex = 14;
+            _purchaseValueLabel.Text = "Purchase Value";
+            // 
+            // _purchaseValueTextBox
+            // 
+            this._purchaseValueTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._purchaseValueTextBox.Location = new System.Drawing.Point(8, 56);
+            this._purchaseValueTextBox.Name = "_purchaseValueTextBox";
+            this._purchaseValueTextBox.ReadOnly = true;
+            this._purchaseValueTextBox.Size = new System.Drawing.Size(127, 22);
+            this._purchaseValueTextBox.TabIndex = 15;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -263,48 +272,55 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
             // 
-            // stocktickerDataGridViewTextBoxColumn
+            // stock_ticker
             // 
-            this.stocktickerDataGridViewTextBoxColumn.DataPropertyName = "stock_ticker";
-            this.stocktickerDataGridViewTextBoxColumn.HeaderText = "stock_ticker";
-            this.stocktickerDataGridViewTextBoxColumn.Name = "stocktickerDataGridViewTextBoxColumn";
-            this.stocktickerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stock_ticker.DataPropertyName = "stock_ticker";
+            this.stock_ticker.HeaderText = "Ticker";
+            this.stock_ticker.Name = "stock_ticker";
+            this.stock_ticker.ReadOnly = true;
+            this.stock_ticker.Width = 75;
             // 
-            // stocknameDataGridViewTextBoxColumn
+            // stock_name
             // 
-            this.stocknameDataGridViewTextBoxColumn.DataPropertyName = "stock_name";
-            this.stocknameDataGridViewTextBoxColumn.HeaderText = "stock_name";
-            this.stocknameDataGridViewTextBoxColumn.Name = "stocknameDataGridViewTextBoxColumn";
-            this.stocknameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stock_name.DataPropertyName = "stock_name";
+            this.stock_name.HeaderText = "Name";
+            this.stock_name.Name = "stock_name";
+            this.stock_name.ReadOnly = true;
+            this.stock_name.Width = 300;
             // 
             // quantityownedDataGridViewTextBoxColumn
             // 
             this.quantityownedDataGridViewTextBoxColumn.DataPropertyName = "quantity_owned";
-            this.quantityownedDataGridViewTextBoxColumn.HeaderText = "quantity_owned";
+            this.quantityownedDataGridViewTextBoxColumn.HeaderText = "Quantity Owned";
             this.quantityownedDataGridViewTextBoxColumn.Name = "quantityownedDataGridViewTextBoxColumn";
             this.quantityownedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.quantityownedDataGridViewTextBoxColumn.Width = 75;
             // 
             // dollarcostaverageDataGridViewTextBoxColumn
             // 
             this.dollarcostaverageDataGridViewTextBoxColumn.DataPropertyName = "dollar_cost_average";
-            this.dollarcostaverageDataGridViewTextBoxColumn.HeaderText = "dollar_cost_average";
+            this.dollarcostaverageDataGridViewTextBoxColumn.HeaderText = "Dollar Cost Average";
             this.dollarcostaverageDataGridViewTextBoxColumn.Name = "dollarcostaverageDataGridViewTextBoxColumn";
             this.dollarcostaverageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dollarcostaverageDataGridViewTextBoxColumn.Width = 75;
             // 
             // totalDataGridViewTextBoxColumn
             // 
             this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total Value";
             this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
             this.totalDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalDataGridViewTextBoxColumn.Width = 75;
             // 
             // PortfolioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this._purchaseValueTextBox);
+            this.Controls.Add(_purchaseValueLabel);
             this.Controls.Add(_buttonTableLayoutPanel);
             this.Controls.Add(this._portfolioDataGridView);
             this.Controls.Add(this._menuStrip);
@@ -316,8 +332,8 @@
             this._menuStrip.ResumeLayout(false);
             this._menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._portfolioDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portfolioBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewPortfolio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,16 +352,16 @@
         private System.Windows.Forms.ToolStripMenuItem sellToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
         private System.Windows.Forms.DataGridView _portfolioDataGridView;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button _exitButton;
         private System.Windows.Forms.Button _sellButton;
         private System.Windows.Forms.Button _buyButton;
         private ViewPortfolio viewPortfolio;
         private System.Windows.Forms.BindingSource portfolioBindingSource;
         private ViewPortfolioTableAdapters.portfolioTableAdapter portfolioTableAdapter;
+        private System.Windows.Forms.TextBox _purchaseValueTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stocktickerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stocknameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock_ticker;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityownedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dollarcostaverageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;

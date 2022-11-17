@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using StockForms.DBWires;
+using StockForms.Interfaces;
+using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StockForms.DBWires;
-using StockForms.Interfaces;
 using TwelveDataSharp;
 
 namespace StockForms.Forms
@@ -120,24 +113,25 @@ namespace StockForms.Forms
             OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
         }
 
-        private async Task<string> GetPrice(string Ticker)
+        public static async Task<string> GetPrice(string Ticker)
         {
 
             //MessageBox.Show("TICKER: " + Ticker);
-            if (Ticker != "")
+            if (!Ticker.Equals(String.Empty))
             {
                 Dashboard.Api = new TwelveDataClient(
                     Dashboard.ApiKey,
-                    Dashboard.Client = new HttpClient()
+                    new HttpClient()
                 );
-
+                
                 // PROBLEM HERE
                 var price = await Dashboard.Api.GetRealTimePriceAsync(Ticker);
-
                 return price.Price.ToString("C2");
             }
             else return "0.00";
         }
+        
+        // OBSOLETE
         /*
         private void FillPortfolioList() { 
 
@@ -148,19 +142,15 @@ namespace StockForms.Forms
             _portfolioDataGridView.DataSource = _portfolio;
         }
         */
-        private void SellButton_Click(object sender, EventArgs e) { Transact(); }
 
-        private void QuantityTextBox_TextChanged(object sender, EventArgs e)
-        {
-            SetTotal();
-        }
+        // EVENTS
+        void SellButton_Click(object sender, EventArgs e) => Transact();
 
-        private async void PriceButton_Click(object sender, EventArgs e)
-        {
-            PriceTextBox.Text = await GetPrice(SymbolTextBox.Text);
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        void QuantityTextBox_TextChanged(object sender, EventArgs e) => SetTotal();
+        
+        async void PriceButton_Click(object sender, EventArgs e) => PriceTextBox.Text = await GetPrice(SymbolTextBox.Text);
+        
+        void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 "This software is being developed by:\n" +
@@ -169,49 +159,46 @@ namespace StockForms.Forms
             );
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
+        void ExitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+        
+        void SearchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenSearchWindow();
         }
 
-        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
+        void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenQuoteWindow();
         }
 
-        private void BuyToolStripMenuItem_Click(object sender, EventArgs e)
+        void BuyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenBuyWindow();
         }
 
-        private void SellToolStripMenuItem_Click(object sender, EventArgs e)
+        void SellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenSellWindow();
         }
 
-        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
+        void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenPortfolioWindow();
         }
 
-        private void SellStockForm_FormClosing(object sender, FormClosingEventArgs e)
+        void SellStockForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _mainForm.SellStockWin = null;
             _mainForm.Show();
         }
 
-        private void SellStockForm_Load(object sender, EventArgs e)
+        void SellStockForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
             this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
         }
 
-        private void PortfolioDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
+        void PortfolioDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -234,11 +221,9 @@ namespace StockForms.Forms
             }
         }
 
-        private void PriceLabel_Click(object sender, EventArgs e)
+        void PriceLabel_Click(object sender, EventArgs e)
         {
             MessageBox.Show("All currency is in United States Dollars.");
         }
-
-
     }
 }

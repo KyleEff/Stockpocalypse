@@ -1,6 +1,4 @@
-﻿using Dapper;
-using StockForms.DBWires;
-using StockForms.Forms;
+﻿using StockForms.Forms;
 using System;
 using System.Drawing;
 using System.IO;
@@ -9,18 +7,23 @@ using System.Text;
 using System.Windows.Forms;
 using TwelveDataSharp;
 using StockForms.Interfaces;
-using System.Threading.Tasks;
 
 namespace StockForms
 {
-
     /*
      * This is the MAIN FORM
      * Everything the program does extends from this panel / class
+     * 
+     * The API Key is a unique key that is used to track the use of traffic credits
+     * The Client is used to access the HTTP port
+     * The API is for the TwelveData Finance API.
+     *  This is not made by TwelveData; It is a third-party extension
+     *  
+     *  Cash is for the display of the user's cash deposits
+     *  CashBox is used to access and alter the Cash Text property from other windows
+     *  
+     *  The Window Properties are used to check for and open other option windows from the main form
      */
-
-
-
 
     public partial class Dashboard : Form, ICashManagement
     {
@@ -53,25 +56,30 @@ namespace StockForms
         }
 
         // Interface Functions
+
+        /* This function sets the Cash display */
         public void SetCash()
         {
             //MessageBox.Show("SETCASH");
             try
-            {
+            {   // This section reads the data from a file
                 StreamReader FileReader = new StreamReader("C:\\Users\\Public\\Documents\\Cash.txt");
                 Cash = Convert.ToDouble(FileReader.ReadLine());
                 FileReader.Close();
                 CashTextBox.Text = Cash.ToString("C2");
+
                 //MessageBox.Show(Cash.ToString("C2"));
             }
             catch (Exception e)
-            {
+            {   // Print the exception message
                 MessageBox.Show(e.Message + $"\n");
 
+                // Attempt to create a file and deposit cash
                 DepositCash();
             }
         }
 
+        /* This function writes data to the cash.txt file */
         public void WriteCash()
         {
             //MessageBox.Show("WRITECASH");
@@ -85,6 +93,10 @@ namespace StockForms
                 fileWriter.Close();
                 */
 
+                /* The following function is supposed to create and write to a new file if one
+                 * does not exist. This has not been happening and could require the
+                 * user to create a text file at the Public Documents directory.
+                 */
                 File.WriteAllText("C:\\Users\\Public\\Documents\\Cash.txt", Cash.ToString());
                  
                 //MessageBox.Show(Cash.ToString("C2"));
@@ -94,6 +106,12 @@ namespace StockForms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
+        // Open Window Functions
+
+        /*
+         * The following functions check for the existence of certain windows
+         * and opens one if it does not exist, passing the mainform into the constructor
+         */
         public void DepositCash() {
 
             if (_depositWin == null)
@@ -103,7 +121,6 @@ namespace StockForms
             }
         }
 
-        // Open Window Functions
         public void OpenSearchWindow() {
 
             if (SearchWin == null)
@@ -150,11 +167,14 @@ namespace StockForms
             }
         }
 
-        // Set Indices for the front Dashboard Market Display
+        /*
+         * This function sets the market indicies on the mainform,
+         * giving the user an outlook on the market for the day
+         */
         private async void SetIndices() {
 
-            Client = new HttpClient();
-            Api = new TwelveDataClient(ApiKey, Client);
+            // Start up a new API
+            Api = new TwelveDataClient(ApiKey, new HttpClient());
 
             // index initialization
             var dji = await Api.GetQuoteAsync("DJI", "1day");
@@ -179,20 +199,24 @@ namespace StockForms
             // Set Daily Market Outlook
             var MarketDaily = new StringBuilder(_marketTodayLabel.Text.ToString());
 
+            // If the indicies are up over 0.9%, the Market will be considered "UP"
             if (
                 (double.Parse(_djiChangeTextBox.Text) > 0.9)
                 ||
                 (double.Parse(_spChangeTextBox.Text) > 0.9)
             ) { MarketDaily.Append("UP"); }
 
+            // If the indicies are down over 0.9%, the Market will be considered "DOWN"
             else if (
                 (double.Parse(_djiChangeTextBox.Text) < -0.9)
                 ||
                 (double.Parse(_spChangeTextBox.Text) < -0.9)
             ) { MarketDaily.Append("DOWN"); }
 
+            // Otherwise, the market will be considered "SIDEWAYS"
             else { MarketDaily.Append("SIDEWAYS"); }
             
+            // Set Text
             _marketTodayLabel.Text = MarketDaily.ToString();
             
         }

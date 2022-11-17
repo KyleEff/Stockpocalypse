@@ -4,8 +4,13 @@ using System.Windows.Forms;
 
 namespace StockForms.Forms
 {
+    /*
+     * This form is for the user to view their portfolio. 
+     */
     public partial class PortfolioForm : Form
     {
+        DataGridViewCellCollection _row = null;
+
         Dashboard _mainForm = null;
 
         public PortfolioForm()
@@ -18,19 +23,35 @@ namespace StockForms.Forms
             _mainForm = MainForm as Dashboard;
 
             InitializeComponent();
-            //FillPortfolio();
             _mainForm.Hide();
-
+            SetPurchaseValue();
         }
 
+        void SetPurchaseValue() {
+
+            double total = 0.0;
+            
+            for (var each = 0; each < this._portfolioDataGridView.Rows.Count; each++) {
+
+                total += Convert.ToDouble(this._portfolioDataGridView.Rows[each].Cells[5].Value);
+
+                MessageBox.Show(this._portfolioDataGridView.Rows[each].Cells[5].Value.ToString());
+            }
+
+            //MessageBox.Show(total.ToString("C2"));
+        }
+
+        // OBSOLETE
+        /*
         private void FillPortfolio() {
 
             DataAccess database = new DataAccess();
 
             _portfolioDataGridView.DataSource = database.ViewPortfolio();
-        }
+        }*/
 
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        // EVENTS
+        void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 "This software is being developed by:\n" +
@@ -39,66 +60,62 @@ namespace StockForms.Forms
             );
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        void ExitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+        
+        void SearchToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenSearchWindow();
+        
+        void QuoteToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenQuoteWindow();
+        
+        void BuyToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenBuyWindow();
 
-        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenSearchWindow();
-        }
-
-        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenQuoteWindow();
-        }
-
-        private void BuyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenBuyWindow();
-        }
-
-        private void SellToolStripMenuItem_Click(object sender, EventArgs e)
+        void SellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenSellWindow();
         }
 
-        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
+        void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _mainForm.OpenPortfolioWindow();
         }
 
-        private void PortfolioForm_FormClosing(object sender, FormClosingEventArgs e)
+        void PortfolioForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _mainForm.PorfolioWin = null;
             _mainForm.Show();
         }
 
-        private void PortfolioForm_Load(object sender, EventArgs e)
+        void PortfolioForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
             this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
-            // TODO: This line of code loads data into the 'viewPortfolio.portfolio' table. You can move, or remove it, as needed.
-            this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
-
         }
 
-        private void BuyButton_Click(object sender, EventArgs e)
+        void PortfolioDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try { _row = this._portfolioDataGridView.Rows[e.RowIndex].Cells; }
+
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        async void BuyButton_Click(object sender, EventArgs e)
         {
             _mainForm.OpenBuyWindow();
+            _mainForm.BuyStockWin.SymbolTextBox.Text = _row["stock_ticker"].Value.ToString();
+            _mainForm.BuyStockWin.NameTextBox.Text = _row["stock_name"].Value.ToString();
+
+            _mainForm.BuyStockWin.PriceTextBox.Text = await SellStockForm.GetPrice(
+                _mainForm.BuyStockWin.SymbolTextBox.Text
+            );
         }
 
-        private void SellButton_Click(object sender, EventArgs e)
+        void SellButton_Click(object sender, EventArgs e)
         {
             _mainForm.OpenSellWindow();
         }
 
-        private void ExitButton_Click(object sender, EventArgs e)
+        void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
-
-
     }
 }

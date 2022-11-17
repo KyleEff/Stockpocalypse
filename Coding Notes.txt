@@ -159,4 +159,30 @@ Find a way to sort the list by Stock name and then use a binary search to find t
 Maybe
 
 IMPLEMENT THIS
-SEARCHFORM.CS line 65
+SEARCHFORM.CS
+
+11/16/22
+Search Form
+The name search works only once. I don’t know why this is.
+
+Need to hook up the search for with the quote form, so the user can search for a stock and then get a quote on it.
+
+Ticker Search works via raw API search so it searches all exchanges. That is ok
+
+Exchange Search works fine.
+
+MIC Code and Type Searches have not been tested, but are expected to work fine.
+
+Portfolio Form
+There is space on the left side for options. I am not sure what to put there. The three buttons at the bottom are wired up to open windows, but they do not fill in the information with the selected stock. This would work okay for the Sell Form since it has a DataGridView in it anyways. I could hook up the buy button to fill in the information with the selected stock.
+
+Add Portfolio values together to display the value of the whole portfolio at purchase prices.
+
+FAILED IDEA
+Find a way to ping the API for every stock in the portfolio and get the price. I believe that the price ping does not require daily credits. I was wrong, pricepings use credits. Getting the API to ping the price will not be viable with an 8 credit per minute limit.
+
+Working on adding proper commenting in the code.
+
+Limit orders will not be available upon proper release.
+
+Trying to set the Purchase Value of the form to the purchase value of the portfolio but I need to look around and see how the data is accessed within the DataGridViewCellCollection class.

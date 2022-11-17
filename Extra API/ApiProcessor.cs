@@ -12,12 +12,10 @@ namespace StockForms.Extra_API
         public static async Task<StockListModel> LoadStockList(string Exchange = "NYSE")
         {
             var URL = $"https://api.twelvedata.com/stocks/?exchange={ Exchange }";
-            var request = new HttpRequestMessage(HttpMethod.Get, URL);
 
-            ApiHelper.initClient();
-
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.SendAsync(request))
-            {
+            using (HttpResponseMessage response = await new HttpClient().SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, URL)
+            )){
                 if (response.IsSuccessStatusCode)
                 {
                     var Stocks = await response.Content.ReadFromJsonAsync<StockListModel>();
@@ -88,7 +86,7 @@ namespace StockForms.Extra_API
 
             if (!searchStock.Symbol.Equals(String.Empty))
             {
-                MessageBox.Show("TICKKEEERRRRR");
+                //MessageBox.Show("TICKKEEERRRRR");
                 URL += ($"symbol={searchStock.Symbol}&");
             }
 
@@ -101,18 +99,14 @@ namespace StockForms.Extra_API
             if (!searchStock.Type.Equals(String.Empty))
                 URL += $"type={searchStock.Type}";
 
-            var request = new HttpRequestMessage(HttpMethod.Get, URL);
-
-            ApiHelper.initClient();
-
             MessageBox.Show(URL);
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.SendAsync(request))
-            {
-
+            using (
+                HttpResponseMessage response = await new HttpClient().SendAsync(
+                    new HttpRequestMessage(HttpMethod.Get, URL)
+            )){
                 if (response.IsSuccessStatusCode)
                 {
-
                     var Stocks = await response.Content.ReadFromJsonAsync<StockListModel>();
 
                     return Stocks;
