@@ -6,6 +6,19 @@ using System.Threading.Tasks;
 
 namespace StockForms.DBWires
 {
+    /*
+     * This class is used to encapsulate the orders that the user places. Both buy and sell.
+     * 
+     * ID is the primary key.
+     * Buy is a boolean that represents whether it is a buy order or not
+     * Date_Time is the date and time of the order
+     * Stock_Ticker is the symbol that represents the security on an exchange
+     * Stock_Name is the name of the security
+     * Price is the price of the stock
+     * Quantity is the how many shares are on the order
+     * Total is Quantity times price
+     */
+
     public class Order
     {
         public int Order_ID { get; set; }

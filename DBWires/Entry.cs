@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace StockForms.DBWires
 {
     // This class will be for entering and altering portfolio entries
+    // This class was created and made obsolete within the same week (oops)
     public class Entry
     {
         public string Stock_Ticker { get; set; }

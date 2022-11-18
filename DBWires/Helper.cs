@@ -7,6 +7,9 @@ using System.Configuration;
 
 namespace StockForms.DBWires
 {
+    /*
+     * This class is for using the proper connection string to access the database.
+     */
     public static class Helper
     {
         public static string CnnVal(string name)
