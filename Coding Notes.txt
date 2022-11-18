@@ -223,3 +223,6 @@ The Sell feature runs into a lot of problems in the SQL statements.
 Sell feature fully works.
 
 Need to comment comment comment
+
+Need to get the program properly installing on the users’ computer.
+WORK ON INSTALLER AND COMMENTING
