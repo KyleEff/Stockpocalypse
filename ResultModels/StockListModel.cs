@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace StockForms.ResultModels
 {
+    /*
+     * These classes are used to hold results from an API ping,
+     *  and to store stock information
+     */
+
     public class StockListModel
     {
         public List<Stock> Data { get; set; }

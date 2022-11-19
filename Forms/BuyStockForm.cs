@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 using StockForms.DBWires;
+using StockForms.Interfaces;
 
 namespace StockForms.Forms
 {
 
 
-    public partial class BuyStockForm : Form
+    public partial class BuyStockForm : Form, ITransaction
     {
         private double _price { get; set; }
         private double _total { get; set; }

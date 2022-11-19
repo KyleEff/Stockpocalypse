@@ -147,7 +147,8 @@ namespace StockForms
         private async void FillStockList(Stock searchStock)
         {
             if (!searchStock.Name.Equals(String.Empty))
-            {
+            {   // The name search only works once, I don't know why this is.
+                // MORE DEBUGGING REQUIRED
                 MessageBox.Show("NAME SEARCH");
 
                 // This loop runs through each stock in the _search list to match a name
@@ -185,8 +186,8 @@ namespace StockForms
         }
 
         // EVENTS
-        private void SearchButton_Click(object sender, EventArgs e)
-        {
+        private void SearchButton_Click(object sender, EventArgs e) =>
+        
             FillStockList(new Stock()
             {
                 Symbol = _tickerTextBox.Text,
@@ -195,52 +196,29 @@ namespace StockForms
                 Mic_code = _micTextBox.Text,
                 Type = _typeComboBox.Text
             }) ;
-        }
+        
+        private void ExitButton_Click(object sender, EventArgs e) => Close();
 
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e) =>
+        
             MessageBox.Show(
                 "This software is being developed by:\n" +
                 "KFree, LLC\n" +
                 "2022"
             );
-        }
-
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenSearchWindow();
-        }
-
-        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenQuoteWindow();
-        }
-
-        private void BuyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenBuyWindow();
-        }
-
-        private void SellToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenSellWindow();
-        }
-
-        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _mainForm.OpenPortfolioWindow();
-        }
-
+        
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+        
+        private void SearchToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenSearchWindow();
+        
+        private void QuoteToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenQuoteWindow();
+        
+        private void BuyToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenBuyWindow();
+        
+        private void SellToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenSellWindow();
+       
+        private void PortfolioToolStripMenuItem_Click(object sender, EventArgs e) => _mainForm.OpenPortfolioWindow();
+        
         private void SearchForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _mainForm.SearchWin = null;

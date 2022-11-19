@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace StockForms.ResultModels
 {
+    /*
+     * These classes were used to store index data from the API. They are not used in the release.
+     */
+
     public class Indices
     {
         public List<Index> data { get; set; }

@@ -7,6 +7,16 @@ using StockForms.ResultModels;
 
 namespace StockForms.Extra_API
 {
+    /*
+     * This class does not have any attributes, it is made up on static functions
+     *  that process API requests.
+     *  
+     * LoadStockList(string) ONLY searches the specified exchange
+     *  
+     * LoadStockList(Stock) uses the information stored in a Stock object to run
+     *  an API ping based on what information is stored. It then returns a StockListModel
+     */
+
     public static class ApiProcessor
     {
         public static async Task<StockListModel> LoadStockList(string Exchange = "NYSE")
