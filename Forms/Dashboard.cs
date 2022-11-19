@@ -48,6 +48,7 @@ namespace StockForms
         public SellStockForm SellStockWin { get; set; }
         public PortfolioForm PorfolioWin { get; set; }
 
+        // Constructor
         public Dashboard()
         {
             InitializeComponent();

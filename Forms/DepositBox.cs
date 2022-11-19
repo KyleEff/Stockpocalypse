@@ -1,13 +1,19 @@
-﻿using StockForms.DBWires;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace StockForms.Forms
 {
+    /*
+     * This is the deposit form. This takes a deposit value from the user
+     *  and adds it to the cash reserves of the user.
+     *  
+     * _mainForm stores the Dashboard.
+     */
     public partial class DepositBox : Form
     {
         Dashboard _mainForm = null;
 
+        // Constructors
         public DepositBox()
         {
             InitializeComponent();
@@ -19,6 +25,7 @@ namespace StockForms.Forms
             InitializeComponent();
         }
 
+        /* This function takes a double value and adds it to the user's cash */
         public void DepositCash(double cash)
         {
             try {
@@ -33,6 +40,7 @@ namespace StockForms.Forms
             } catch (Exception Ex) { MessageBox.Show(Ex.Message); }
         }
 
+        // EVENTS
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();

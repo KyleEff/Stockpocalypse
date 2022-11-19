@@ -8,6 +8,11 @@ using TwelveDataSharp;
 
 namespace StockForms.Forms
 {
+    /*
+     * This from runs all selling transactions,
+     *  interacting with both the API and the 
+     */
+
     public partial class SellStockForm : Form, ITransaction
     {
         double _profit { get; set; }
@@ -18,6 +23,7 @@ namespace StockForms.Forms
 
         Order _selected; // This is used to store information from the selected row as well
 
+        // Constructors
         public SellStockForm()
         {
             InitializeComponent();
@@ -28,15 +34,15 @@ namespace StockForms.Forms
             _mainForm = mainForm as Dashboard;
 
             InitializeComponent();
-            //FillPortfolioList();
             CashTextBox.Text = _mainForm.CashBox;
             _mainForm.Hide();
         }
 
+        /* This function sets the total of the order (price * quantity) */
         public void SetTotal() {
 
             string PriceString = "";
-
+            // Check the pricebox for a dollar sign and then assign the price
             if (PriceTextBox.Text != null)
             {
                 if (PriceTextBox.Text[0] == '$')
@@ -46,35 +52,44 @@ namespace StockForms.Forms
             }
 
             //MessageBox.Show(PriceString);
-
+            // If the quantity box is not empty
             if (!QuantityTextBox.Text.Equals("0") && !QuantityTextBox.Text.Equals(""))
             {
-
+                // Does the math to calculate the total
                 TotalTextBox.Text = (Convert.ToDouble(PriceString) * Convert.ToDouble(QuantityTextBox.Text)).ToString("C2");
 
-                // REUSED STRING
+                // This loop removes the dollar sign and stores the total
                 PriceString = "";
                 for (var letter = 1; letter < TotalTextBox.Text.Length; letter++)
                     PriceString += TotalTextBox.Text[letter];
 
                 _total = Convert.ToDouble(PriceString);
 
+                // Calculate profit (total - (dca * order quantity))
                 _profit =
                     _total
                     -
                     (Convert.ToDouble(_row[4].Value) * Convert.ToInt32(QuantityTextBox.Text));
 
+                // Display profit
                 _profitTextBox.Text = _profit.ToString("C2");
             }
+            // Display zero if there is no quantity
             else TotalTextBox.Text = "$0.00";
         }
 
+        /* 
+         * This function runs the transaction, using the data to create an order
+         *  that is sent to the database, and then the user's portfolio is changed
+         *  depending on the contents of the order.
+         */
         public void Transact() {
             // SELL SELL SELL
-
+            // Create a database object and fill in an order object with the order information
             var Database = new DataAccess();
             string PriceString = "";
 
+            // Check for dollar sign and remove it
             if (PriceTextBox.Text != null)
             {
                 if (PriceTextBox.Text[0] == '$')
@@ -94,6 +109,7 @@ namespace StockForms.Forms
 
             //MessageBox.Show(order.FullInfo);
 
+            // Check if the quantity of the order is less than or equal to the amount owned
             if (order.Quantity <= _selected.Quantity)
             {
                 /*
@@ -104,27 +120,31 @@ namespace StockForms.Forms
                     _price,
                     Convert.ToInt32(QuantityTextBox.Text)
                 );*/
-
+                // Send order to database
                 Database.SendOrder(order);
 
+                // Change portfolio
                 Database.AlterPortfolio(order);
 
+                // Add cash and write to file
                 Dashboard.Cash += order.Total;
                 _mainForm.WriteCash();
 
+                // Show Order results
                 OrderResultsTextBox.Text = Database.ViewMostRecentOrder()[0].FullInfo;
             }
             else {
-                
+                // If there are not enough securities, kick a message and fail the order.
                 MessageBox.Show("You do not own enough securites for this transaction!!!");
 
                 OrderResultsTextBox.Text = "ORDER FAILED";
             }
 
+            // Set the cash display
             CashTextBox.Text = _mainForm.CashBox;
-
         }
 
+        /* Pings the API to get a price */
         public static async Task<string> GetPrice(string Ticker)
         {
             //MessageBox.Show("TICKER: " + Ticker);
@@ -202,6 +222,7 @@ namespace StockForms.Forms
             this.portfolioTableAdapter.Fill(this.viewPortfolio.portfolio);
         }
 
+        /* This event is for selecting rows from the grid and storing the data */
         void PortfolioDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             try

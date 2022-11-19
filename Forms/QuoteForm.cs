@@ -7,6 +7,17 @@ using TwelveDataSharp;
 
 namespace StockForms.Forms
 {
+
+    /*
+     * This form is for gathering information about a stock,
+     *  and enables the user to choose from a list.
+     *  
+     * Exchange holds the string value of the selected radio button
+     * Symbol stores the symbol of the selected stock so it can be used to grab a quote
+     * _stocks is used to store the results of the exchange API ping
+     * _mainForm stores the Dashboard
+     */
+    
     public partial class QuoteForm : Form
     {
         public string Exchange { get; set; }
@@ -14,6 +25,7 @@ namespace StockForms.Forms
         StockListModel _stocks { get; set; }
         Dashboard _mainForm = null;
 
+        // Constructors
         public QuoteForm()
         {
             InitializeComponent();
@@ -29,8 +41,7 @@ namespace StockForms.Forms
             FillStockList();
         }
 
-
-
+        /* This function fills the stock list with stocks from the selected exchange */
         private async void FillStockList() {
 
             if (_stocks == null)
@@ -46,10 +57,11 @@ namespace StockForms.Forms
             else MessageBox.Show("OOOOOOOOOOOOOOOOOOOOOOOOOOPS");
         }
 
+        // EVENTS
+        /* Pings the API and receives a quote, then fills in all the boxes with the info */
         private async void GetQuoteButton_Click(object sender, EventArgs e)
         {
-            Dashboard.Client = new HttpClient();
-            Dashboard.Api = new TwelveDataClient(Dashboard.ApiKey, Dashboard.Client);
+            Dashboard.Api = new TwelveDataClient(Dashboard.ApiKey, new HttpClient());
 
             var Quote = await Dashboard.Api.GetQuoteAsync(Symbol, "1day");
 
@@ -61,6 +73,7 @@ namespace StockForms.Forms
             _dailyChangeTextBox.Text = Quote.PercentChange.ToString("0.00") + '%';
         }
 
+        // The radio button events change the whole stock list depending on the exchange
         private void NyseRadioButton_MouseClick(object sender, MouseEventArgs e)
         {
             Exchange = NyseRadioButton.Text;
@@ -73,12 +86,14 @@ namespace StockForms.Forms
             FillStockList();
         }
 
+        /* Stores the symbol value of a selected stock for a quote */
         private void StockListBox_MouseClick(object sender, MouseEventArgs e)
         {
             Symbol = _stocks.Data[_stockListBox.SelectedIndex].Symbol;
             //MessageBox.Show(Symbol);
-        }
+        } 
 
+        /* Opens a buy form and fills in the pertinant info  */
         private async void BuyStockButton_Click(object sender, EventArgs e)
         {
             Dashboard.Client = new HttpClient();
