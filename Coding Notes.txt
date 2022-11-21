@@ -226,3 +226,9 @@ Need to comment comment comment
 
 Need to get the program properly installing on the users’ computer.
 WORK ON INSTALLER AND COMMENTING
+
+11/20/22
+INSTALLER INSTALLER INSTALLER
+The installed program through Visual Installer is kicking exceptions like crazy. The Studio installer ran just fine but requires a bit of surgery to uninstall.
+
+CREATE READ ME (due in december)

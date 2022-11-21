@@ -11,7 +11,7 @@ using StockForms.Interfaces;
 namespace StockForms
 {
     /*
-     * This is the MAIN FORM
+     * This is the MAIN FORM / DASHBOARD
      * Everything the program does extends from this panel / class
      * 
      * The API Key is a unique key that is used to track the use of traffic credits
@@ -203,14 +203,14 @@ namespace StockForms
             // If the indicies are up over 0.9%, the Market will be considered "UP"
             if (
                 (double.Parse(_djiChangeTextBox.Text) > 0.9)
-                ||
+                    ||
                 (double.Parse(_spChangeTextBox.Text) > 0.9)
             ) { MarketDaily.Append("UP"); }
 
             // If the indicies are down over 0.9%, the Market will be considered "DOWN"
             else if (
                 (double.Parse(_djiChangeTextBox.Text) < -0.9)
-                ||
+                    ||
                 (double.Parse(_spChangeTextBox.Text) < -0.9)
             ) { MarketDaily.Append("DOWN"); }
 
